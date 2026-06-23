@@ -1,0 +1,20 @@
+[project]
+name = "csce701-pqc"
+version = "0.0.1"
+description = "ML-KEM (FIPS 203) and ML-DSA (FIPS 204) reference implementations for CSCE 701."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "hypothesis>=6.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["mlkem*", "mldsa*"]
+
+[tool.pytest.ini_options]
+testpaths = ["mlkem/tests"]
+python_files = ["test_*.py"]
