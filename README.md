@@ -1,1 +1,1 @@
-# csce703_project_summer_2026
+CLAUDE.md
