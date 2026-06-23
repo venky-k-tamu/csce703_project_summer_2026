@@ -13,8 +13,8 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["mlkem*", "mldsa*"]
+include = ["common*", "mlkem*", "mldsa*"]
 
 [tool.pytest.ini_options]
-testpaths = ["mlkem/tests"]
+testpaths = ["mlkem/tests", "mldsa/tests"]
 python_files = ["test_*.py"]
