@@ -68,8 +68,7 @@ README.md
 
 ## Phased delivery
 
-Each phase ends with a passing test suite and a commit. Tasks are tracked in
-`TaskList` (`#1`–`#5`).
+Each phase ends with a passing test suite and a commit.
 
 ### Phase 1 — Foundation ✅ (commit `e8cc502`)
 
@@ -81,43 +80,69 @@ Each phase ends with a passing test suite and a commit. Tasks are tracked in
   `Compress(Decompress(y)) == y` for all y in [0, 2ᵈ), lossy bound check,
   modular-reduction edge cases. **19/19 pass.**
 
-### Phase 2 — NTT and sampling
+### Phase 2 — NTT and sampling ✅ (commit `f978c1c`)
 
-- `mlkem/hashes.py` — `prf_eta(eta, s, b)`, `H`, `J`, `G` wrappers around SHA3/SHAKE.
-- `mlkem/ntt.py` — precomputed zetas table (powers of ζ = 17 mod 3329 in
-  bit-reversed order), `ntt(f)`, `intt(f)`, `base_case_multiply`, `multiply_ntts`.
-- `mlkem/sampling.py` — `sample_ntt(B)` (SHAKE-128 rejection sampler producing
-  an NTT-domain polynomial) and `sample_poly_cbd(eta, B)` (centered binomial
-  distribution sampler).
-- Tests: NTT round-trip (`intt(ntt(f)) == f`), NTT homomorphism
-  (`multiply_ntts(ntt(a), ntt(b)) == ntt(a*b mod X^256+1)`), centered-binomial
-  distribution sanity, fixed-seed `sample_ntt` output.
+- `mlkem/hashes.py` — `H`, `J`, `G`, `prf` wrappers around SHA3/SHAKE, plus
+  an incremental SHAKE-128 `XOF` stream that re-digests a growing prefix
+  (hashlib has no streaming squeeze).
+- `mlkem/ntt.py` — precomputed `ZETAS` / `GAMMAS` tables for ζ = 17 mod q
+  in bit-reversed-7 order, `ntt(f)`, `intt(f)`, `base_case_multiply`,
+  `multiply_ntts` (Alg 9–12).
+- `mlkem/sampling.py` — `sample_ntt(seed)` (SHAKE-128 rejection sampler
+  producing an NTT-domain polynomial) and `sample_poly_cbd(eta, B)`
+  (centered binomial distribution).
+- Tests: hashes match `hashlib` byte-for-byte; XOF prefix consistency
+  across grow rounds; `ZETAS` leading values match FIPS 203 Appendix A
+  and γᵢ = 17·ζᵢ² identity; NTT round-trip on random polynomials; NTT
+  homomorphism vs naïve multiplication in ℤ_q[X]/(X²⁵⁶+1); CBD range
+  checks and distribution sanity (mean ≈ 0, var ≈ η/2 over ~10k samples).
+  **27 new tests.**
 
-### Phase 3 — K-PKE
+### Phase 3 — K-PKE ✅ (commit `3fc1801`)
 
 - `mlkem/kpke.py` — `kpke_keygen(d)`, `kpke_encrypt(ek_pke, m, r)`,
   `kpke_decrypt(dk_pke, c)` mapping to FIPS 203 Algorithms 13–15.
-- Tests: deterministic-seed round-trip
-  (`kpke_decrypt(dk, kpke_encrypt(ek, m, r)) == m` w.h.p.), key/ct sizes match
-  spec constants.
+- Tests: ek/dk/ct sizes match spec (1184 / 1152 / 1088 for ML-KEM-768);
+  determinism from fixed seeds; 5 labeled-seed + 10 random-seed
+  encrypt/decrypt round-trips (no decryption failures expected —
+  ML-KEM-768's failure probability is ~2⁻¹³⁸); input-size validation.
+  **12 new tests.**
 
-### Phase 4 — ML-KEM with input checks
+### Phase 4 — ML-KEM with input checks ✅ (commit `88ca535`)
 
-- `mlkem/mlkem.py` — public API: `keygen()`, `encaps(ek)`, `decaps(dk, c)`.
-  Internal deterministic variants `_keygen_internal(d, z)`,
-  `_encaps_internal(ek, m)`, `_decaps_internal(dk, c)` (Algorithms 16–18).
-  Includes FIPS 203 §7.2 (modulus check on `ek`) and §7.3 (ciphertext type
-  check) input validation.
-- Tests: 100× random round-trip; tampered-ciphertext returns the implicit
-  rejection key (not an exception); `encaps(ek)` is deterministic given a fixed
-  seed via the internal variant.
+- `mlkem/mlkem.py` — public API: `keygen()`, `encaps(ek)`, `decaps(dk, c)`
+  (re-exported from `mlkem` package root). Internal deterministic
+  variants `_keygen_internal(d, z)`, `_encaps_internal(ek, m)`,
+  `_decaps_internal(dk, c)` (Algorithms 16–18).
+- Input checks: §7.2 encapsulation-key check (type + modulus via
+  decode/re-encode round-trip), §7.3 decapsulation-key check (type +
+  H(ek) hash check), and ciphertext type check.
+- `decaps` implements **implicit rejection**: on c ≠ c' it returns
+  J(z‖c), not an exception.
+- Tests: ek/dk/ct sizes; 20-cycle random round-trip via the public API;
+  dk layout (`dk_pke ‖ ek ‖ H(ek) ‖ z`); implicit rejection on tampered
+  and random ciphertexts; each §7 check fires on intentionally corrupted
+  input. **14 new tests.**
 
-### Phase 5 — NIST ACVP KAT verification
+### Phase 5 — NIST ACVP KAT verification ✅ (commit `8f115ea`)
 
-- Vendor NIST ACVP test vectors for ML-KEM-768
-  (`mlkem/tests/vectors/keygen.json`, `encapDecap.json`).
-- `mlkem/tests/test_mlkem_kat.py` — parse and run each vector against the
-  implementation. This is the headline "verified" result.
+- Vendored NIST ACVP test vectors for ML-KEM-768, filtered from
+  `usnistgov/ACVP-Server` (gen-val/json-files), saved to
+  `mlkem/tests/vectors/{keyGen,encapDecap}-{prompt,expected}.json` with
+  provenance documented in `mlkem/tests/vectors/README.md`.
+- `mlkem/tests/test_mlkem_kat.py` — parses prompt/expected pairs, joins
+  by (tgId, tcId), dispatches each function (keyGen / encapsulation /
+  decapsulation / encapsulationKeyCheck / decapsulationKeyCheck) to the
+  matching internal algorithm.
+- **All 80 ML-KEM-768 KAT cases pass**: 25 keyGen + 25 encapsulation +
+  10 decapsulation + 10 encapKeyCheck + 10 decapKeyCheck. This is the
+  headline verification result.
+
+## Final status
+
+**153/153 tests pass.** The ML-KEM-768 implementation matches NIST's
+official FIPS 203 vectors byte-for-byte. Next move is ML-DSA (FIPS 204),
+or hand-off / writeup — see the addendum below.
 
 ## ML-DSA addendum (post-Phase 5)
 

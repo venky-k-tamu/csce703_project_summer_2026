@@ -10,6 +10,12 @@ package will be added later under `mldsa/`. The implementation prioritizes
 **spec fidelity** over performance: code is meant to be auditable against
 the FIPS 203 pseudocode line-by-line.
 
+**Status**: all five planned phases are complete. The implementation
+passes all **80 NIST ACVP KAT vectors** for ML-KEM-768 (keyGen,
+encapsulation, decapsulation, encapsulationKeyCheck,
+decapsulationKeyCheck) plus 73 in-house property/unit tests — 153/153
+total. KAT vectors live in `mlkem/tests/vectors/`.
+
 `docs/PLAN.md` is the authoritative plan (phases, decisions, layout).
 `docs/PROMPTS.md` is the chronological record of design choices.
 
@@ -38,7 +44,7 @@ There is no build, lint, or formatter configured. Python 3.10+ required
 Module dependency stack (each layer uses everything below it):
 
 ```
-mlkem.py            ML-KEM KeyGen/Encaps/Decaps + §7 input checks   (Phase 4, pending)
+mlkem.py            ML-KEM KeyGen/Encaps/Decaps + §7 input checks — FIPS 203 §6, §7
 kpke.py             K-PKE KeyGen/Encrypt/Decrypt — FIPS 203 §5
 sampling.py         SampleNTT (Alg 7), SamplePolyCBD (Alg 8)
 ntt.py              ZETAS/GAMMAS, NTT, NTT⁻¹, MultiplyNTTs (Alg 9–12)
@@ -70,8 +76,8 @@ Therefore:
 `_sample_matrix(rho)` produces Â with `Â[i][j] = SampleNTT(ρ ‖ j ‖ i)`
 — byte order is **(j, i)** per FIPS 203 Algorithm 13 line 5. Encrypt then
 multiplies by `Â^T` (transposed in code), while KeyGen multiplies by `Â`.
-If KAT vectors fail in Phase 5, the (j, i) vs (i, j) byte order is the
-first thing to recheck.
+KATs confirm this layout — if a future change breaks them, the (j, i)
+vs (i, j) byte order is the first thing to recheck.
 
 ### Hashes vs XOF
 
