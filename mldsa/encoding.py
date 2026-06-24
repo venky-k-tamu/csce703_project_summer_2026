@@ -23,8 +23,18 @@ from .params import (
     LAMBDA,
     N,
     OMEGA,
+    Q,
     SIG_SIZE,
 )
+
+
+def _to_signed(coef):
+    """Map either a signed integer or a mod-q value in [0, q) into the
+    centered representative in (-q/2, q/2]."""
+    sc = coef % Q
+    if sc > Q // 2:
+        sc -= Q
+    return sc
 
 
 # -- low-level polynomial bit-packers ------------------------------------------------
@@ -51,13 +61,18 @@ def simple_bit_unpack(v, b):
 
 
 def bit_pack(w, a, b):
-    """Algorithm 17. Pack coefficients in [-a, b] into 32·bitlen(a+b) bytes."""
+    """Algorithm 17. Pack coefficients in [-a, b] into 32·bitlen(a+b) bytes.
+
+    Accepts either signed integers or mod-q values in [0, q); both are
+    canonicalized via _to_signed.
+    """
     width = (a + b).bit_length()
     bits = []
     for coef in w:
-        if not -a <= coef <= b:
-            raise ValueError(f"bit_pack: coef {coef} out of [-{a}, {b}]")
-        bits.extend(integer_to_bits(b - coef, width))
+        sc = _to_signed(coef)
+        if not -a <= sc <= b:
+            raise ValueError(f"bit_pack: coef {sc} (from {coef}) out of [-{a}, {b}]")
+        bits.extend(integer_to_bits(b - sc, width))
     return bits_to_bytes(bits)
 
 

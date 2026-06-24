@@ -82,7 +82,7 @@ def expand_s(rho: bytes):
 
 
 def expand_mask(rho: bytes, mu: int):
-    """Algorithm 34. Returns y ∈ R_q^l with coefficients in (-γ1, γ1]."""
+    """Algorithm 34. Returns y ∈ R_q^l with coefficients in (-γ1, γ1], stored mod q."""
     if len(rho) != 64:
         raise ValueError("expand_mask seed must be 64 bytes")
     c = BITLEN_GAMMA_1                       # bitlen(2γ1 - 1) = 20 for ML-DSA-65
@@ -90,7 +90,8 @@ def expand_mask(rho: bytes, mu: int):
     y = []
     for r in range(L):
         v = H(rho + integer_to_bytes(mu + r, 2), bytes_per)
-        y.append(bit_unpack(v, GAMMA_1 - 1, GAMMA_1))
+        signed = bit_unpack(v, GAMMA_1 - 1, GAMMA_1)
+        y.append([coef % Q for coef in signed])
     return y
 
 
