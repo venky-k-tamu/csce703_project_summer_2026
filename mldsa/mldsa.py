@@ -1,4 +1,17 @@
-"""ML-DSA internal KeyGen / Sign / Verify per FIPS 204 §6 (Algorithms 6–8)."""
+"""ML-DSA internal + public KeyGen / Sign / Verify per FIPS 204 §5–§6.
+
+Public API:
+- keygen()                              → (pk, sk)
+- sign(sk, M, ctx=b"", deterministic=False)
+- verify(pk, M, sig, ctx=b"")
+- hash_sign(sk, M, ctx=b"", *, hash_alg="SHA-512", deterministic=False)
+- hash_verify(pk, M, sig, ctx=b"", *, hash_alg="SHA-512")
+
+Internal API (underscore-prefixed) is exposed for KAT replay.
+"""
+
+import hashlib
+import secrets
 
 from .conversions import integer_to_bytes
 from .encoding import (
@@ -103,8 +116,18 @@ def _hint_weight(h):
 
 
 def _inf_norm_poly(poly):
-    """Centered ℓ∞ norm: max |signed(c)| for c ∈ [0, q)."""
-    return max(min(c, Q - c) for c in poly)
+    """Centered ℓ∞ norm. Accepts coefficients in either signed or mod-q form;
+    each is canonicalized to (-q/2, q/2] before taking the absolute value."""
+    out = 0
+    for c in poly:
+        sc = c % Q
+        if sc > Q // 2:
+            sc -= Q
+        if -sc > out:
+            out = -sc
+        if sc > out:
+            out = sc
+    return out
 
 
 def _inf_norm_vec(vec):
@@ -230,3 +253,92 @@ def _verify_internal(pk: bytes, M_prime: bytes, sig: bytes) -> bool:
 
     c_tilde_prime = H(mu + w1_encode(w1_prime), LAMBDA // 4)
     return c_tilde == c_tilde_prime
+
+
+# ----- public API (FIPS 204 §5, Algorithms 1–5) -----------------------------
+
+
+# DER-encoded OIDs for each pre-hash function permitted by FIPS 204 §5.4.
+# Each value is the full ASN.1 OID encoding (tag 0x06, length, content).
+_PREHASH_FUNCTIONS = {
+    "SHA-256":   (bytes.fromhex("0609608648016503040201"), lambda m: hashlib.sha256(m).digest()),
+    "SHA-384":   (bytes.fromhex("0609608648016503040202"), lambda m: hashlib.sha384(m).digest()),
+    "SHA-512":   (bytes.fromhex("0609608648016503040203"), lambda m: hashlib.sha512(m).digest()),
+    "SHA3-256":  (bytes.fromhex("0609608648016503040208"), lambda m: hashlib.sha3_256(m).digest()),
+    "SHA3-384":  (bytes.fromhex("0609608648016503040209"), lambda m: hashlib.sha3_384(m).digest()),
+    "SHA3-512":  (bytes.fromhex("060960864801650304020A"), lambda m: hashlib.sha3_512(m).digest()),
+    "SHAKE-128": (bytes.fromhex("060960864801650304020B"), lambda m: hashlib.shake_128(m).digest(32)),
+    "SHAKE-256": (bytes.fromhex("060960864801650304020C"), lambda m: hashlib.shake_256(m).digest(64)),
+}
+
+
+def _format_M_prime(M: bytes, ctx: bytes, prehash_oid: bytes | None) -> bytes:
+    """Build the M' string for either ML-DSA (prehash_oid=None) or HashML-DSA."""
+    if len(ctx) > 255:
+        raise ValueError("ctx must be at most 255 bytes")
+    domain_separator = 1 if prehash_oid is not None else 0
+    head = integer_to_bytes(domain_separator, 1) + integer_to_bytes(len(ctx), 1) + bytes(ctx)
+    if prehash_oid is None:
+        return head + bytes(M)
+    return head + prehash_oid + bytes(M)
+
+
+def keygen():
+    """Algorithm 1: ML-DSA.KeyGen."""
+    return _keygen_internal(secrets.token_bytes(32))
+
+
+def sign(sk: bytes, M: bytes, ctx: bytes = b"", *, deterministic: bool = False) -> bytes:
+    """Algorithm 2: ML-DSA.Sign."""
+    M_prime = _format_M_prime(M, ctx, prehash_oid=None)
+    rnd = b"\x00" * 32 if deterministic else secrets.token_bytes(32)
+    return _sign_internal(sk, M_prime, rnd)
+
+
+def verify(pk: bytes, M: bytes, sig: bytes, ctx: bytes = b"") -> bool:
+    """Algorithm 3: ML-DSA.Verify."""
+    if len(ctx) > 255:
+        return False
+    M_prime = _format_M_prime(M, ctx, prehash_oid=None)
+    return _verify_internal(pk, M_prime, sig)
+
+
+def _resolve_prehash(name: str):
+    try:
+        return _PREHASH_FUNCTIONS[name]
+    except KeyError:
+        raise ValueError(f"unsupported pre-hash function {name!r}") from None
+
+
+def hash_sign(
+    sk: bytes,
+    M: bytes,
+    ctx: bytes = b"",
+    *,
+    hash_alg: str = "SHA-512",
+    deterministic: bool = False,
+) -> bytes:
+    """Algorithm 4: HashML-DSA.Sign."""
+    oid, prehash = _resolve_prehash(hash_alg)
+    M_prime = _format_M_prime(prehash(M), ctx, prehash_oid=oid)
+    rnd = b"\x00" * 32 if deterministic else secrets.token_bytes(32)
+    return _sign_internal(sk, M_prime, rnd)
+
+
+def hash_verify(
+    pk: bytes,
+    M: bytes,
+    sig: bytes,
+    ctx: bytes = b"",
+    *,
+    hash_alg: str = "SHA-512",
+) -> bool:
+    """Algorithm 5: HashML-DSA.Verify."""
+    if len(ctx) > 255:
+        return False
+    try:
+        oid, prehash = _resolve_prehash(hash_alg)
+    except ValueError:
+        return False
+    M_prime = _format_M_prime(prehash(M), ctx, prehash_oid=oid)
+    return _verify_internal(pk, M_prime, sig)

@@ -1,4 +1,5 @@
-"""ML-DSA-65 reference implementation (FIPS 204).
+"""ML-DSA-65 reference implementation (FIPS 204)."""
 
-Public API will be wired up in Phase 4 once the underlying algorithms exist.
-"""
+from .mldsa import hash_sign, hash_verify, keygen, sign, verify
+
+__all__ = ["keygen", "sign", "verify", "hash_sign", "hash_verify"]
