@@ -4,8 +4,8 @@ Public API:
 - keygen()                              → (pk, sk)
 - sign(sk, M, ctx=b"", deterministic=False)
 - verify(pk, M, sig, ctx=b"")
-- hash_sign(sk, M, ctx=b"", *, hash_alg="SHA-512", deterministic=False)
-- hash_verify(pk, M, sig, ctx=b"", *, hash_alg="SHA-512")
+- hash_sign(sk, M, ctx=b"", *, hash_alg="SHA2-512", deterministic=False)
+- hash_verify(pk, M, sig, ctx=b"", *, hash_alg="SHA2-512")
 
 Internal API (underscore-prefixed) is exposed for KAT replay.
 """
@@ -260,15 +260,20 @@ def _verify_internal(pk: bytes, M_prime: bytes, sig: bytes) -> bool:
 
 # DER-encoded OIDs for each pre-hash function permitted by FIPS 204 §5.4.
 # Each value is the full ASN.1 OID encoding (tag 0x06, length, content).
+# Names match the ACVP-style identifiers used in NIST test vectors.
 _PREHASH_FUNCTIONS = {
-    "SHA-256":   (bytes.fromhex("0609608648016503040201"), lambda m: hashlib.sha256(m).digest()),
-    "SHA-384":   (bytes.fromhex("0609608648016503040202"), lambda m: hashlib.sha384(m).digest()),
-    "SHA-512":   (bytes.fromhex("0609608648016503040203"), lambda m: hashlib.sha512(m).digest()),
-    "SHA3-256":  (bytes.fromhex("0609608648016503040208"), lambda m: hashlib.sha3_256(m).digest()),
-    "SHA3-384":  (bytes.fromhex("0609608648016503040209"), lambda m: hashlib.sha3_384(m).digest()),
-    "SHA3-512":  (bytes.fromhex("060960864801650304020A"), lambda m: hashlib.sha3_512(m).digest()),
-    "SHAKE-128": (bytes.fromhex("060960864801650304020B"), lambda m: hashlib.shake_128(m).digest(32)),
-    "SHAKE-256": (bytes.fromhex("060960864801650304020C"), lambda m: hashlib.shake_256(m).digest(64)),
+    "SHA2-224":     (bytes.fromhex("0609608648016503040204"), lambda m: hashlib.new("sha224", m).digest()),
+    "SHA2-256":     (bytes.fromhex("0609608648016503040201"), lambda m: hashlib.sha256(m).digest()),
+    "SHA2-384":     (bytes.fromhex("0609608648016503040202"), lambda m: hashlib.sha384(m).digest()),
+    "SHA2-512":     (bytes.fromhex("0609608648016503040203"), lambda m: hashlib.sha512(m).digest()),
+    "SHA2-512/224": (bytes.fromhex("0609608648016503040205"), lambda m: hashlib.new("sha512_224", m).digest()),
+    "SHA2-512/256": (bytes.fromhex("0609608648016503040206"), lambda m: hashlib.new("sha512_256", m).digest()),
+    "SHA3-224":     (bytes.fromhex("0609608648016503040207"), lambda m: hashlib.sha3_224(m).digest()),
+    "SHA3-256":     (bytes.fromhex("0609608648016503040208"), lambda m: hashlib.sha3_256(m).digest()),
+    "SHA3-384":     (bytes.fromhex("0609608648016503040209"), lambda m: hashlib.sha3_384(m).digest()),
+    "SHA3-512":     (bytes.fromhex("060960864801650304020A"), lambda m: hashlib.sha3_512(m).digest()),
+    "SHAKE-128":    (bytes.fromhex("060960864801650304020B"), lambda m: hashlib.shake_128(m).digest(32)),
+    "SHAKE-256":    (bytes.fromhex("060960864801650304020C"), lambda m: hashlib.shake_256(m).digest(64)),
 }
 
 
@@ -315,7 +320,7 @@ def hash_sign(
     M: bytes,
     ctx: bytes = b"",
     *,
-    hash_alg: str = "SHA-512",
+    hash_alg: str = "SHA2-512",
     deterministic: bool = False,
 ) -> bytes:
     """Algorithm 4: HashML-DSA.Sign."""
@@ -331,7 +336,7 @@ def hash_verify(
     sig: bytes,
     ctx: bytes = b"",
     *,
-    hash_alg: str = "SHA-512",
+    hash_alg: str = "SHA2-512",
 ) -> bool:
     """Algorithm 5: HashML-DSA.Verify."""
     if len(ctx) > 255:

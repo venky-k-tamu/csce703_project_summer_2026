@@ -80,17 +80,17 @@ def test_hashml_dsa_domain_separates_from_plain():
     pk, sk = _keygen_internal(_seed(b"domain-sep"))
     M = b"m"
     sig_plain = sign(sk, M, deterministic=True)
-    sig_hash = hash_sign(sk, M, hash_alg="SHA-256", deterministic=True)
+    sig_hash = hash_sign(sk, M, hash_alg="SHA2-256", deterministic=True)
     assert sig_plain != sig_hash
     assert verify(pk, M, sig_hash) is False
-    assert hash_verify(pk, M, sig_plain, hash_alg="SHA-256") is False
+    assert hash_verify(pk, M, sig_plain, hash_alg="SHA2-256") is False
 
 
 def test_hash_verify_rejects_wrong_hash_alg():
     pk, sk = _keygen_internal(_seed(b"wrong-hash"))
     M = b"m"
-    sig = hash_sign(sk, M, hash_alg="SHA-256", deterministic=True)
-    assert hash_verify(pk, M, sig, hash_alg="SHA-512") is False
+    sig = hash_sign(sk, M, hash_alg="SHA2-256", deterministic=True)
+    assert hash_verify(pk, M, sig, hash_alg="SHA2-512") is False
 
 
 def test_hash_sign_rejects_unknown_hash_alg():
