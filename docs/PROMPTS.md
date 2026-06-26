@@ -140,3 +140,90 @@ test runner dispatches each `function` to the matching internal API.
 
 This entry — plus the ✅ marks and commit hashes added in `PLAN.md`,
 and the "Status" + Phase 5 outcomes propagated into `CLAUDE.md`.
+
+## 14. Start ML-DSA — scope-locking + shared common/ (commit `297e84e`)
+
+> start ml-dsa
+
+Three scoping questions, all matched the recommendation: ML-DSA-65 only,
+factor `bytes_bits.py` into a shared `common/` package now (genuine
+demonstrated duplication between FIPS 203 §4.2.1 and FIPS 204 §4.2),
+include HashML-DSA. Refactor commit lands first so the Phase 1 commit
+contains only ML-DSA logic.
+
+## 15. ML-DSA Phase 1 — params, conversions, rounding, encoding (commit `2a0e513`)
+
+> start phase 1 → commit phase 1 and push
+
+Encoding is the bulk of the work — bit packers, hint vector packer with
+full validation, and the four high-level encoders (pk / sk / sig / w1).
+Hint unpack's validation predicates (length, monotonic per-row counts,
+strictly increasing positions, zero trailing slots) were tested with
+intentionally tampered inputs. 47 new tests passing on first run.
+
+## 16. ML-DSA Phase 2 — NTT (ζ=1753) and sampling (commit `d1a0db6`)
+
+> start phase 2 → commit phase 2 and push
+
+ML-DSA's NTT diverges from ML-KEM's: ζ = 1753 is a primitive **512-th**
+root of unity, so X²⁵⁶ + 1 factors into 256 linear factors and
+`multiply_ntts` is pointwise. The reused-from-ML-KEM design pattern is
+the streaming XOF — same re-digest-a-growing-buffer trick because
+hashlib's SHAKE has no incremental squeeze API. 31 new tests.
+
+## 17. ML-DSA Phase 3 — internal KeyGen / Sign / Verify (commit `7b244e0`)
+
+> start phase 3 → yes
+
+Sign's rejection-sampling retry loop is implemented straight from the
+spec — all four norm conditions, plus a 1000·L iteration safety guard
+against runaway loops. One drive-by encoding fix landed: `bit_pack` now
+accepts either signed or mod-q inputs (canonicalizes via `_to_signed`),
+removing impedance mismatch with the rest of the pipeline. 15 new tests
+covering round-trip plus four kinds of negative cases (tampered message,
+tampered byte, wrong pk, undersized inputs).
+
+## 18. ML-DSA Phase 4 — public API + HashML-DSA + the norm bugfix (commit `57b5e41`)
+
+> start phase 4 → yes go ahead
+
+Built the FIPS 204 §5 public-API shape on top of internal: `keygen()`,
+`sign(sk, M, ctx, deterministic)`, `verify(pk, M, sig, ctx)`, plus
+HashML-DSA variants with 8 pre-hash functions initially.
+
+Then a **real bug**: `test_random_keys_and_messages` failed sporadically.
+A 200-trial stress test showed ~2.5% verify failures. Root cause traced
+to `_inf_norm_poly` using `max(min(c, q−c))` — works for mod-q inputs in
+[0, q) but silently drops the negative half of *signed* inputs coming
+from `low_bits` (which returns r₀ ∈ (−γ₂, γ₂]). Sign's `‖r₀‖∞ < γ₂ − β`
+check therefore only constrained the positive coefficients, occasionally
+accepting cases that violated `HighBits(w − c·s₂) = HighBits(w)`. Fix:
+canonicalize either form into the centered representative before taking
+|·|. 0/500 failures after fix.
+
+Important lesson: deterministic unit tests can't catch this — it
+requires randomized inputs to surface the asymmetry. Property tests with
+`os.urandom` caught it; subsequent KATs would have caught it more
+loudly, but slower.
+
+## 19. ML-DSA Phase 5 — NIST ACVP KATs all pass (commit `3e0597c`)
+
+> start phase 5 → yes
+
+Fetched the six ACVP files (keyGen + sigGen + sigVer × prompt +
+expectedResults), filtered to ML-DSA-65 + the external signature
+interface. Scope: 25 keyGen + 60 sigGen (pure + HashML-DSA × det +
+hedged) + 30 sigVer = 115 cases. Skipped `externalMu` (caller pre-
+computes μ) — separate signing API, no current need.
+
+The pre-hash table needed expanding from 8 to 12 entries to cover
+SHA2-224 / SHA2-512/224 / SHA2-512/256 / SHA3-224, and renaming from
+`SHA-256` style to ACVP's `SHA2-256` style. All 115 KAT cases pass on
+first run. Full suite at 387/387.
+
+## 20. Final doc refresh
+
+> update docs
+
+This entry, plus ML-DSA architecture / phase / addendum sections added
+to `PLAN.md` and `CLAUDE.md`.
