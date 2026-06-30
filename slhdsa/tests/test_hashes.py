@@ -6,51 +6,51 @@ from slhdsa.hashes import F, H, H_msg, PRF, PRF_msg, T_l
 from slhdsa.params import M_BYTES, N
 
 
-def _shake128(data: bytes, out: int) -> bytes:
-    return hashlib.shake_128(data).digest(out)
+def _shake256(data: bytes, out: int) -> bytes:
+    return hashlib.shake_256(data).digest(out)
 
 
 def _make_seed(tag: bytes) -> bytes:
     return hashlib.shake_256(tag).digest(N)
 
 
-def test_F_matches_shake128():
+def test_F_matches_shake256():
     pk_seed = _make_seed(b"pk")
     adrs = bytearray(32)
     m1 = _make_seed(b"m1")
-    expected = _shake128(bytes(pk_seed) + bytes(adrs) + bytes(m1), N)
+    expected = _shake256(bytes(pk_seed) + bytes(adrs) + bytes(m1), N)
     assert F(pk_seed, adrs, m1) == expected
 
 
-def test_H_matches_shake128():
+def test_H_matches_shake256():
     pk_seed = _make_seed(b"pk")
     adrs = bytearray(32)
     m = _make_seed(b"left") + _make_seed(b"right")
-    expected = _shake128(bytes(pk_seed) + bytes(adrs) + bytes(m), N)
+    expected = _shake256(bytes(pk_seed) + bytes(adrs) + bytes(m), N)
     assert H(pk_seed, adrs, m) == expected
 
 
-def test_T_l_matches_shake128():
+def test_T_l_matches_shake256():
     pk_seed = _make_seed(b"pk")
     adrs = bytearray(32)
     m = b"\xab" * (35 * N)   # 35-poly WOTS+ compression
-    expected = _shake128(bytes(pk_seed) + bytes(adrs) + bytes(m), N)
+    expected = _shake256(bytes(pk_seed) + bytes(adrs) + bytes(m), N)
     assert T_l(pk_seed, adrs, m) == expected
 
 
-def test_PRF_matches_shake128():
+def test_PRF_matches_shake256():
     pk_seed = _make_seed(b"pk")
     sk_seed = _make_seed(b"sk")
     adrs = bytearray(32)
-    expected = _shake128(bytes(pk_seed) + bytes(adrs) + bytes(sk_seed), N)
+    expected = _shake256(bytes(pk_seed) + bytes(adrs) + bytes(sk_seed), N)
     assert PRF(pk_seed, sk_seed, adrs) == expected
 
 
-def test_PRF_msg_matches_shake128():
+def test_PRF_msg_matches_shake256():
     sk_prf = _make_seed(b"prf")
     opt_rand = _make_seed(b"rand")
     m = b"hello world"
-    expected = _shake128(bytes(sk_prf) + bytes(opt_rand) + m, N)
+    expected = _shake256(bytes(sk_prf) + bytes(opt_rand) + m, N)
     assert PRF_msg(sk_prf, opt_rand, m) == expected
 
 
@@ -63,12 +63,12 @@ def test_H_msg_output_length():
     assert len(out) == M_BYTES
 
 
-def test_H_msg_matches_shake128():
+def test_H_msg_matches_shake256():
     r = _make_seed(b"r2")
     pk_seed = _make_seed(b"pk2")
     pk_root = _make_seed(b"root2")
     m = b"test"
-    expected = _shake128(bytes(r) + bytes(pk_seed) + bytes(pk_root) + m, M_BYTES)
+    expected = _shake256(bytes(r) + bytes(pk_seed) + bytes(pk_root) + m, M_BYTES)
     assert H_msg(r, pk_seed, pk_root, m) == expected
 
 
