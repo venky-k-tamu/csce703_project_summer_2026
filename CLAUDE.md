@@ -32,10 +32,12 @@ KAT vectors live in `mlkem/tests/vectors/`, `mldsa/tests/vectors/`, and
 
 ## Commands
 
-Dev dependencies (pytest + hypothesis) are not yet a managed install — install once with:
+Dev dependencies (pytest + hypothesis) are declared under the `dev`
+extra in `pyproject.toml`. Install once with either:
 
 ```
-python3 -m pip install --user pytest hypothesis
+python3 -m pip install -e ".[dev]"        # editable install + dev extra
+python3 -m pip install --user pytest hypothesis   # or just the two tools
 ```
 
 Test commands (run from repo root; `pyproject.toml` sets `testpaths`):
