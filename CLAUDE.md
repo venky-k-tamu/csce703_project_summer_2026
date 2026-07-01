@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project context
 
-CSCE 701 course project (Summer 2026): a from-scratch Python reference
+CSCE 703 course project (Summer 2026): a from-scratch Python reference
 implementation of three NIST PQC standards — **ML-KEM-768** (FIPS 203),
 **ML-DSA-65** (FIPS 204), and **SLH-DSA-SHAKE-128s** (FIPS 205) — sharing
 a small `common/` package for the bit/byte primitives. The

@@ -1,4 +1,4 @@
-# CSCE 701 — NIST PQC Reference Implementations
+# CSCE 703 — NIST PQC Reference Implementations
 
 From-scratch, spec-faithful Python reference implementations of three NIST
 post-quantum cryptography standards:
@@ -169,5 +169,5 @@ mapping, ring/NTT details, and implementation gotchas; see
 
 ## License / attribution
 
-CSCE 701 course project, Texas A&M University (Summer 2026). Test vectors are
+CSCE 703 course project, Texas A&M University (Summer 2026). Test vectors are
 derived from the public NIST ACVP test suite.
