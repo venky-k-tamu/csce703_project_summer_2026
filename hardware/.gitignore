@@ -1,0 +1,16 @@
+# Generated golden vectors (regenerate with `make vectors`).
+tb/vectors/*.vec
+
+# Simulator build/output artifacts.
+sim/work/
+sim/transcript
+sim/vsim.wlf
+sim/simv
+sim/simv.daidir/
+sim/csrc/
+sim/xcelium.d/
+sim/xrun.*
+sim/*.log
+sim/*.vcd
+sim/*.wlf
+sim/ucli.key
