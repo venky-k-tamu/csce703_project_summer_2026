@@ -5,12 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project context
 
 CSCE 701 course project (Summer 2026): a from-scratch Python reference
-implementation of **ML-KEM-768** (FIPS 203) *and* **ML-DSA-65** (FIPS 204),
-sharing a small `common/` package for the bit/byte primitives. The
+implementation of three NIST PQC standards — **ML-KEM-768** (FIPS 203),
+**ML-DSA-65** (FIPS 204), and **SLH-DSA-SHAKE-128s** (FIPS 205) — sharing
+a small `common/` package for the bit/byte primitives. The
 implementation prioritizes **spec fidelity** over performance: code is
 meant to be auditable against the FIPS pseudocode line-by-line.
 
-**Status**: both algorithms are complete and verified.
+**Status**: all three algorithms are complete and verified.
 
 - **ML-KEM-768**: 80 NIST ACVP KAT cases (keyGen, encapsulation,
   decapsulation, encapsulationKeyCheck, decapsulationKeyCheck) + 73
@@ -18,9 +19,13 @@ meant to be auditable against the FIPS pseudocode line-by-line.
 - **ML-DSA-65**: 115 NIST ACVP KAT cases (keyGen + pure-ML-DSA and
   HashML-DSA sigGen/sigVer, deterministic + hedged) + 119 in-house tests
   = 234/234 pass.
-- **Grand total: 387/387 tests, 195 of them NIST ACVP KATs.**
+- **SLH-DSA-SHAKE-128s**: 76 NIST ACVP KAT cases (keyGen + pure-SLH-DSA
+  and HashSLH-DSA sigGen/sigVer, deterministic + hedged, external
+  interface only) + in-house tests = 181/181 pass.
+- **Grand total: 568/568 tests, 271 of them NIST ACVP KATs.**
 
-KAT vectors live in `mlkem/tests/vectors/` and `mldsa/tests/vectors/`.
+KAT vectors live in `mlkem/tests/vectors/`, `mldsa/tests/vectors/`, and
+`slhdsa/tests/vectors/`.
 
 `docs/PLAN.md` is the authoritative plan (phases, decisions, layout).
 `docs/PROMPTS.md` is the chronological record of design choices.
@@ -36,23 +41,32 @@ python3 -m pip install --user pytest hypothesis
 Test commands (run from repo root; `pyproject.toml` sets `testpaths`):
 
 ```
-python3 -m pytest                                                  # full suite (mlkem + mldsa)
+python3 -m pytest                                                  # full suite (all three)
 python3 -m pytest mlkem/tests/                                     # ML-KEM only
 python3 -m pytest mldsa/tests/                                     # ML-DSA only
+python3 -m pytest slhdsa/tests/                                    # SLH-DSA only
 python3 -m pytest mldsa/tests/test_mldsa_kat.py -v                 # one file
 python3 -m pytest mldsa/tests/test_mldsa_kat.py::test_kat_keygen -v  # one test
 python3 -m pytest -k "kat and keygen"                              # by keyword
 ```
+
+**SLH-DSA is slow.** SLH-DSA-SHAKE-128s (the "s" = small-signature,
+slow-signing variant) does hundreds of thousands of SHAKE256 calls per
+signature, so `slhdsa/tests/` — especially the sigGen/sigVer KATs — takes
+minutes. The full `pytest` run can exceed a 2-minute timeout; scope to a
+package or file, or raise the timeout, when iterating.
 
 There is no build, lint, or formatter configured. Python 3.10+ required
 (uses PEP 604 typing and `pow(x, -1, m)` modular inverse).
 
 ## Architecture
 
-The repo has three top-level Python packages: `common/` (truly shared
-primitives), `mlkem/` (FIPS 203 ML-KEM-768), and `mldsa/` (FIPS 204
-ML-DSA-65). Each algorithm package's modules form a clean dependency
-stack — every layer only uses things below it.
+The repo has four top-level Python packages: `common/` (truly shared
+primitives), `mlkem/` (FIPS 203 ML-KEM-768), `mldsa/` (FIPS 204
+ML-DSA-65), and `slhdsa/` (FIPS 205 SLH-DSA-SHAKE-128s). Each algorithm
+package's modules form a clean dependency stack — every layer only uses
+things below it. ML-KEM and ML-DSA are lattice/NTT-based; SLH-DSA is
+hash-based (Merkle trees, no ring/NTT arithmetic at all).
 
 ### ML-KEM dependency stack (FIPS 203)
 
@@ -79,6 +93,25 @@ hashes.py           H = SHAKE-256, G = SHAKE-128, streaming XOF128/XOF256
 conversions.py      IntegerToBits, BitsToInteger, IntegerToBytes (Alg 9–11)
 params.py           ML-DSA-65 constants (N=256, Q=8380417, K=6, L=5, η=4, τ=49, γ₁=2¹⁹, γ₂=(q-1)/32, ω=55)
 ```
+
+### SLH-DSA dependency stack (FIPS 205)
+
+```
+slhdsa.py           KeyGen/Sign/Verify, HashSLH-DSA, public API — FIPS 205 §9–§10
+fors.py             FORS: skgen/node/sign/pk_from_sig (Alg 15–18)
+ht.py               Hypertree: pkgen/sign/verify over D stacked XMSS trees (Alg 13–15)
+xmss.py             XMSS: node/pkgen/sign/pk_from_sig (Alg 9–12)
+wots.py             WOTS+: chain/pkgen/sign/pk_from_sig, base_2b (Alg 4–8)
+address.py          32-byte ADRS struct + typed setters/getters (§4, 7 ADRS types)
+hashes.py           F, H, T_l, PRF, PRF_msg, H_msg — all SHAKE256 (§10.2)
+params.py           SLH-DSA-SHAKE-128s constants (n=16, h=63, d=7, h'=9, a=12, k=14, w=16, m=30)
+```
+
+The stack is bottom-up: `wots` → `xmss` → `ht` at the top signs the
+FORS public key; `fors` + `ht` compose in `slhdsa.py`. Only
+`_keygen_internal` / `_sign_internal` / `_verify_internal` are
+deterministic (used by the KATs); the public `sign` defaults to hedged
+(random `opt_rand`).
 
 ### Shared
 
@@ -132,6 +165,23 @@ random round-trips before the fix. KATs eventually caught it; property
 tests with `os.urandom` did before then. When adding new norm-check call
 sites, do not "simplify" this back to the naïve form.
 
+### SLH-DSA gotchas (FIPS 205)
+
+- **All hashes are SHAKE256, even for the "128" set.** The "128" names
+  the classical security level (driven by n, h, d, k …), *not* the XOF
+  variant — FIPS 205 §10.2 fixes SHAKE256 for every SHAKE parameter set.
+  A prior bug used SHAKE128 for the digest and broke the KATs; if
+  `slhdsa/hashes.py` KATs regress, the XOF variant is the first suspect.
+- **ADRS byte layout is exact.** `address.py` is a 32-byte `bytearray`
+  with fixed field offsets (layer / tree / type / type-specific); the
+  type-specific meaning changes per ADRS type (see the module docstring).
+  `set_type_and_clear` zeroes the type-specific bytes on a type switch —
+  don't hand-roll type changes without clearing.
+- **Only the SHAKE, "s", external interface is implemented.** No SHA2
+  instantiations, no "f" (fast) variant, and no internal signature
+  interface (where the caller passes the pre-formatted message). KAT
+  vectors are filtered to match — see `slhdsa/tests/vectors/README.md`.
+
 ### Hashes vs XOF
 
 Both packages expose fixed-output hash wrappers and an incremental
@@ -142,18 +192,20 @@ don't "optimize" it unless you have a measured reason.
 
 ## Conventions
 
-- **Tests live in-package** under `mlkem/tests/` and `mldsa/tests/`,
-  not a top-level `tests/` directory.
+- **Tests live in-package** under `mlkem/tests/`, `mldsa/tests/`, and
+  `slhdsa/tests/`, not a top-level `tests/` directory.
 - **`common/` only contains demonstrated duplication.** Today it's just
   `bytes_bits.py` because FIPS 203 §4.2.1 and FIPS 204 §4.2 specify
-  identical algorithms. Different moduli (3329 vs 8380417) and different
-  zetas mean NTT / sampling / encoding stay per-package. Resist the urge
-  to lift speculatively shared utilities.
+  identical algorithms. Different moduli (3329 vs 8380417), different
+  zetas, and SLH-DSA being hash-based mean NTT / sampling / encoding /
+  hashing stay per-package. Resist the urge to lift speculatively shared
+  utilities.
 - **No constant-time / no perf optimizations.** Explicit non-goal per
   `docs/PLAN.md`. Don't introduce Montgomery reduction, packed integers,
   or branch-free tricks.
 - **Commit per phase.** Each phase ends with a passing test suite and a
-  single commit (`ML-KEM Phase N: …` or `ML-DSA Phase N: …`).
-  Plan/decision changes go in their own `docs:` commit.
+  single commit (`ML-KEM Phase N: …`, `ML-DSA Phase N: …`, or
+  `SLH-DSA Phase N: …`). Plan/decision changes go in their own `docs:`
+  commit.
 - **Never push without explicit user request.** Local commits are fine
   to make freely; pushes are not.

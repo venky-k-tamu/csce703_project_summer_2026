@@ -221,9 +221,54 @@ SHA2-224 / SHA2-512/224 / SHA2-512/256 / SHA3-224, and renaming from
 `SHA-256` style to ACVP's `SHA2-256` style. All 115 KAT cases pass on
 first run. Full suite at 387/387.
 
-## 20. Final doc refresh
+## 20. ML-DSA doc refresh
 
 > update docs
 
 This entry, plus ML-DSA architecture / phase / addendum sections added
 to `PLAN.md` and `CLAUDE.md`.
+
+## 21. SLH-DSA arrives via branch + PR #1 (merge `2635923`)
+
+SLH-DSA-SHAKE-128s was contributed by Philip Marshall (paired with
+Claude) on the `phil_dev.slhdsa_impl` branch rather than in this
+session's linear flow, then merged into `main` through PR #1. The
+initial commit (`8aaa886`) landed the whole hash-based stack at once:
+`params` / `hashes` / `address`, the `wots → xmss → ht` Merkle stack,
+`fors`, and `slhdsa.py` with internal + hedged public KeyGen/Sign/Verify,
+plus per-module and property tests. No `common/` code was shared — being
+hash-based, SLH-DSA has no ring/NTT surface in common with the lattice
+schemes; only the `hashlib` SHAKE dependency overlaps.
+
+## 22. SLH-DSA Phase 2 — HashSLH-DSA public API (commit `b07e2b9`)
+
+Mirrored the HashML-DSA work: `hash_sign` (Alg 23) / `hash_verify`
+(Alg 24), a 12-entry `_PREHASH_FUNCTIONS` OID table with ACVP-style
+names, and `_format_M_prime` with the 0x00/0x01 domain separator so
+plain and pre-hash signatures can't cross-verify. Argument order and
+three-seed keygen differ from ML-DSA, so it's a parallel implementation
+rather than shared code. Switched to `secrets.token_bytes` for
+consistency. `test_slhdsa_api.py` added 46 cases; suite at 104/104.
+
+## 23. SLH-DSA Phase 3 — ACVP KATs expose a SHAKE128/256 bug (commit `1b662d7`)
+
+Vendored 76 SLH-DSA-SHAKE-128s ACVP cases (10 keyGen + 38 sigGen +
+28 sigVer), external interface only. The first run failed **every**
+keyGen vector: `hashes.py` had wired F/H/T_l/PRF/PRF_msg/H_msg to
+**SHAKE128**, but FIPS 205 §10.2 fixes **SHAKE256** for every SHAKE
+parameter set — the "128" in the name is the classical security level,
+not the XOF width. The internal round-trip tests couldn't catch it
+because sign and verify shared the same wrong hash; it took an external
+oracle to surface. Exactly the ML-DSA norm-bug lesson restated:
+self-consistent code passes its own tests while still being wrong. Fixed
+the six hash instantiations and the hardcoded `test_hashes.py`
+expectations. **181/181 pass** — 271 NIST ACVP KATs across all three
+algorithms.
+
+## 24. Doc refresh after SLH-DSA
+
+> Update docs
+
+This entry, plus the SLH-DSA sections (goal, key decisions, repository
+layout, phased delivery, final status) added to `PLAN.md`, and the
+SLH-DSA architecture / gotchas / status added to `CLAUDE.md`.

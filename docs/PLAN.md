@@ -1,12 +1,14 @@
-# ML-KEM / ML-DSA Implementation Plan
+# ML-KEM / ML-DSA / SLH-DSA Implementation Plan
 
-CSCE 701, Summer 2026 — Venky Kottapalli.
+CSCE 701, Summer 2026 — Venky Kottapalli (ML-KEM, ML-DSA) and Philip
+Marshall (SLH-DSA).
 
 ## Goal
 
-Implement and verify **ML-KEM-768** (FIPS 203) *and* **ML-DSA-65** (FIPS 204)
-from scratch in Python, with a small `common/` package for code that is
-genuinely identical between the two FIPS specs.
+Implement and verify three NIST PQC standards — **ML-KEM-768**
+(FIPS 203), **ML-DSA-65** (FIPS 204), and **SLH-DSA-SHAKE-128s**
+(FIPS 205) — from scratch in Python, with a small `common/` package for
+code that is genuinely identical between the FIPS specs.
 
 "Verify" here means:
 1. **NIST ACVP Known-Answer-Test vectors** — the official functional-correctness
@@ -19,9 +21,11 @@ Not in scope:
 - Constant-time / side-channel hardening.
 - Performance optimization beyond what falls out of the natural algorithm
   expression (no packed-integer NTT, no Montgomery reduction, no Cython).
-- Multiple parameter sets — only ML-KEM-768 and ML-DSA-65.
+- Multiple parameter sets — only ML-KEM-768, ML-DSA-65, and
+  SLH-DSA-SHAKE-128s (no SHA2 instantiations, no "f" variant).
 - Implementing Keccak from scratch — uses `hashlib`'s SHA3/SHAKE.
-- The ML-DSA **externalMu** signing interface (caller pre-computes μ).
+- The ML-DSA **externalMu** and SLH-DSA **internal** signing interfaces
+  (caller pre-computes μ / passes the pre-formatted message).
 
 ## Key decisions
 
@@ -30,11 +34,13 @@ Not in scope:
 | Language | Python 3.10+ | Maps line-by-line onto FIPS pseudocode; easy to read and audit. |
 | ML-KEM parameter set | ML-KEM-768 | NIST's recommended default; n=256, q=3329, k=3, η₁=η₂=2, d_u=10, d_v=4. |
 | ML-DSA parameter set | ML-DSA-65 | NIST Cat 3 default; n=256, q=8380417, k=6, l=5, η=4, τ=49, γ₁=2¹⁹, γ₂=(q-1)/32, ω=55. |
+| SLH-DSA parameter set | SLH-DSA-SHAKE-128s | Smallest-signature ("s") SHAKE set; n=16, h=63, d=7, h'=9, a=12, k=14, w=16, m=30. Hash-based — no ring/NTT. |
+| SLH-DSA hash | SHAKE256 for *all* of F/H/T_l/PRF/PRF_msg/H_msg | FIPS 205 §10.2 fixes SHAKE256 for every SHAKE set; the "128" is the security level, not the XOF. |
 | Hash primitive | `hashlib` SHA3 / SHAKE | Lets us focus on lattice/NTT/PKE/signing logic. |
 | Verification | NIST ACVP KATs + property tests | KATs are the standard correctness bar; property tests catch regressions cheaply. |
-| Tests location | In-package (`mlkem/tests/`, `mldsa/tests/`) | Each algorithm's package self-contained. |
-| Shared code | Only `common/bytes_bits.py` | Factored once ML-DSA showed identical FIPS 203 §4.2.1 / FIPS 204 §4.2 algorithms — demonstrated duplication, not speculation. |
-| HashML-DSA | Included | Adds 12 pre-hash function variants; thin wrapper around ML-DSA-internal. |
+| Tests location | In-package (`mlkem/tests/`, `mldsa/tests/`, `slhdsa/tests/`) | Each algorithm's package self-contained. |
+| Shared code | Only `common/bytes_bits.py` | Factored once ML-DSA showed identical FIPS 203 §4.2.1 / FIPS 204 §4.2 algorithms — demonstrated duplication, not speculation. SLH-DSA shares nothing (hash-based). |
+| HashML-DSA / HashSLH-DSA | Included | Each adds 12 pre-hash function variants; thin wrapper around the internal signer. |
 
 ## Repository layout
 
@@ -73,6 +79,21 @@ mldsa/
     test_ntt.py, test_sampling.py, test_hashes.py,
     test_mldsa_properties.py, test_mldsa_api.py, test_mldsa_kat.py
     vectors/          # NIST ACVP JSON vectors
+slhdsa/               # FIPS 205 SLH-DSA-SHAKE-128s (hash-based; no ring/NTT)
+  __init__.py         # re-exports keygen/sign/verify, hash_sign/hash_verify
+  params.py           # SLH-DSA-SHAKE-128s constants + derived sizes/offsets
+  hashes.py           # F/H/T_l/PRF/PRF_msg/H_msg — all SHAKE256 (§10.2)
+  address.py          # 32-byte ADRS struct, 7 ADRS types, typed setters/getters
+  wots.py             # WOTS+ chain/pkgen/sign/pk_from_sig, base_2b (Alg 4-8)
+  xmss.py             # XMSS node/pkgen/sign/pk_from_sig (Alg 9-12)
+  ht.py               # Hypertree pkgen/sign/verify over D XMSS trees (Alg 13-15)
+  fors.py             # FORS skgen/node/sign/pk_from_sig (Alg 15-18)
+  slhdsa.py           # KeyGen/Sign/Verify + HashSLH-DSA public API (§9-10)
+  tests/
+    test_params.py, test_hashes.py, test_address.py, test_wots.py,
+    test_xmss.py, test_fors.py, test_slhdsa_properties.py,
+    test_slhdsa_api.py, test_slhdsa_kat.py
+    vectors/          # NIST ACVP JSON vectors (SHAKE-128s, external interface)
 docs/
   PLAN.md
   PROMPTS.md
@@ -83,8 +104,10 @@ CLAUDE.md
 ```
 
 `pyproject.toml` configures pytest discovery
-(`testpaths = ["mlkem/tests", "mldsa/tests"]`) so `pytest` from the repo
-root runs everything.
+(`testpaths = ["mlkem/tests", "mldsa/tests", "slhdsa/tests"]`) so
+`pytest` from the repo root runs everything. Note the SLH-DSA suite is
+slow — the "s" variant does hundreds of thousands of SHAKE256 calls per
+signature, so the full run can take minutes.
 
 ## Phased delivery
 
@@ -266,15 +289,70 @@ ML-KEM suite still 153/153 after.
   rnd is all-zeros.
 - **All 115 ML-DSA-65 KAT cases pass on first run.** Headline result.
 
+## SLH-DSA phased delivery
+
+SLH-DSA was contributed by Philip Marshall (paired with Claude) on the
+`phil_dev.slhdsa_impl` branch and merged into `main` via PR #1, then
+finished in two further phases on `main`. Being hash-based, it shares no
+ring/NTT code with the lattice schemes — the only common ground is the
+`hashlib` SHAKE dependency and the HashML-DSA-style pre-hash table.
+
+### Phase 1 — Foundation + internal Sign/Verify ✅ (commit `8aaa886`, merged `2635923`)
+
+- `slhdsa/params.py` — SLH-DSA-SHAKE-128s constants and the derived key
+  (pk=32, sk=64) and signature (7856) sizes, plus the digest-split byte
+  offsets and tree/leaf index masks.
+- `slhdsa/hashes.py` — F, H, T_l, PRF, PRF_msg, H_msg (§10.2).
+- `slhdsa/address.py` — the 32-byte ADRS structure with its 7 types and
+  typed field setters/getters; `set_type_and_clear` zeroes the
+  type-specific bytes on a type switch.
+- The Merkle stack bottom-up: `wots.py` (WOTS+, Alg 4–8) →
+  `xmss.py` (Alg 9–12) → `ht.py` (hypertree over D=7 XMSS trees,
+  Alg 13–15); `fors.py` (Alg 15–18); and `slhdsa.py` with the
+  deterministic internal `_keygen_internal` / `_sign_internal` /
+  `_verify_internal` plus the hedged public `keygen` / `sign` / `verify`.
+- Tests: per-module unit tests (params, hashes, ADRS, WOTS, XMSS, FORS)
+  plus end-to-end property round-trips.
+
+### Phase 2 — HashSLH-DSA public API ✅ (commit `b07e2b9`)
+
+- `hash_sign` (Alg 23) / `hash_verify` (Alg 24), mirroring the
+  HashML-DSA additions but adapted for SLH-DSA's three-seed keygen and
+  `(m, sk, …)` argument order.
+- `_PREHASH_FUNCTIONS`: 12-entry table of DER OIDs + hash lambdas using
+  ACVP-style names (SHA2-256, SHA3-512, SHAKE-128, …).
+- `_format_M_prime`: shared M′ construction; domain separator 0x00
+  (plain) vs 0x01 (prehash) blocks cross-verification between the APIs.
+- `keygen`/`sign` switched from `os.urandom` to `secrets.token_bytes`
+  for consistency with ML-DSA.
+- `test_slhdsa_api.py` (46 cases): all 12 pre-hash round-trips, domain
+  separation, wrong/unknown hash_alg, ctx boundary conditions,
+  deterministic vs hedged. **Full SLH-DSA suite 104/104.**
+
+### Phase 3 — NIST ACVP KATs + the SHAKE256 bugfix ✅ (commit `1b662d7`)
+
+- Vendored 76 SLH-DSA-SHAKE-128s ACVP cases (10 keyGen, 38 sigGen,
+  28 sigVer) filtered from `usnistgov/ACVP-Server`, external interface
+  only (mirrors ML-DSA Phase 5's `externalMu` exclusion).
+- **Bugfix**: the first KAT run failed *every* keyGen vector because
+  `hashes.py` had instantiated F/H/T_l/PRF/PRF_msg/H_msg with **SHAKE128**,
+  but FIPS 205 §10.2 fixes **SHAKE256** for every SHAKE set regardless
+  of security category. Internal round-trips never caught it — sign and
+  verify used the same wrong hash consistently, so only an external
+  oracle (the KATs) exposed the asymmetry. Same lesson as the ML-DSA
+  norm bug: self-consistent code needs an independent reference.
+  **181/181 tests pass after the fix.**
+
 ## Project final status
 
-**387/387 tests pass.** Of those, **195 are byte-for-byte NIST ACVP KAT
-cases** — 80 ML-KEM-768 + 115 ML-DSA-65. Both algorithms verified
-against the official FIPS 203 / FIPS 204 vectors.
+**568/568 tests pass.** Of those, **271 are byte-for-byte NIST ACVP KAT
+cases** — 80 ML-KEM-768 + 115 ML-DSA-65 + 76 SLH-DSA-SHAKE-128s. All
+three algorithms verified against the official FIPS 203 / 204 / 205
+vectors.
 
 Potential follow-ups (none currently planned):
-- ML-DSA externalMu signing interface.
-- Additional parameter sets (ML-KEM-512/1024, ML-DSA-44/87) — would need
-  parameter-set-aware versions of the encoders/samplers but most code is
-  parameter-driven already.
+- ML-DSA externalMu / SLH-DSA internal signing interfaces.
+- Additional parameter sets (ML-KEM-512/1024, ML-DSA-44/87, SLH-DSA "f"
+  variants and the SHA2 instantiations) — most code is parameter-driven
+  already, but SLH-DSA's hash wiring would need a SHA2 path.
 - A CLI or higher-level KEM-DEM wrapper.
