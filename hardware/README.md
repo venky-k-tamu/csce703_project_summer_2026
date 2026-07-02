@@ -4,9 +4,12 @@ Hardware acceleration for the PQC schemes implemented in software elsewhere
 in this repo. **Phase 1 target: a shared Keccak-f[1600] / SHAKE / SHA3
 core** — the one primitive every scheme depends on.
 
-> **Status: scaffold (Phase 0).** Directory structure, plan, and skeletons
-> only. No functional RTL yet — module bodies are marked `TODO`. See
-> [`docs/PLAN.md`](docs/PLAN.md) for the phased plan and design decisions.
+> **Status: Keccak core functional (Phases 1–2 done).** `keccak_round`,
+> `keccak_f1600`, `keccak_sponge`, and `shake_xof` are implemented and pass
+> a self-checking smoke test for all four modes (incl. multi-block absorb
+> and squeeze) against Python `hashlib` golden vectors. Run it with
+> `make smoke` (Icarus — no commercial sim needed). The UVM environment
+> (Phase 3) is still skeleton. See [`docs/PLAN.md`](docs/PLAN.md).
 
 ## Why Keccak is the shared core
 
@@ -55,13 +58,19 @@ scoreboard loads them and compares the DUT's squeeze output.
 
 ## Building & running
 
-Requires a UVM-capable simulator (Questa / VCS / Xcelium). From `hardware/sim/`:
+From `hardware/sim/`:
 
 ```
+make smoke              # Icarus self-checking smoke test (no commercial sim)
 make vectors            # regenerate golden vector files (needs python3)
-make sim SIM=questa     # compile + run (SIM=questa|vcs|xcelium)
+make sim SIM=questa     # UVM run (SIM=questa|vcs|xcelium) — needs commercial sim
 make sim TEST=keccak_shake256_test
 make clean
 ```
+
+`make smoke` is the quickest regression: it builds `keccak_round` +
+`keccak_f1600` + `keccak_sponge` + `shake_xof` under Icarus Verilog and
+checks all four modes against `hashlib` vectors. The full UVM flow
+(`make sim`) requires a UVM-capable simulator (Questa / VCS / Xcelium).
 
 See [`docs/PLAN.md`](docs/PLAN.md) for phase-by-phase next steps.

@@ -113,17 +113,21 @@ The scoreboard loads them; no live Python process is needed during simulation.
 Each phase ends green and gets a single commit
 (`HW Phase N: …`), matching the repo's per-phase commit convention.
 
-- **Phase 0 — Scaffold (this commit).** Directory tree, `PLAN.md`,
-  `README.md`, module/UVM skeletons with fixed port lists and constant
-  tables, filelists, Makefile, vector generator. Nothing functional yet.
-- **Phase 1 — `keccak_round` + `keccak_f1600`.** Implement the five step
-  mappings and the 24-round FSM. Unit-verify the permutation against a
-  known Keccak-f[1600] test vector (all-zero input → known state).
-- **Phase 2 — `keccak_sponge`.** Absorb with `pad10*1`, squeeze; verify
-  SHAKE256 empty-message and multi-block messages against golden vectors.
-- **Phase 3 — `shake_xof` + full UVM env.** All four modes, KAT-driven
-  scoreboard, directed + randomized sequences, coverage on mode × message
-  length × output length.
+- **Phase 0 — Scaffold (done).** Directory tree, `PLAN.md`, `README.md`,
+  module/UVM skeletons with fixed port lists and constant tables,
+  filelists, Makefile, vector generator.
+- **Phase 1 — `keccak_round` + `keccak_f1600` (done).** Five step mappings
+  and the 24-round FSM. Verified: all-zero input → known Keccak-f[1600]
+  state (lane[0][0] = 0xF1258F7940E1DDE7), `done` after 25 cycles.
+- **Phase 2 — `keccak_sponge` + `shake_xof` datapath (done).** Byte-serial
+  absorb with domain-separated `pad10*1` (terminator-beat protocol),
+  permute, squeeze. All four modes pass an Icarus self-checking smoke test
+  (`make smoke`) against hashlib golden vectors, incl. multi-block absorb
+  (200 B) and multi-block squeeze (168/300 B). See `tb/smoke/`.
+- **Phase 3 — full UVM env.** Flesh out the UVM skeletons (driver/monitor/
+  scoreboard/sequences) for the commercial-sim flow: KAT-driven scoreboard,
+  directed + randomized sequences, coverage on mode × message length ×
+  output length. (RTL already complete; this is verification build-out.)
 - **Phase 4+ (future).** NTT datapath (ML-KEM/ML-DSA), then hash-based
   chains (SLH-DSA), each reusing this core. Separate plan when reached.
 
@@ -133,6 +137,10 @@ Each phase ends green and gets a single commit
   vs 64-bit lane-at-a-time (fewer cycles). Default 8-bit for Phase 1.
 - **Rate mismatch mid-stream.** Modes have different rates; `mode` is
   latched at `start` and constant per message — no mid-message switching.
-- **Verilator smoke path.** UVM needs a commercial sim, but a thin
-  non-UVM SV testbench under `tb/top/` could give an open-source smoke
-  test for `keccak_f1600`. Decide if worth maintaining two TB paths.
+- **Open-sim smoke path (decided: yes).** A thin non-UVM SV testbench
+  (`tb/smoke/tb_smoke.sv`, run via `make smoke` under Icarus) self-checks
+  the whole datapath against hashlib vectors with no commercial-sim
+  dependency. Kept as the fast CI-friendly regression alongside UVM.
+  NB: the smoke TB uses a ready-gated handshake (wait for in_ready/out_valid
+  with the complementary signal low) — negedge sampling of a signal that
+  parks high — to stay robust against simulator NBA-ordering differences.

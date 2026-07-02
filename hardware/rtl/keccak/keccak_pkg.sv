@@ -17,30 +17,37 @@ package keccak_pkg;
   localparam int NUM_ROUNDS = 24;            // for width w=64: 12 + 2*log2(w)
 
   // ---- round constants RC[0..23] (FIPS 202 Table 1) ----------------------
-  localparam lane_t RC [0:NUM_ROUNDS-1] = '{
-    64'h0000000000000001, 64'h0000000000008082,
-    64'h800000000000808A, 64'h8000000080008000,
-    64'h000000000000808B, 64'h0000000080000001,
-    64'h8000000080008081, 64'h8000000000008009,
-    64'h000000000000008A, 64'h0000000000000088,
-    64'h0000000080008009, 64'h000000008000000A,
-    64'h000000008000808B, 64'h800000000000008B,
-    64'h8000000000008089, 64'h8000000000008003,
-    64'h8000000000008002, 64'h8000000000000080,
-    64'h000000000000800A, 64'h800000008000000A,
-    64'h8000000080008081, 64'h8000000000008080,
-    64'h0000000080000001, 64'h8000000080008008
-  };
+  // Function rather than an unpacked-array param, for simulator portability
+  // (Icarus rejects unpacked array params; commercial tools accept both).
+  function automatic lane_t rc(input int unsigned r);
+    case (r)
+       0: rc = 64'h0000000000000001;  1: rc = 64'h0000000000008082;
+       2: rc = 64'h800000000000808A;  3: rc = 64'h8000000080008000;
+       4: rc = 64'h000000000000808B;  5: rc = 64'h0000000080000001;
+       6: rc = 64'h8000000080008081;  7: rc = 64'h8000000000008009;
+       8: rc = 64'h000000000000008A;  9: rc = 64'h0000000000000088;
+      10: rc = 64'h0000000080008009; 11: rc = 64'h000000008000000A;
+      12: rc = 64'h000000008000808B; 13: rc = 64'h800000000000008B;
+      14: rc = 64'h8000000000008089; 15: rc = 64'h8000000000008003;
+      16: rc = 64'h8000000000008002; 17: rc = 64'h8000000000000080;
+      18: rc = 64'h000000000000800A; 19: rc = 64'h800000008000000A;
+      20: rc = 64'h8000000080008081; 21: rc = 64'h8000000000008080;
+      22: rc = 64'h0000000080000001; 23: rc = 64'h8000000080008008;
+      default: rc = 64'h0;
+    endcase
+  endfunction
 
   // ---- rho rotation offsets r[x][y] (FIPS 202 §3.2.2 / Table 2) -----------
-  // Indexed [x][y]; each is a left-rotation amount mod 64.
-  localparam int unsigned RHO [0:4][0:4] = '{
-    '{  0, 36,  3, 41, 18 },   // x=0, y=0..4
-    '{  1, 44, 10, 45,  2 },   // x=1
-    '{ 62,  6, 43, 15, 61 },   // x=2
-    '{ 28, 55, 25, 21, 56 },   // x=3
-    '{ 27, 20, 39,  8, 14 }    // x=4
-  };
+  // Left-rotation amount (mod 64) for lane A[x][y].
+  function automatic int unsigned rho(input int unsigned x, input int unsigned y);
+    int unsigned t [0:24];
+    t = '{  0, 36,  3, 41, 18,    // x=0, y=0..4
+            1, 44, 10, 45,  2,    // x=1
+           62,  6, 43, 15, 61,    // x=2
+           28, 55, 25, 21, 56,    // x=3
+           27, 20, 39,  8, 14 };  // x=4
+    rho = t[x*5 + y];
+  endfunction
 
   // ---- sponge mode configuration (FIPS 202 §6) ---------------------------
   typedef enum logic [1:0] {

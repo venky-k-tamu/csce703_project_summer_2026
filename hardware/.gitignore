@@ -1,6 +1,11 @@
 # Generated golden vectors (regenerate with `make vectors`).
 tb/vectors/*.vec
 
+# Generated smoke-test fixtures/case list (regenerate with `make smoke`).
+tb/smoke/fixtures/
+tb/smoke/smoke_cases.svh
+tb/smoke/*.vvp
+
 # Simulator build/output artifacts.
 sim/work/
 sim/transcript
