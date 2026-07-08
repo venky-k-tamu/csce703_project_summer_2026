@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SLH-DSA-SHAKE-128s — Interactive Visualization</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #161b22, #21262d);
+  border-bottom: 1px solid #30363d;
+  padding: 18px 40px;
+}
+header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
+header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+
+nav.tabs {
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 0 40px;
+  display: flex; gap: 0; overflow-x: auto;
+}
+.tab-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: #8b949e; cursor: pointer; font-size: 0.875rem;
+  padding: 13px 18px; transition: color 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { color: #c9d1d9; }
+.tab-btn.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+
+main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.two-col {
+  display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start;
+}
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+.panel {
+  background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px;
+  margin-bottom: 20px;
+}
+.panel-title {
+  font-size: 1rem; font-weight: 600; color: #f0f6fc;
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d;
+}
+.panel svg { display: block; width: 100%; height: auto; }
+
+.info h2 { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: 10px; }
+.info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
+.info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
+.info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
+.legend-dot { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+
+.controls { margin-top: 14px; }
+.ctrl-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ctrl-row label { color: #8b949e; font-size: 0.8rem; min-width: 110px; }
+input[type=range] { flex: 1; accent-color: #58a6ff; }
+.ctrl-val { color: #79c0ff; font-family: monospace; font-size: 0.8rem; min-width: 28px; }
+select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
+
+.btn { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; cursor: pointer; font-size: 0.825rem; padding: 7px 14px; transition: background 0.15s; }
+.btn:hover { background: #30363d; }
+.btn.primary { background: #1f6feb; border-color: #388bfd; color: #fff; }
+.btn.primary:hover { background: #388bfd; }
+
+.callout {
+  background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+  padding: 10px 12px; margin-top: 12px; font-size: 0.825rem; line-height: 1.6;
+}
+.callout .ctitle { color: #58a6ff; font-weight: 600; margin-bottom: 4px; font-size: 0.825rem; }
+.callout .cbody  { color: #8b949e; }
+
+table.params { width: 100%; border-collapse: collapse; font-size: 0.825rem; }
+table.params th { text-align: left; color: #8b949e; padding: 6px 8px; border-bottom: 1px solid #30363d; font-weight: 600; }
+table.params td { padding: 5px 8px; border-bottom: 1px solid #21262d; }
+table.params td:first-child { color: #d2a8ff; font-family: monospace; }
+table.params td:nth-child(2) { color: #79c0ff; text-align: right; font-family: monospace; }
+table.params td:last-child { color: #8b949e; }
+
+.nav-end { flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 16px; margin-left: 8px; border-left: 1px solid #30363d; }
+.nav-label { color: #8b949e; font-size: 0.8rem; white-space: nowrap; }
+#param-set { font-size: 0.8rem; min-width: 215px; }
+
+.demo-notice {
+  font-size: 0.75rem; color: #d97706;
+  background: #110d00; border-left: 3px solid #78350f;
+  padding: 5px 10px; margin-bottom: 10px;
+  border-radius: 0 4px 4px 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="header-title">SLH-DSA-SHAKE-128s &mdash; Interactive Visualization</h1>
+  <p>FIPS 205 stateless hash-based signature scheme &mdash; explore WOTS+, XMSS, FORS, and the Hypertree interactively</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('wots',this)">WOTS+</button>
+  <button class="tab-btn" onclick="showTab('xmss',this)">XMSS</button>
+  <button class="tab-btn" onclick="showTab('fors',this)">FORS</button>
+  <button class="tab-btn" onclick="showTab('ht',this)">Hypertree</button>
+  <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
+  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <div class="nav-end">
+    <label class="nav-label">Parameter set:</label>
+    <select id="param-set" onchange="onParamSetChange()">
+      <optgroup label="SHAKE">
+        <option value="SHAKE-128s" selected>SLH-DSA-SHAKE-128s</option>
+        <option value="SHAKE-128f">SLH-DSA-SHAKE-128f</option>
+        <option value="SHAKE-192s">SLH-DSA-SHAKE-192s</option>
+        <option value="SHAKE-192f">SLH-DSA-SHAKE-192f</option>
+        <option value="SHAKE-256s">SLH-DSA-SHAKE-256s</option>
+        <option value="SHAKE-256f">SLH-DSA-SHAKE-256f</option>
+      </optgroup>
+      <optgroup label="SHA2">
+        <option value="SHA2-128s">SLH-DSA-SHA2-128s</option>
+        <option value="SHA2-128f">SLH-DSA-SHA2-128f</option>
+        <option value="SHA2-192s">SLH-DSA-SHA2-192s</option>
+        <option value="SHA2-192f">SLH-DSA-SHA2-192f</option>
+        <option value="SHA2-256s">SLH-DSA-SHA2-256s</option>
+        <option value="SHA2-256f">SLH-DSA-SHA2-256f</option>
+      </optgroup>
+    </select>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="panel">
+    <div class="panel-title">SLH-DSA Architecture — Component Overview</div>
+    <svg id="svg-overview" viewBox="0 0 880 420"></svg>
+  </div>
+  <div class="panel">
+    <div class="panel-title" id="siglayout-title">Signature Layout &mdash; SLH-DSA-SHAKE-128s: 7,856 bytes total</div>
+    <svg id="svg-siglayout" viewBox="0 0 880 72"></svg>
+  </div>
+</div>
+
+<!-- ══════════ WOTS+ ══════════ -->
+<div id="tab-wots" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">WOTS+ Hash Chains</div>
+      <div class="demo-notice" id="wots-demo-notice">Demo uses w = 8, LEN = 8 — actual values depend on parameter set</div>
+      <svg id="svg-wots" viewBox="0 0 700 310"></svg>
+    </div>
+    <div class="info panel">
+      <h2>WOTS+ (Winternitz OTS+)</h2>
+      <h3>Structure</h3>
+      <p id="wots-p-structure">Each WOTS+ key pair consists of <strong>LEN = 35</strong> hash chains. Each chain is <strong>w = 16</strong> steps long. Every step applies tweakable hash <strong>F</strong>. The secret key is at step 0; the public key top is at step w−1.</p>
+      <h3>Signing</h3>
+      <p id="wots-p-signing">The XMSS leaf message is encoded as LEN<sub>1</sub> = 32 base-16 digits plus LEN<sub>2</sub> = 3 checksum digits. For chain i with digit d<sub>i</sub>, the signature element is chain[d<sub>i</sub>] — apply F exactly d<sub>i</sub> times from SK.</p>
+      <h3>Verification</h3>
+      <p>Apply F exactly <strong>w − 1 − d<sub>i</sub></strong> more times to each signature chain element. The result must equal the stored PK chain top.</p>
+      <p class="note" id="wots-p-note">Demo uses w = 8, LEN = 8 (illustrative). Actual parameters: w = 16, LEN = 35.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Message byte:</label>
+          <input type="range" id="wots-msg" min="0" max="255" value="42" oninput="updateWOTS()">
+          <span class="ctrl-val" id="wots-msg-val">42</span>
+        </div>
+        <div class="ctrl-row">
+          <label>Show mode:</label>
+          <select id="wots-mode" onchange="updateWOTS()">
+            <option value="sign">Signing</option>
+            <option value="verify">Verification</option>
+          </select>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#7f1d1d"></div>SK (step 0)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Signature element (step d<sub>i</sub>)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#14532d"></div>Verification steps</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0c4a6e"></div>PK top (step w−1)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1c1917"></div>Not in signing/verify path</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ XMSS ══════════ -->
+<div id="tab-xmss" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">XMSS Merkle Tree &mdash; click a leaf to select</div>
+      <div class="demo-notice" id="xmss-demo-notice">Demo uses h′ = 3 (8 leaves) — actual values depend on parameter set</div>
+      <svg id="svg-xmss" viewBox="0 0 700 360" style="cursor:pointer" onclick="xmssClick(event)"></svg>
+    </div>
+    <div class="info panel">
+      <h2>XMSS — eXtended Merkle Signature Scheme</h2>
+      <h3>Structure</h3>
+      <p id="xmss-p-structure">An XMSS tree of height <strong>h′ = 9</strong> has <strong>2<sup>9</sup> = 512 leaves</strong>. Each leaf is a <strong>WOTS+ public key</strong>. Internal nodes are computed by applying tweakable hash <strong>H</strong> to the concatenation of the left and right children.</p>
+      <h3>Signing</h3>
+      <p>To sign with leaf index idx: produce a WOTS+ signature on the message, then include the <strong>authentication path</strong> — the h′ sibling nodes needed to reconstruct the root from the signed leaf.</p>
+      <h3>Verification</h3>
+      <p>Recover the WOTS+ PK from the signature. Walk up the tree using the auth path, hashing at each level. The final value must equal the known XMSS root.</p>
+      <p class="note" id="xmss-p-note">Demo uses h′ = 3 (8 leaves). Actual: h′ = 9 (512 leaves).</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Selected leaf:</label>
+          <input type="range" id="xmss-leaf" min="0" max="7" value="3" oninput="updateXMSS()">
+          <span class="ctrl-val" id="xmss-leaf-val">3</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Selected leaf (WOTS+ PK)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Path from leaf to root</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Auth path (sibling nodes)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>Root</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#21262d"></div>Inactive node</div>
+      </div>
+      <div class="callout" style="margin-top:12px">
+        <div class="ctitle">Auth path</div>
+        <div class="cbody" id="xmss-auth-text">Select a leaf to see its authentication path.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ FORS ══════════ -->
+<div id="tab-fors" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">FORS — Forest of Random Subsets</div>
+      <div class="demo-notice" id="fors-demo-notice">Demo uses K = 4, A = 3 (8 leaves per tree) — actual values depend on parameter set</div>
+      <svg id="svg-fors" viewBox="0 0 700 390"></svg>
+    </div>
+    <div class="info panel">
+      <h2>FORS</h2>
+      <h3>Structure</h3>
+      <p id="fors-p-structure">FORS consists of <strong>K = 14</strong> independent binary trees, each of height <strong>A = 12</strong> with <strong>2<sup>12</sup> = 4096 leaves</strong>. Leaves are secret key values derived from SK.seed via PRF.</p>
+      <h3>Signing</h3>
+      <p>The FORS message digest md is split into K A-bit indices. For tree i with index idx<sub>i</sub>: include the <strong>secret leaf value</strong> and the A-node <strong>auth path</strong> to the root.</p>
+      <h3>Public Key Recovery</h3>
+      <p>Hash each secret leaf via F to get the tree leaf hash, walk up using the auth path to get each tree root, then compress all K roots with <strong>T<sub>K</sub></strong> into the single n-byte FORS PK.</p>
+      <p class="note" id="fors-p-note">Demo uses K = 4, A = 3 (8 leaves). Actual: K = 14, A = 12 (4096 leaves).</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Message digest:</label>
+          <input type="range" id="fors-digest" min="0" max="4095" value="1234" oninput="updateFORS()">
+          <span class="ctrl-val" id="fors-digest-val">1234</span>
+        </div>
+        <button class="btn" onclick="randomizeFORS()" style="margin-top:4px">Randomize digest</button>
+      </div>
+      <div class="legend" style="margin-top:12px">
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>Secret leaf (SK)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Auth path</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Computed path</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>Tree root</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>FORS PK = T<sub>K</sub>(roots)</div>
+      </div>
+      <div class="callout" style="margin-top:12px">
+        <div class="ctitle">Selected indices</div>
+        <div class="cbody" id="fors-indices-text">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HYPERTREE ══════════ -->
+<div id="tab-ht" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Hypertree — D Stacked XMSS Trees</div>
+      <div class="demo-notice" id="ht-demo-notice">Demo uses D = 4, h′ = 2 (4 leaves each) — actual values depend on parameter set</div>
+      <svg id="svg-ht" viewBox="0 0 700 430"></svg>
+    </div>
+    <div class="info panel">
+      <h2>Hypertree (HT)</h2>
+      <h3>Structure</h3>
+      <p id="ht-p-structure">The hypertree stacks <strong>D = 7</strong> layers of XMSS trees. Each tree has height <strong>h′ = 9</strong>. Total height: <strong>h = D × h′ = 63</strong>. The Layer (D−1) root is <strong>PK.root</strong>.</p>
+      <h3>Signing</h3>
+      <p><strong>Layer 0</strong> signs the FORS PK using the XMSS tree at idx_tree and leaf idx_leaf. Each higher layer signs the root of the layer below. The signing leaf for layer j is the low h′ bits of the Layer (j−1) tree address.</p>
+      <h3>Verification</h3>
+      <p>Starting from the FORS PK, verify Layer 0's XMSS signature to get its root, treat that root as the message for Layer 1, and repeat up to Layer D−1. The final root must equal PK.root.</p>
+      <p class="note" id="ht-p-note">Demo uses D = 4, h′ = 2 (4 leaves each). Actual: D = 7, h′ = 9.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Highlight layer:</label>
+          <input type="range" id="ht-layer" min="0" max="3" value="0" oninput="updateHT()">
+          <span class="ctrl-val" id="ht-layer-val">0</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Active XMSS layer</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Auth path / signing path</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Root passed to layer above</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1c1c2e"></div>Other layers</div>
+      </div>
+      <div class="callout" style="margin-top:12px">
+        <div class="cbody" id="ht-layer-desc">Layer 0 (bottom): signs the FORS public key.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SIGN FLOW ══════════ -->
+<div id="tab-signflow" class="tab-panel">
+  <div class="panel">
+    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 205 Algorithm 21)</div>
+    <svg id="svg-signflow" viewBox="0 0 880 420"></svg>
+  </div>
+  <div class="panel">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
+      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 7</span>
+      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
+    </div>
+    <div class="callout">
+      <div class="ctitle" id="sf-title"></div>
+      <div class="cbody"  id="sf-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PARAMETERS ══════════ -->
+<div id="tab-params" class="tab-panel">
+  <!-- generated dynamically by drawParams() -->
+</div>
+
+</main>
+
+<script>
+'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// SVG helpers
+// ─────────────────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function line(p, x1,y1,x2,y2, stroke='#374151', sw=1.5, dash='') {
+  return el('line',{x1,y1,x2,y2,stroke,'stroke-width':sw,'stroke-dasharray':dash},p);
+}
+function circle(p, cx,cy,r, fill, stroke='none', sw=1) {
+  return el('circle',{cx,cy,r,fill,stroke,'stroke-width':sw},p);
+}
+function rect(p, x,y,w,h, fill, rx=4, stroke='none', sw=1) {
+  return el('rect',{x,y,width:w,height:h,fill,rx,stroke,'stroke-width':sw},p);
+}
+function text(p, x,y, str, fill='#c9d1d9', size=11, anchor='middle', weight='normal') {
+  const e = el('text',{x,y,fill,'font-size':size,'text-anchor':anchor,
+    'font-family':'Segoe UI,system-ui,sans-serif','dominant-baseline':'middle',
+    'font-weight':weight},p);
+  e.textContent = str;
+  return e;
+}
+function arrow(p, x1,y1,x2,y2, color='#555', sw=1.5) {
+  const dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy)||1;
+  const ux=dx/len, uy=dy/len;
+  const ax=x2-ux*10, ay=y2-uy*10;
+  line(p, x1,y1, ax,ay, color, sw);
+  const px=-uy*5, py=ux*5;
+  el('polygon',{points:`${x2},${y2} ${ax+px},${ay+py} ${ax-px},${ay-py}`,fill:color},p);
+}
+function clear(id) {
+  const e = document.getElementById(id);
+  while (e.firstChild) e.removeChild(e.firstChild);
+  return e;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parameter sets (FIPS 205 Table 1)
+// ─────────────────────────────────────────────────────────────────────────────
+const PARAM_SETS = {
+  'SHAKE-128s': {n:16, h:63, d:7,  hp:9, a:12, k:14, w:16, m:30, hash:'SHAKE'},
+  'SHAKE-128f': {n:16, h:66, d:22, hp:3, a:6,  k:33, w:16, m:34, hash:'SHAKE'},
+  'SHAKE-192s': {n:24, h:63, d:7,  hp:9, a:14, k:17, w:16, m:39, hash:'SHAKE'},
+  'SHAKE-192f': {n:24, h:66, d:22, hp:3, a:8,  k:33, w:16, m:42, hash:'SHAKE'},
+  'SHAKE-256s': {n:32, h:64, d:8,  hp:8, a:14, k:22, w:16, m:47, hash:'SHAKE'},
+  'SHAKE-256f': {n:32, h:68, d:17, hp:4, a:9,  k:35, w:16, m:49, hash:'SHAKE'},
+  'SHA2-128s':  {n:16, h:63, d:7,  hp:9, a:12, k:14, w:16, m:30, hash:'SHA2'},
+  'SHA2-128f':  {n:16, h:66, d:22, hp:3, a:6,  k:33, w:16, m:34, hash:'SHA2'},
+  'SHA2-192s':  {n:24, h:63, d:7,  hp:9, a:14, k:17, w:16, m:39, hash:'SHA2'},
+  'SHA2-192f':  {n:24, h:66, d:22, hp:3, a:8,  k:33, w:16, m:42, hash:'SHA2'},
+  'SHA2-256s':  {n:32, h:64, d:8,  hp:8, a:14, k:22, w:16, m:47, hash:'SHA2'},
+  'SHA2-256f':  {n:32, h:68, d:17, hp:4, a:9,  k:35, w:16, m:49, hash:'SHA2'},
+};
+
+function deriveParams(base, name) {
+  const len1      = 2 * base.n;           // ceil(8n / log2(16)) = ceil(8n/4) = 2n
+  const len2      = 3;                     // constant for all FIPS 205 sets
+  const len       = len1 + len2;
+  const rBytes    = base.n;
+  const forsBytes = base.k * (base.a + 1) * base.n;
+  const htBytes   = (base.h + base.d * len) * base.n;
+  const sigBytes  = rBytes + forsBytes + htBytes;
+  const sec       = name.includes('128') ? 128 : name.includes('192') ? 192 : 256;
+  return {...base, len1, len2, len, rBytes, forsBytes, htBytes, sigBytes,
+          pkBytes: 2 * base.n, skBytes: 4 * base.n, sec, name};
+}
+
+let currentSetName = 'SHAKE-128s';
+let P = deriveParams(PARAM_SETS['SHAKE-128s'], 'SHAKE-128s');
+
+function getHtDescs() {
+  return [
+    `Layer 0 (bottom): signs the FORS PK. idx_tree selects the XMSS tree (${P.h - P.hp}-bit), idx_leaf selects the signing leaf (${P.hp}-bit). This layer’s root is passed to Layer 1.`,
+    `Layer 1: signs the root of Layer 0’s XMSS tree. The signing leaf is the low ${P.hp} bits of Layer 0’s idx_tree. Its root is passed to Layer 2.`,
+    `Layer 2: signs the root of Layer 1’s XMSS tree. Uses the next ${P.hp} bits of idx_tree. Its root is passed up the chain.`,
+    `Layer 3 (demo top): in the full scheme, layers continue up to Layer D−1 = Layer ${P.d - 1}. The top layer’s root is PK.root — the hypertree public key.`,
+  ];
+}
+
+function buildSteps() {
+  const md_end       = Math.ceil(P.k * P.a / 8);
+  const idx_tree_end = md_end + Math.ceil((P.h - P.hp) / 8);
+  return [
+    {
+      title: 'Step 1 — Format M′',
+      body: `Build M′ = 0x00 ‖ |ctx| ‖ ctx ‖ M. The 0x00 domain byte distinguishes pure SLH-DSA from HashSLH-DSA (which uses 0x01 and prepends a pre-hash OID). ctx is the caller-supplied context string (at most 255 bytes).`,
+      hi: ["M'"]
+    },
+    {
+      title: 'Step 2 — Generate Randomness R',
+      body: `Compute R = PRF_msg(SK.prf, opt_rand, M′) — an n = ${P.n}-byte random value. In hedged mode opt_rand is freshly sampled; in deterministic mode opt_rand = PK.seed. R ensures that two signatures on the same message under the same key differ.`,
+      hi: ['R', 'PRF_msg']
+    },
+    {
+      title: 'Step 3 — Compute Message Digest',
+      body: `digest = H_msg(R, PK.seed, PK.root, M′) — a ${P.m}-byte output. Split: md = digest[0:${md_end}] (K×A = ${P.k * P.a} bits for FORS); idx_tree = digest[${md_end}:${idx_tree_end}] (${P.h - P.hp}-bit hypertree address); idx_leaf = last ${P.hp} bits (leaf within that tree).`,
+      hi: ['H_msg', 'md', 'idx_tree', 'idx_leaf']
+    },
+    {
+      title: 'Step 4 — FORS Signing',
+      body: `Decode md into K = ${P.k} indices of A = ${P.a} bits each. For tree i at index idx_i: include the secret leaf fors_skgen(idx_i) and the A-node auth path from leaf to root. FORS signature = K×(A+1)×n = ${P.forsBytes.toLocaleString()} bytes.`,
+      hi: ['FORS sign', 'sig_fors']
+    },
+    {
+      title: 'Step 5 — Recover FORS Public Key',
+      body: `For each of the K = ${P.k} trees: hash the secret leaf via F to get the leaf node, walk up using the auth path to compute the tree root. Compress all K roots with T_K into the ${P.n}-byte FORS PK — the message the hypertree will sign.`,
+      hi: ['FORS PK']
+    },
+    {
+      title: 'Step 6 — Hypertree Signing',
+      body: `Sign FORS PK at position (idx_tree, idx_leaf) using the D = ${P.d}-layer hypertree. Layer 0 XMSS-signs the FORS PK at leaf idx_leaf; each higher layer signs the previous layer’s root. HT signature = (h + D×LEN)×n = ${P.htBytes.toLocaleString()} bytes.`,
+      hi: ['HT sign', 'sig_ht']
+    },
+    {
+      title: 'Step 7 — Assemble Signature',
+      body: `σ = R ‖ sig_fors ‖ sig_ht (${P.n} + ${P.forsBytes.toLocaleString()} + ${P.htBytes.toLocaleString()} = ${P.sigBytes.toLocaleString()} bytes). Verification reverses: compute digest from R and M′ to get FORS md/idx_tree/idx_leaf, recover FORS PK from sig_fors, verify sig_ht against PK.root.`,
+      hi: ['sig']
+    },
+  ];
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tab management
+// ─────────────────────────────────────────────────────────────────────────────
+const RENDERERS = {
+  overview: drawOverview, wots: drawWOTS, xmss: drawXMSS,
+  fors: drawFORS, ht: drawHT, signflow: () => { sfStep(0, true); }, params: drawParams
+};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (RENDERERS[name]) RENDERERS[name]();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OVERVIEW
+// ─────────────────────────────────────────────────────────────────────────────
+function drawOverview() {
+  const svg = clear('svg-overview');
+
+  // Boxes: [x, y, w, h, fill, label, sublabel, id]
+  const boxes = [
+    [20,  185, 100, 46, '#0f3460', 'Message M', '', 'M'],
+    [155, 100, 115, 42, '#4a1942', 'SK.prf + opt_rand', '', 'rand'],
+    [155, 185, 115, 42, '#1d4ed8', 'PRF_msg', 'randomizer', 'prf'],
+    [155, 275, 115, 42, '#1d4ed8', 'H_msg', 'digest fn', 'hmsg'],
+    [155, 360, 80,  36, '#0f3460', 'R', 'n bytes', 'R'],
+    [320, 90,  120, 36, '#065f46', 'FORS md', 'K×A bits → K indices', 'md'],
+    [320, 175, 120, 36, '#065f46', 'idx_tree', '(h−h′) bits', 'itree'],
+    [320, 260, 120, 36, '#065f46', 'idx_leaf', 'h′ bits', 'ileaf'],
+    [500, 90,  120, 36, '#78350f', 'FORS sign', 'K trees, A auth nodes', 'fsign'],
+    [500, 175, 120, 36, '#78350f', 'FORS PK', 'T_K(K roots)', 'fpk'],
+    [500, 260, 120, 36, '#78350f', 'HT sign', 'D layers XMSS', 'htsign'],
+    [680, 150, 130, 100, '#3b0764', 'Signature σ', 'R ‖ sig_fors ‖ sig_ht', 'sig'],
+  ];
+
+  // Draw boxes
+  for (const [x,y,w,h,fill,lbl,sub,id] of boxes) {
+    rect(svg, x,y,w,h, fill, 5, '#ffffff18', 1);
+    text(svg, x+w/2, sub ? y+h/2-7 : y+h/2, lbl, '#f0f6fc', 10.5, 'middle', '600');
+    if (sub) text(svg, x+w/2, y+h/2+8, sub, '#94a3b8', 8.5);
+  }
+
+  // Arrows
+  const arrs = [
+    [120,208, 155,208],               // M → PRF_msg
+    [120,208, 155,294],               // M → H_msg
+    [270,121, 320,108],               // PRF_msg → FORS md
+    [270,206, 320,193],               // PRF_msg/Hmsg → idx_tree
+    [270,294, 320,278],               // H_msg → idx_leaf
+    [195,378, 195,316, 195,294],      // R → H_msg (go via bend)
+    [440,108, 500,108],               // md → FORS sign
+    [440,193, 500,193],               // idx_tree → FORS sign (skip) / also HT
+    [440,278, 500,278],               // idx_leaf → HT sign
+    [620,108, 620,180, 680,180],      // FORS sign → sig (via FORS PK)
+    [560,126, 560,175],               // FORS sign → FORS PK
+    [560,211, 560,260, 500,278],      // FORS PK → HT sign (as input m)
+    [620,278, 640,278, 640,220, 680,220], // HT sign → sig
+    [195,227, 195,258, 195,275],      // PRF_msg → H_msg directly
+  ];
+  // Overview arrows
+  arrow(svg, 120,208, 155,208, '#555');  // M → PRF_msg
+  arrow(svg, 120,215, 155,290, '#555');  // M → H_msg
+  arrow(svg, 195,142, 195,185, '#555');  // SK.prf → PRF_msg
+  arrow(svg, 270,296, 320,108, '#555');  // H_msg → FORS md
+  arrow(svg, 270,296, 320,193, '#555');  // H_msg → idx_tree
+  arrow(svg, 270,296, 320,278, '#555');  // H_msg → idx_leaf
+  arrow(svg, 440,108, 500,108, '#555');  // FORS md → FORS sign
+  arrow(svg, 440,193, 500,278, '#555');  // idx_tree → HT sign (tree address)
+  arrow(svg, 440,278, 500,278, '#555');  // idx_leaf → HT sign (leaf address)
+  arrow(svg, 560,126, 560,175, '#555');  // FORS sign → FORS PK
+  arrow(svg, 620,193, 680,193, '#555');  // FORS PK → sig
+  arrow(svg, 560,211, 560,260, '#555');  // FORS PK → HT sign (message to sign)
+  arrow(svg, 620,278, 680,230, '#555');  // HT sign → sig
+
+  arrow(svg, 195,356, 195,319, '#555'); // R → H_msg
+  text(svg, 745,226, `${P.sigBytes.toLocaleString()} B`, '#8b949e', 9);
+
+  // Layer labels on right
+  text(svg, 860, 90,  'FORS', '#6e7681', 9);
+  text(svg, 860, 185, 'Key', '#6e7681', 9);
+  text(svg, 860, 275, 'HT', '#6e7681', 9);
+
+  // Sig layout bar
+  const sl = clear('svg-siglayout');
+  const total = P.sigBytes, sw = 840, sx0 = 20;
+  const parts = [
+    {b: P.rBytes,    fill: '#1d4ed8', lbl: `R (${P.rBytes} B)`},
+    {b: P.forsBytes, fill: '#78350f', lbl: `FORS sig (${P.forsBytes.toLocaleString()} B)`},
+    {b: P.htBytes,   fill: '#4c1d95', lbl: `HT sig (${P.htBytes.toLocaleString()} B)`},
+  ];
+  let px = sx0;
+  for (const {b, fill, lbl} of parts) {
+    const w = Math.max(4, Math.round(b / total * sw));
+    rect(sl, px, 8, w, 44, fill, 3, '#ffffff18', 1);
+    if (w > 60) text(sl, px + w/2, 30, lbl, '#f0f6fc', w > 150 ? 10 : 8);
+    px += w;
+  }
+  px = sx0;
+  for (const {b} of parts) {
+    const w = Math.max(4, Math.round(b / total * sw));
+    text(sl, px + w/2, 62, b.toLocaleString() + ' B', '#6e7681', 8);
+    px += w;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WOTS+
+// ─────────────────────────────────────────────────────────────────────────────
+const W_LEN = 8, W_W = 8;
+
+function wotsDigits(msgByte) {
+  // Illustrative digit extraction — not actual WOTS+ algorithm
+  const digits = [];
+  let acc = msgByte;
+  for (let i = 0; i < W_LEN - 1; i++) {
+    digits.push(acc % W_W);
+    acc = Math.floor(acc * 1.618 + i * 13) & 0xFF;
+  }
+  // checksum: one digit representing sum of (w-1-d_i)
+  const csum = digits.reduce((s,d) => s + (W_W-1-d), 0) % W_W;
+  digits.push(csum);
+  return digits;
+}
+
+function updateWOTS() {
+  const v = document.getElementById('wots-msg').value;
+  document.getElementById('wots-msg-val').textContent = v;
+  drawWOTS();
+}
+
+function drawWOTS() {
+  const svg = clear('svg-wots');
+  const msgByte = +document.getElementById('wots-msg').value;
+  const mode = document.getElementById('wots-mode').value;
+  const digits = wotsDigits(msgByte);
+
+  const cW=66, cH=28, mL=90, mT=36, rH=36;
+
+  // Column headers
+  text(svg, mL-8, mT-14, 'Chain', '#6e7681', 8.5, 'end');
+  for (let j=0; j<W_W; j++) {
+    const lbl = j===0 ? 'SK' : j===W_W-1 ? 'PK' : `${j}`;
+    text(svg, mL+j*cW+cW/2, mT-14, lbl, '#6e7681', 8.5);
+  }
+
+  for (let i=0; i<W_LEN; i++) {
+    const d = digits[i];
+    const y = mT + i*rH;
+    const lbl = i===W_LEN-1 ? 'csum' : `ch ${i}`;
+    text(svg, mL-8, y+cH/2, lbl, '#8b949e', 8.5, 'end');
+
+    for (let j=0; j<W_W; j++) {
+      const x = mL + j*cW;
+      let fill, stroke='none', sw=1;
+      if (j===0) { fill='#7f1d1d'; }
+      else if (j===W_W-1) { fill='#0c4a6e'; }
+      else if (mode==='sign') {
+        if (j===d)       { fill='#7c3aed'; stroke='#a78bfa'; sw=2; }
+        else if (j<d)    { fill='#2d1f3d'; }
+        else             { fill='#1c1917'; }
+      } else { // verify
+        if (j===d)       { fill='#7c3aed'; stroke='#a78bfa'; sw=2; }
+        else if (j<d)    { fill='#1c1917'; }
+        else             { fill='#14532d'; stroke='#22c55e22'; sw=1; }
+      }
+      rect(svg, x+2, y+2, cW-4, cH-4, fill, 3, stroke, sw);
+
+      // Step hash arrow
+      if (j<W_W-1) {
+        const ac = (mode==='verify' && j>=d && j<W_W-1) ? '#22c55e' :
+                   (mode==='sign'   && j<d)              ? '#4b2d8a' : '#1f2937';
+        line(svg, x+cW-3, y+cH/2, x+cW+2, y+cH/2, ac, 1.2);
+      }
+    }
+    // Digit label
+    text(svg, mL+W_W*cW+10, y+cH/2, `d=${d}`, '#6e7681', 8.5, 'start');
+  }
+
+  // Footer note
+  const fy = mT + W_LEN*rH + 14;
+  const note = mode==='sign'
+    ? 'Signing: apply F exactly d_i times from SK → sig is chain step d_i'
+    : 'Verifying: apply F exactly (w−1−d_i) more times from sig → should reach PK top';
+  text(svg, mL, fy, note, '#6e7681', 8.5, 'start');
+
+  // F function label
+  text(svg, mL + (W_W*cW)/2, fy+16, `F applied at each arrow  (tweakable hash, domain-separated by ADRS)`, '#555', 8, 'middle');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// XMSS
+// ─────────────────────────────────────────────────────────────────────────────
+const XMSS_HP = 3;
+let xmss_leaf = 3;
+
+function xmssPos(level, idx, W=680, H=330, px=30, pt=36, pb=30) {
+  const y = pt + (level / XMSS_HP) * (H - pt - pb);
+  const count = 1 << level;
+  const x = px + (idx + 0.5) / count * (W - 2*px);
+  return [x, y];
+}
+
+function updateXMSS() {
+  xmss_leaf = +document.getElementById('xmss-leaf').value;
+  document.getElementById('xmss-leaf-val').textContent = xmss_leaf;
+  drawXMSS();
+}
+
+function xmssClick(evt) {
+  const svg = document.getElementById('svg-xmss');
+  const r = svg.getBoundingClientRect();
+  const vb = svg.viewBox.baseVal;
+  const sx = (evt.clientX - r.left) / r.width  * vb.width;
+  const sy = (evt.clientY - r.top)  / r.height * vb.height;
+  for (let i=0; i < (1<<XMSS_HP); i++) {
+    const [nx,ny] = xmssPos(XMSS_HP, i);
+    if (Math.hypot(sx-nx, sy-ny) < 22) {
+      xmss_leaf = i;
+      document.getElementById('xmss-leaf').value = i;
+      document.getElementById('xmss-leaf-val').textContent = i;
+      drawXMSS();
+      break;
+    }
+  }
+}
+
+function drawXMSS() {
+  const svg = clear('svg-xmss');
+  const HP = XMSS_HP, lf = xmss_leaf;
+
+  // Auth path and node path
+  const authPath = [], nodePath = [];
+  let cur = lf;
+  for (let z=0; z<HP; z++) {
+    nodePath.push([HP-z, cur]);
+    authPath.push([HP-z, cur^1]);
+    cur >>= 1;
+  }
+  nodePath.push([0, 0]);
+
+  function nodeColor(lv, idx) {
+    if (lv===0) return '#0891b2';
+    if (lv===HP && idx===lf) return '#7c3aed';
+    if (nodePath.some(([l,i]) => l===lv && i===idx)) return '#059669';
+    if (authPath.some(([l,i]) => l===lv && i===idx)) return '#d97706';
+    return '#21262d';
+  }
+
+  // Level labels (left side)
+  for (let lv=0; lv<=HP; lv++) {
+    const [,y] = xmssPos(lv, 0);
+    const lbl = lv===0 ? 'Root' : lv===HP ? 'Leaves' : `Level ${lv}`;
+    text(svg, 18, y, lbl, '#6e7681', 8, 'start');
+  }
+  // leaf sublabel
+  const [,leafY] = xmssPos(HP, 0);
+  text(svg, 18, leafY+14, '(WOTS+ PK)', '#555', 7, 'start');
+
+  // Edges
+  for (let lv=0; lv<HP; lv++) {
+    for (let i=0; i<(1<<lv); i++) {
+      const [px2,py] = xmssPos(lv, i);
+      const [lx,ly] = xmssPos(lv+1, 2*i);
+      const [rx,ry] = xmssPos(lv+1, 2*i+1);
+      const lp = nodePath.some(([l,j]) => l===lv+1 && j===2*i);
+      const rp = nodePath.some(([l,j]) => l===lv+1 && j===2*i+1);
+      line(svg, px2,py, lx,ly, lp ? '#059669' : '#2d3748', lp ? 2 : 1);
+      line(svg, px2,py, rx,ry, rp ? '#059669' : '#2d3748', rp ? 2 : 1);
+    }
+  }
+
+  // Nodes
+  for (let lv=0; lv<=HP; lv++) {
+    for (let i=0; i<(1<<lv); i++) {
+      const [x,y] = xmssPos(lv, i);
+      const r2 = lv===HP ? 18 : lv===0 ? 16 : 13;
+      const fill = nodeColor(lv, i);
+      circle(svg, x,y,r2, fill, '#374151', 1);
+      const lbl = lv===0 ? 'root' : lv===HP ? `L${i}` : `${lv}.${i}`;
+      text(svg, x, y, lbl, '#f0f6fc', lv===HP ? 8.5 : 7.5, 'middle', lv===0?'700':'normal');
+    }
+  }
+
+  // Auth path description
+  const ap = authPath.map(([l,i]) => `(lv ${l}, node ${i})`).join(', ');
+  document.getElementById('xmss-auth-text').textContent =
+    `Leaf ${lf}: auth path nodes = ${ap}. Orange nodes are provided in the signature; green path is recomputed during verification.`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// FORS
+// ─────────────────────────────────────────────────────────────────────────────
+const FORS_K = 4, FORS_A = 3;
+let fors_digest_val = 1234;
+
+function forsIndices(digest) {
+  const mask = (1<<FORS_A)-1;
+  return Array.from({length:FORS_K}, (_,i) => (digest >> (i*FORS_A)) & mask);
+}
+
+function updateFORS() {
+  fors_digest_val = +document.getElementById('fors-digest').value;
+  document.getElementById('fors-digest-val').textContent = fors_digest_val;
+  drawFORS();
+}
+
+function randomizeFORS() {
+  fors_digest_val = Math.floor(Math.random() * 4096);
+  document.getElementById('fors-digest').value = fors_digest_val;
+  document.getElementById('fors-digest-val').textContent = fors_digest_val;
+  drawFORS();
+}
+
+function drawFORS() {
+  const svg = clear('svg-fors');
+  const K=FORS_K, A=FORS_A;
+  const indices = forsIndices(fors_digest_val);
+
+  document.getElementById('fors-indices-text').textContent =
+    `Tree indices: [${indices.join(', ')}]  (each is a ${A}-bit value from the K×A-bit digest)`;
+
+  // FORS PK bar at top
+  rect(svg, 220,6, 260,28, '#4c1d95', 4, '#7c3aed', 1.5);
+  text(svg, 350, 20, `FORS PK = T_K(root₀ ‖ root₁ ‖ … ‖ root_${K-1})`, '#c4b5fd', 9);
+
+  const tW=150, tH=155, tGap=18;
+  const totalW = K*(tW+tGap)-tGap;
+  const ox = (700-totalW)/2;
+  const oy = 50;
+
+  for (let t=0; t<K; t++) {
+    const tx = ox + t*(tW+tGap);
+    const selLeaf = indices[t];
+
+    const authPath=[], nodePath=[];
+    let cur=selLeaf;
+    for (let z=0; z<A; z++) {
+      nodePath.push([A-z, cur]);
+      authPath.push([A-z, cur^1]);
+      cur >>= 1;
+    }
+    nodePath.push([0,0]);
+
+    function tpos(lv, idx) {
+      return [tx + (idx+0.5)/(1<<lv)*tW,  oy + (lv/A)*tH];
+    }
+
+    // Tree label
+    text(svg, tx+tW/2, oy-10, `Tree ${t}`, '#6e7681', 8.5);
+
+    // Edges
+    for (let lv=0; lv<A; lv++) {
+      for (let i=0; i<(1<<lv); i++) {
+        const [px,py] = tpos(lv,i);
+        const [lx,ly] = tpos(lv+1,2*i);
+        const [rx,ry] = tpos(lv+1,2*i+1);
+        const lp = nodePath.some(([l,j]) => l===lv+1 && j===2*i);
+        const rp = nodePath.some(([l,j]) => l===lv+1 && j===2*i+1);
+        line(svg,px,py,lx,ly, lp?'#059669':'#2d3748', lp?1.5:0.8);
+        line(svg,px,py,rx,ry, rp?'#059669':'#2d3748', rp?1.5:0.8);
+      }
+    }
+
+    // Nodes
+    for (let lv=0; lv<=A; lv++) {
+      for (let i=0; i<(1<<lv); i++) {
+        const [x,y] = tpos(lv,i);
+        let fill = '#21262d';
+        if (lv===0) fill='#0891b2';
+        else if (lv===A && i===selLeaf) fill='#dc2626';
+        else if (authPath.some(([l,j]) => l===lv && j===i)) fill='#d97706';
+        else if (nodePath.some(([l,j]) => l===lv && j===i)) fill='#059669';
+        const r2 = lv===A ? 7 : lv===0 ? 9 : 6;
+        circle(svg, x,y,r2, fill,'#374151',0.8);
+      }
+    }
+
+    // Arrow from root up to PK bar
+    const [rx2,ry2] = tpos(0,0);
+    arrow(svg, rx2,ry2, 350,34, '#7c3aed', 1.2);
+  }
+
+  // Digest bits label
+  text(svg, 350, 380, `Digest = ${fors_digest_val} (binary: ${fors_digest_val.toString(2).padStart(K*A,'0')})`, '#6e7681', 8.5);
+  text(svg, 350, 366, `Split into K = ${K} groups of A = ${A} bits → indices [${indices.join(', ')}]`, '#6e7681', 8.5);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HYPERTREE
+// ─────────────────────────────────────────────────────────────────────────────
+const HT_D=4, HT_HP=2;
+const HT_LEAF_IDX=[2,1,3,0]; // demo: fixed signing leaf per layer (bottom-up)
+let ht_active = 0;
+
+function updateHT() {
+  ht_active = +document.getElementById('ht-layer').value;
+  document.getElementById('ht-layer-val').textContent = ht_active;
+  document.getElementById('ht-layer-desc').textContent = getHtDescs()[ht_active];
+  drawHT();
+}
+
+function drawHT() {
+  const svg = clear('svg-ht');
+  const D=HT_D, HP=HT_HP, active=ht_active;
+
+  // Layout: D layers stacked top (layer D-1) to bottom (layer 0)
+  const layH=82, layW=620, lx0=40, ly0=46;
+
+  // Top: PK.root bar
+  rect(svg, 240,4, 220,30, '#0c4a6e', 4, '#0891b2', 1.5);
+  text(svg, 350, 19, 'PK.root = Layer (D−1) root', '#7dd3fc', 9);
+
+  for (let disp=0; disp<D; disp++) {
+    // disp=0 → top of SVG = layer D-1; disp=D-1 → bottom = layer 0
+    const layerIdx = D-1-disp;
+    const ly = ly0 + disp*layH;
+    const active2 = layerIdx===active;
+    const fill  = active2 ? '#2d1b69' : '#161b22';
+    const strok = active2 ? '#7c3aed' : '#30363d';
+    const sw    = active2 ? 2 : 1;
+
+    rect(svg, lx0, ly, layW, layH-8, fill, 6, strok, sw);
+    text(svg, lx0+10, ly+13, `Layer ${layerIdx}${layerIdx===0?' (bottom)':layerIdx===D-1?' (top)':''}`,
+         active2?'#c4b5fd':'#6e7681', 8.5, 'start', '600');
+
+    // Mini XMSS tree
+    const treeLeaves = 1<<HP;
+    const txStart = lx0+60, txEnd = lx0+layW-20;
+    const tyRoot  = ly+18, tyLeaf = ly+layH-18;
+
+    function tnPos(lv, idx) {
+      return [txStart + (idx+0.5)/(1<<lv)*(txEnd-txStart),
+              tyRoot  + (lv/HP)*(tyLeaf-tyRoot)];
+    }
+
+    const selLeaf = HT_LEAF_IDX[layerIdx];
+    const nodePath=[], authPath=[];
+    let cur=selLeaf;
+    for (let z=0; z<HP; z++) {
+      nodePath.push([HP-z, cur]);
+      authPath.push([HP-z, cur^1]);
+      cur>>=1;
+    }
+    nodePath.push([0,0]);
+
+    // Edges
+    for (let lv=0; lv<HP; lv++) {
+      for (let i=0; i<(1<<lv); i++) {
+        const [px,py] = tnPos(lv,i);
+        const [lx2,ly2] = tnPos(lv+1,2*i);
+        const [rx,ry]   = tnPos(lv+1,2*i+1);
+        const lp = nodePath.some(([l,j]) => l===lv+1 && j===2*i);
+        const rp = nodePath.some(([l,j]) => l===lv+1 && j===2*i+1);
+        line(svg,px,py,lx2,ly2, active2?(lp?'#059669':'#4b2d8a'):'#2d3748', (active2&&lp)?1.5:1);
+        line(svg,px,py,rx,ry,   active2?(rp?'#059669':'#4b2d8a'):'#2d3748', (active2&&rp)?1.5:1);
+      }
+    }
+
+    // Nodes
+    for (let lv=0; lv<=HP; lv++) {
+      for (let i=0; i<(1<<lv); i++) {
+        const [x,y] = tnPos(lv,i);
+        let nfill = active2 ? '#2d1b69' : '#1c1c2e';
+        if (lv===0) nfill = active2 ? '#0891b2' : '#164e63';
+        else if (lv===HP && i===selLeaf) nfill = active2 ? '#7c3aed' : '#4c1d95';
+        else if (authPath.some(([l,j]) => l===lv && j===i)) nfill = active2 ? '#d97706' : '#78350f';
+        else if (nodePath.some(([l,j]) => l===lv && j===i)) nfill = active2 ? '#059669' : '#064e3b';
+        circle(svg, x,y, lv===HP?7:lv===0?8:6, nfill, active2?'#555':'#333', 1);
+      }
+    }
+
+    // Root node label
+    const [rootX,rootY] = tnPos(0,0);
+
+    // Arrow from root to signing leaf of layer above (if not top)
+    if (disp>0) {
+      const prevLayerIdx = layerIdx+1;
+      const prevDisp = disp-1;
+      const prevLy = ly0 + prevDisp*layH;
+      const prevTyLeaf = prevLy + layH - 18;
+      const prevSel = HT_LEAF_IDX[prevLayerIdx];
+      const prevTxStart = txStart, prevTxEnd = txEnd;
+      const prevLeafX = prevTxStart + (prevSel+0.5)/(1<<HP)*(prevTxEnd-prevTxStart);
+      arrow(svg, rootX, rootY-3, prevLeafX, prevTyLeaf+7, '#d97706', 1.5);
+    }
+  }
+
+  // Bottom: FORS PK bar
+  const botY = ly0 + D*layH - 4;
+  rect(svg, 240, botY, 220, 28, '#3d1515', 4, '#dc2626', 1.5);
+  text(svg, 350, botY+14, 'FORS PK (input to Layer 0)', '#fca5a5', 9);
+
+  // Arrow from FORS PK up to Layer 0 signing leaf
+  const lastDisp = D-1;
+  const lastLy = ly0 + lastDisp*layH;
+  const lastTyLeaf = lastLy + layH - 18;
+  const lastSel = HT_LEAF_IDX[0];
+  const lastLeafX = lx0+60 + (lastSel+0.5)/(1<<HP)*(lx0+layW-20-(lx0+60));
+  arrow(svg, 350, botY, lastLeafX, lastTyLeaf+7, '#dc2626', 1.5);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SIGN FLOW
+// ─────────────────────────────────────────────────────────────────────────────
+let sf_cur = 0;
+
+
+// Block positions for sign flow diagram (id → [x,y,w,h])
+const SF_BOXES = {
+  'M\'':       [20,  190, 100, 44, '#0f3460', 'M\''],
+  'PRF_msg':  [160, 110, 110, 40, '#4c1d95', 'PRF_msg'],
+  'R':        [160, 360, 70,  36, '#0f3460', 'R'],
+  'H_msg':    [160, 225, 110, 40, '#1d4ed8', 'H_msg'],
+  'md':       [330, 100, 115, 34, '#065f46', 'FORS md'],
+  'idx_tree': [330, 185, 115, 34, '#065f46', 'idx_tree'],
+  'idx_leaf': [330, 270, 115, 34, '#065f46', 'idx_leaf'],
+  'FORS sign':[500, 100, 120, 34, '#78350f', 'FORS sign'],
+  'FORS PK':  [500, 185, 120, 34, '#78350f', 'FORS PK'],
+  'HT sign':  [500, 340, 120, 34, '#78350f', 'HT sign'],
+  'sig_fors': [680, 100, 110, 34, '#1e3a5f', 'sig_fors'],
+  'sig_ht':   [680, 340, 110, 34, '#1e3a5f', 'sig_ht'],
+  'sig':      [680, 200, 110, 100,'#3b0764', 'Signature σ'],
+};
+
+const SF_ARROWS = [
+  // [x1,y1, x2,y2]
+  [120,212, 160,130],  // M' → PRF_msg
+  [120,212, 160,245],  // M' → H_msg
+  [215,150, 195,360],  // PRF_msg → R  (passes behind H_msg box)
+  [270,245, 330,117],  // H_msg → FORS md  (fan out upward)
+  [270,245, 330,202],  // H_msg → idx_tree
+  [270,245, 330,287],  // H_msg → idx_leaf (fan out downward)
+  [445,117, 500,117],  // FORS md → FORS sign
+  [560,117, 560,202],  // FORS sign → FORS PK  (visible in gap between boxes)
+  [560,117, 680,117],  // FORS sign → sig_fors
+  [445,202, 500,357],  // idx_tree → HT sign  (tree address)
+  [445,287, 500,357],  // idx_leaf → HT sign  (leaf address)
+  [560,219, 560,340],  // FORS PK → HT sign   (message to sign)
+  [620,357, 680,357],  // HT sign → sig_ht
+  [680,117, 680,200],  // sig_fors → sig
+  [680,357, 680,300],  // sig_ht → sig
+];
+
+function sfStep(delta, reset) {
+  const steps = buildSteps();
+  if (reset) sf_cur = 0;
+  else sf_cur = Math.max(0, Math.min(steps.length - 1, sf_cur + delta));
+  const s = steps[sf_cur];
+  document.getElementById('sf-counter').textContent = `Step ${sf_cur+1} / ${steps.length}`;
+  document.getElementById('sf-title').textContent = s.title;
+  document.getElementById('sf-body').textContent  = s.body;
+  drawSignFlow(s.hi, s.title);
+}
+
+function drawSignFlow(hi=[], stepTitle='') {
+  const svg = clear('svg-signflow');
+
+  // Static arrows first
+  for (const [x1,y1,x2,y2] of SF_ARROWS) {
+    arrow(svg, x1,y1,x2,y2, '#374151', 1.2);
+  }
+  // Extra elbow for R → H_msg
+  arrow(svg, 195,360, 195,265, '#374151', 1.2);
+
+  // Boxes
+  for (const [id, [x,y,w,h,fill,lbl]] of Object.entries(SF_BOXES)) {
+    const isHi = hi.includes(id);
+    rect(svg, x,y,w,h, fill, 5, isHi?'#fbbf24':'#ffffff18', isHi?2.5:1);
+    text(svg, x+w/2, y+h/2, lbl, isHi?'#fef3c7':'#f0f6fc', 10, 'middle', isHi?'700':'600');
+  }
+
+  // Step label at bottom
+  text(svg, 440, 408, `Step ${sf_cur+1}: ${stepTitle}`, '#58a6ff', 10.5, 'middle', '600');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic content helpers
+// ─────────────────────────────────────────────────────────────────────────────
+function updateDynamic() {
+  const fullName   = `SLH-DSA-${P.name}`;
+  const forsLeaves = 1 << P.a;
+  const xmssLeaves = 1 << P.hp;
+
+  document.title = `${fullName} — Interactive Visualization`;
+  document.getElementById('header-title').textContent    = `${fullName} — Interactive Visualization`;
+  document.getElementById('siglayout-title').textContent =
+    `Signature Layout — ${fullName}: ${P.sigBytes.toLocaleString()} bytes total`;
+
+  document.getElementById('wots-p-structure').innerHTML =
+    `Each WOTS+ key pair consists of <strong>LEN = ${P.len}</strong> hash chains. Each chain is <strong>w = 16</strong> steps long. Every step applies tweakable hash <strong>F</strong>. The secret key is at step 0; the public key top is at step w−1.`;
+  document.getElementById('wots-p-signing').innerHTML =
+    `The XMSS leaf message is encoded as LEN<sub>1</sub> = ${P.len1} base-16 digits plus LEN<sub>2</sub> = 3 checksum digits. For chain i with digit d<sub>i</sub>, the signature element is chain[d<sub>i</sub>] — apply F exactly d<sub>i</sub> times from SK.`;
+  document.getElementById('wots-p-note').textContent =
+    `Demo uses w = 8, LEN = 8 (illustrative). Actual parameters: w = 16, LEN = ${P.len}.`;
+
+  document.getElementById('xmss-p-structure').innerHTML =
+    `An XMSS tree of height <strong>h′ = ${P.hp}</strong> has <strong>2<sup>${P.hp}</sup> = ${xmssLeaves} leaves</strong>. Each leaf is a <strong>WOTS+ public key</strong>. Internal nodes are computed by applying tweakable hash <strong>H</strong> to the concatenation of the left and right children.`;
+  document.getElementById('xmss-p-note').textContent =
+    `Demo uses h′ = 3 (8 leaves). Actual: h′ = ${P.hp} (${xmssLeaves} leaves).`;
+
+  document.getElementById('fors-p-structure').innerHTML =
+    `FORS consists of <strong>K = ${P.k}</strong> independent binary trees, each of height <strong>A = ${P.a}</strong> with <strong>2<sup>${P.a}</sup> = ${forsLeaves.toLocaleString()} leaves</strong>. Leaves are secret key values derived from SK.seed via PRF.`;
+  document.getElementById('fors-p-note').textContent =
+    `Demo uses K = 4, A = 3 (8 leaves). Actual: K = ${P.k}, A = ${P.a} (${forsLeaves.toLocaleString()} leaves).`;
+
+  document.getElementById('ht-p-structure').innerHTML =
+    `The hypertree stacks <strong>D = ${P.d}</strong> layers of XMSS trees. Each tree has height <strong>h′ = ${P.hp}</strong>. Total height: <strong>h = D × h′ = ${P.h}</strong>. The Layer (D−1) root is <strong>PK.root</strong>.`;
+  document.getElementById('ht-p-note').textContent =
+    `Demo uses D = 4, h′ = 2 (4 leaves each). Actual: D = ${P.d}, h′ = ${P.hp}.`;
+
+  document.getElementById('ht-layer-desc').textContent = getHtDescs()[ht_active];
+
+  document.getElementById('wots-demo-notice').textContent =
+    `Demo uses w = 8, LEN = 8 — ${P.name} uses w = 16, LEN = ${P.len}`;
+  document.getElementById('xmss-demo-notice').textContent =
+    `Demo uses h′ = 3 (8 leaves) — ${P.name} uses h′ = ${P.hp} (${xmssLeaves} leaves)`;
+  document.getElementById('fors-demo-notice').textContent =
+    `Demo uses K = 4, A = 3 (8 leaves per tree) — ${P.name} uses K = ${P.k}, A = ${P.a} (${forsLeaves.toLocaleString()} leaves)`;
+  document.getElementById('ht-demo-notice').textContent =
+    `Demo uses D = 4, h′ = 2 (4 leaves each) — ${P.name} uses D = ${P.d}, h′ = ${P.hp}`;
+}
+
+function drawParams() {
+  const p          = P;
+  const forsLeaves = 1 << p.a;
+  const xmssLeaves = 1 << p.hp;
+  const nistLevel  = p.sec === 128 ? 'I' : p.sec === 192 ? 'III' : 'V';
+  const htDLEN     = p.d * p.len;
+  const htFactor   = p.h + htDLEN;
+  const hashInst   = p.hash === 'SHAKE' ? 'SHAKE256' : p.n <= 24 ? 'SHA-256' : 'SHA-512';
+  const hashNote   = p.hash === 'SHAKE'
+    ? `All six functions use SHAKE256 for every SHAKE parameter set. The “${p.sec}” in the name designates the classical security level, not the XOF variant (FIPS 205 §10.2).`
+    : p.n <= 24
+    ? `For SHA2 sets with n ≤ 24 (128 and 192 security levels), all six functions are SHA-256-based per FIPS 205 §10.1.`
+    : `For SHA2 sets with n = 32 (256 security level), all six functions are SHA-512-based per FIPS 205 §10.1.`;
+
+  document.getElementById('tab-params').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">SLH-DSA-${p.name} Parameters (FIPS 205 Table 1)</div>
+      <table class="params">
+        <thead><tr><th>Symbol</th><th>Value</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>n</td><td>${p.n}</td><td>Security parameter — byte length of hash outputs, seeds, and key material</td></tr>
+          <tr><td>h</td><td>${p.h}</td><td>Total hypertree height (= D × h′)</td></tr>
+          <tr><td>D</td><td>${p.d}</td><td>Number of XMSS layers in the hypertree</td></tr>
+          <tr><td>h′</td><td>${p.hp}</td><td>Height of each XMSS tree (2<sup>${p.hp}</sup> = ${xmssLeaves.toLocaleString()} leaves per tree)</td></tr>
+          <tr><td>A</td><td>${p.a}</td><td>FORS tree height (2<sup>${p.a}</sup> = ${forsLeaves.toLocaleString()} leaves per FORS tree)</td></tr>
+          <tr><td>K</td><td>${p.k}</td><td>Number of FORS trees</td></tr>
+          <tr><td>w</td><td>${p.w}</td><td>Winternitz parameter — WOTS+ chain length</td></tr>
+          <tr><td>LEN₁</td><td>${p.len1}</td><td>Base-w message digits = ⌈8n / log₂(w)⌉ = ⌈${8*p.n}/4⌉</td></tr>
+          <tr><td>LEN₂</td><td>${p.len2}</td><td>Base-w checksum digits</td></tr>
+          <tr><td>LEN</td><td>${p.len}</td><td>Total WOTS+ chains = LEN₁ + LEN₂</td></tr>
+          <tr><td>m</td><td>${p.m}</td><td>Message digest length in bytes (H_msg output)</td></tr>
+          <tr><td>|PK|</td><td>${p.pkBytes}</td><td>Public key: PK.seed ‖ PK.root (2n bytes)</td></tr>
+          <tr><td>|SK|</td><td>${p.skBytes}</td><td>Secret key: SK.seed ‖ SK.prf ‖ PK.seed ‖ PK.root (4n bytes)</td></tr>
+          <tr><td>|σ|</td><td>${p.sigBytes.toLocaleString()}</td><td>Signature: n + K(A+1)n + (h + D·LEN)n = ${p.n} + ${p.forsBytes.toLocaleString()} + ${p.htBytes.toLocaleString()}</td></tr>
+          <tr><td>Security</td><td>${p.sec}-bit</td><td>Classical security level (NIST Level ${nistLevel})</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Signature Breakdown</div>
+      <table class="params">
+        <thead><tr><th>Component</th><th>Bytes</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>R (randomness)</td><td>${p.rBytes}</td><td>n</td></tr>
+          <tr><td>FORS signature</td><td>${p.forsBytes.toLocaleString()}</td><td>K × (A+1) × n = ${p.k} × ${p.a+1} × ${p.n}</td></tr>
+          <tr><td>HT signature</td><td>${p.htBytes.toLocaleString()}</td><td>(h + D×LEN) × n = (${p.h} + ${htDLEN}) × ${p.n} = ${htFactor} × ${p.n}</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>${p.sigBytes.toLocaleString()}</strong></td><td>n + K(A+1)n + (h + D·LEN)n</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Hash Functions (FIPS 205 — ${hashInst}-based)</div>
+      <table class="params">
+        <thead><tr><th>Name</th><th>Input</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>F</td><td>PK.seed, ADRS, M₁</td><td>WOTS+ chain step; FORS leaf hash</td></tr>
+          <tr><td>H</td><td>PK.seed, ADRS, M₂</td><td>XMSS and FORS tree internal nodes (2n-byte input)</td></tr>
+          <tr><td>T_ℓ</td><td>PK.seed, ADRS, Mℓ</td><td>WOTS+ PK compression (LEN·n input); FORS root compression</td></tr>
+          <tr><td>PRF</td><td>PK.seed, SK.seed, ADRS</td><td>Derive WOTS+ and FORS secret key values</td></tr>
+          <tr><td>PRF_msg</td><td>SK.prf, opt_rand, M′</td><td>Produce per-signature randomness R</td></tr>
+          <tr><td>H_msg</td><td>R, PK.seed, PK.root, M′</td><td>${p.m}-byte message digest → md, idx_tree, idx_leaf</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#6e7681;font-size:0.775rem;margin-top:10px">${hashNote}</p>
+    </div>
+  `;
+}
+
+function onParamSetChange() {
+  const name = document.getElementById('param-set').value;
+  currentSetName = name;
+  P = deriveParams(PARAM_SETS[name], name);
+  updateDynamic();
+  const active = document.querySelector('.tab-panel.active');
+  if (active) {
+    const id = active.id.replace('tab-', '');
+    if (id === 'signflow') sfStep(0, false);
+    else if (RENDERERS[id]) RENDERERS[id]();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+updateDynamic();
+drawOverview();
+drawWOTS();
+drawXMSS();
+drawFORS();
+drawHT();
+sfStep(0, true);
+</script>
+</body>
+</html>
