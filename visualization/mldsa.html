@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML-DSA-65 — Interactive Visualization</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #161b22, #21262d);
+  border-bottom: 1px solid #30363d;
+  padding: 18px 40px;
+}
+header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
+header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+
+nav.tabs {
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 0 40px;
+  display: flex; gap: 0; overflow-x: auto;
+}
+.tab-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: #8b949e; cursor: pointer; font-size: 0.875rem;
+  padding: 13px 18px; transition: color 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { color: #c9d1d9; }
+.tab-btn.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+
+main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.two-col {
+  display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start;
+}
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+.panel {
+  background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px;
+  margin-bottom: 20px;
+}
+.panel-title {
+  font-size: 1rem; font-weight: 600; color: #f0f6fc;
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d;
+}
+.panel svg { display: block; width: 100%; height: auto; }
+
+.info h2 { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: 10px; }
+.info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
+.info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
+.info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
+.legend-dot { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+
+.controls { margin-top: 14px; }
+.ctrl-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ctrl-row label { color: #8b949e; font-size: 0.8rem; min-width: 110px; }
+input[type=range] { flex: 1; accent-color: #58a6ff; }
+.ctrl-val { color: #79c0ff; font-family: monospace; font-size: 0.8rem; min-width: 60px; text-align: right; }
+select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
+
+.btn { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; cursor: pointer; font-size: 0.825rem; padding: 7px 14px; transition: background 0.15s; }
+.btn:hover { background: #30363d; }
+.btn.primary { background: #1f6feb; border-color: #388bfd; color: #fff; }
+.btn.primary:hover { background: #388bfd; }
+
+.callout {
+  background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+  padding: 10px 12px; margin-top: 12px; font-size: 0.825rem; line-height: 1.6;
+}
+.callout .ctitle { color: #58a6ff; font-weight: 600; margin-bottom: 4px; font-size: 0.825rem; }
+.callout .cbody  { color: #8b949e; }
+
+table.params { width: 100%; border-collapse: collapse; font-size: 0.825rem; }
+table.params th { text-align: left; color: #8b949e; padding: 6px 8px; border-bottom: 1px solid #30363d; font-weight: 600; }
+table.params td { padding: 5px 8px; border-bottom: 1px solid #21262d; }
+table.params td:first-child { color: #d2a8ff; font-family: monospace; }
+table.params td:nth-child(2) { color: #79c0ff; text-align: right; font-family: monospace; }
+table.params td:last-child { color: #8b949e; }
+
+.nav-end { flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 16px; margin-left: 8px; border-left: 1px solid #30363d; }
+.nav-label { color: #8b949e; font-size: 0.8rem; white-space: nowrap; }
+#param-set { font-size: 0.8rem; min-width: 160px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="header-title">ML-DSA-65 &mdash; Interactive Visualization</h1>
+  <p>FIPS 204 lattice-based signature scheme &mdash; explore Matrix A, ExpandMask/SampleInBall, and rounding &amp; hints interactively</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('matrix',this)">Matrix A</button>
+  <button class="tab-btn" onclick="showTab('mask',this)">Mask &amp; Challenge</button>
+  <button class="tab-btn" onclick="showTab('rounding',this)">Rounding &amp; Hints</button>
+  <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
+  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <div class="nav-end">
+    <label class="nav-label">Parameter set:</label>
+    <select id="param-set" onchange="onParamSetChange()">
+      <option value="ML-DSA-44">ML-DSA-44</option>
+      <option value="ML-DSA-65" selected>ML-DSA-65</option>
+      <option value="ML-DSA-87">ML-DSA-87</option>
+    </select>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="panel">
+    <div class="panel-title">ML-DSA Sign — Component Overview (FIPS 204 Algorithm 7)</div>
+    <svg id="svg-overview" viewBox="0 0 950 430"></svg>
+  </div>
+  <div class="panel">
+    <div class="panel-title" id="siglayout-title">Signature Layout &mdash; ML-DSA-65: 3,309 bytes total</div>
+    <svg id="svg-siglayout" viewBox="0 0 880 72"></svg>
+  </div>
+</div>
+
+<!-- ══════════ MATRIX A ══════════ -->
+<div id="tab-matrix" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Matrix Â = ExpandA(ρ) &mdash; click a cell</div>
+      <svg id="svg-matrix" viewBox="0 0 700 420" style="cursor:pointer" onclick="matrixClick(event)"></svg>
+    </div>
+    <div class="info panel">
+      <h2>ExpandA (FIPS 204 Algorithm 32)</h2>
+      <h3>Structure</h3>
+      <p id="matrix-p-structure">Â is a K×L matrix of NTT-domain polynomials.</p>
+      <h3>Seed derivation</h3>
+      <p>Each entry Â[r][s] = RejNTTPoly(ρ ‖ IntegerToBytes(s,1) ‖ IntegerToBytes(r,1)) &mdash; note the byte order is <strong>(col, row)</strong>: s before r.</p>
+      <h3>NTT domain</h3>
+      <p>ζ = 1753 is a primitive 512th root of unity mod q, so X²⁵⁶+1 factors into 256 <em>linear</em> factors &mdash; the NTT is fully diagonal, so matrix&ndash;vector products are pointwise multiply-and-accumulate (unlike ML-KEM's 128 quadratic factors, which need base-case multiplication).</p>
+      <div class="controls">
+        <button class="btn" onclick="randomizeRho()">Randomize ρ (illustrative)</button>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Selected cell Â[r][s]</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#0f4a3a"></div>Row r (feeds t[r])</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#21262d"></div>Other entries</div>
+      </div>
+      <div class="callout" id="matrix-select-text">Select a cell to see its seed bytes.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MASK & CHALLENGE ══════════ -->
+<div id="tab-mask" class="tab-panel">
+  <div class="two-col">
+    <div>
+      <div class="panel">
+        <div class="panel-title">ExpandMask &mdash; y = ExpandMask(ρ′, κ)</div>
+        <svg id="svg-mask" viewBox="0 0 700 260"></svg>
+      </div>
+      <div class="panel">
+        <div class="panel-title">SampleInBall &mdash; c = SampleInBall(c̃)</div>
+        <svg id="svg-challenge" viewBox="0 0 700 340"></svg>
+      </div>
+    </div>
+    <div class="info panel">
+      <h2>The commit&ndash;challenge&ndash;response step</h2>
+      <h3>ExpandMask (Algorithm 34)</h3>
+      <p id="mask-p-structure">y ∈ R_q^L has coefficients independently sampled in (−γ1, γ1].</p>
+      <h3>SampleInBall (Algorithm 29)</h3>
+      <p id="challenge-p-structure">c ∈ R_q is sparse: exactly τ coefficients are ±1, the rest are 0.</p>
+      <p class="note">Bar/cell values on this tab are illustrative (JS-random, not SHAKE) &mdash; they show each algorithm's shape, not real signer output.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>κ (nonce):</label>
+          <input type="range" id="mask-kappa" min="0" max="40" step="1" value="0" oninput="updateMask()">
+          <span class="ctrl-val" id="mask-kappa-val">0</span>
+        </div>
+        <button class="btn" onclick="drawMask()" style="margin-top:4px">Resample y (illustrative)</button>
+        <button class="btn" onclick="drawChallenge()" style="margin-top:8px">Resample challenge c</button>
+      </div>
+      <div class="legend" style="margin-top:12px">
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>c = +1</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>c = −1</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#21262d"></div>c = 0</div>
+      </div>
+      <div class="callout">
+        <div class="ctitle">Why sparse ±1?</div>
+        <div class="cbody">c·s1 and c·s2 must stay small (bounded by β = τ·η) so the rejection bounds ‖z‖∞ &lt; γ1−β and ‖r0‖∞ &lt; γ2−β are satisfiable often enough for Sign to terminate quickly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ROUNDING & HINTS ══════════ -->
+<div id="tab-rounding" class="tab-panel">
+  <div class="two-col">
+    <div>
+      <div class="panel">
+        <div class="panel-title">Decompose / HighBits / LowBits / Power2Round</div>
+        <svg id="svg-round-decompose" viewBox="0 0 700 190"></svg>
+      </div>
+      <div class="panel">
+        <div class="panel-title">MakeHint / UseHint</div>
+        <svg id="svg-round-hint" viewBox="0 0 700 150"></svg>
+      </div>
+    </div>
+    <div class="info panel">
+      <h2>Rounding &amp; hint-bit mechanism (FIPS 204 §7.4, Alg 35&ndash;40)</h2>
+      <h3>Decompose</h3>
+      <p>r = r1·(2γ2) + r0 with r0 ∈ (−γ2, γ2] &mdash; splits w into a coarse "high bits" commitment (w1) and a fine LowBits remainder, every Sign attempt.</p>
+      <h3>Power2Round</h3>
+      <p>Same idea with bucket width 2^D = 8192 instead of 2γ2 &mdash; used once at KeyGen to split t into public t1 and secret t0.</p>
+      <h3>MakeHint / UseHint</h3>
+      <p>A signature never reveals w's low bits. The signer sends one bit per coefficient, h = [HighBits(r) ≠ HighBits(r+z)]; the verifier reconstructs HighBits(w) from t1, z, c, and h alone.</p>
+      <p class="note">UseHint(MakeHint(z,r), r) == HighBits(r+z) for |z| ≤ γ2 &mdash; the load-bearing identity that lets verification work without disclosing w's low bits.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Mode:</label>
+          <select id="round-mode" onchange="drawDecompose()">
+            <option value="decompose">Decompose (Sign, bucket=2γ2)</option>
+            <option value="power2round">Power2Round (KeyGen, bucket=2^D)</option>
+          </select>
+        </div>
+        <div class="ctrl-row">
+          <label>r:</label>
+          <input type="range" id="round-r" min="0" max="8380416" step="1" value="4190208" oninput="drawDecompose()">
+        </div>
+        <button class="btn" onclick="jumpWraparound()">Jump to wraparound (r=q−1)</button>
+        <button class="btn" onclick="randomizeR()" style="margin-top:6px">Randomize r</button>
+      </div>
+      <div class="callout" id="decompose-result">—</div>
+      <div class="controls" style="margin-top:16px">
+        <div class="ctrl-row">
+          <label>r (hint demo):</label>
+          <input type="range" id="hint-r" min="0" max="8380416" step="1" value="4190208" oninput="drawHint()">
+        </div>
+        <div class="ctrl-row">
+          <label>z:</label>
+          <input type="range" id="hint-z" min="-261888" max="261888" step="1" value="50000" oninput="drawHint()">
+          <span class="ctrl-val" id="hint-z-val">50000</span>
+        </div>
+      </div>
+      <div class="callout" id="hint-result">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SIGN FLOW ══════════ -->
+<div id="tab-signflow" class="tab-panel">
+  <div class="panel">
+    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 204 Algorithm 7)</div>
+    <svg id="svg-signflow" viewBox="0 0 950 430"></svg>
+  </div>
+  <div class="panel">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
+      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 8</span>
+      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
+    </div>
+    <div class="callout">
+      <div class="ctitle" id="sf-title"></div>
+      <div class="cbody"  id="sf-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PARAMETERS ══════════ -->
+<div id="tab-params" class="tab-panel">
+  <!-- generated dynamically by drawParams() -->
+</div>
+
+</main>
+
+<script>
+'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// SVG helpers
+// ─────────────────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function line(p, x1,y1,x2,y2, stroke='#374151', sw=1.5, dash='') {
+  return el('line',{x1,y1,x2,y2,stroke,'stroke-width':sw,'stroke-dasharray':dash},p);
+}
+function circle(p, cx,cy,r, fill, stroke='none', sw=1) {
+  return el('circle',{cx,cy,r,fill,stroke,'stroke-width':sw},p);
+}
+function rect(p, x,y,w,h, fill, rx=4, stroke='none', sw=1) {
+  return el('rect',{x,y,width:w,height:h,fill,rx,stroke,'stroke-width':sw},p);
+}
+function text(p, x,y, str, fill='#c9d1d9', size=11, anchor='middle', weight='normal') {
+  const e = el('text',{x,y,fill,'font-size':size,'text-anchor':anchor,
+    'font-family':'Segoe UI,system-ui,sans-serif','dominant-baseline':'middle',
+    'font-weight':weight},p);
+  e.textContent = str;
+  return e;
+}
+function arrow(p, x1,y1,x2,y2, color='#555', sw=1.5) {
+  const dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy)||1;
+  const ux=dx/len, uy=dy/len;
+  const ax=x2-ux*10, ay=y2-uy*10;
+  line(p, x1,y1, ax,ay, color, sw);
+  const px=-uy*5, py=ux*5;
+  el('polygon',{points:`${x2},${y2} ${ax+px},${ay+py} ${ax-px},${ay-py}`,fill:color},p);
+}
+function clear(id) {
+  const e = document.getElementById(id);
+  while (e.firstChild) e.removeChild(e.firstChild);
+  return e;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parameter sets (FIPS 204 Table 1 / Table 2)
+// ─────────────────────────────────────────────────────────────────────────────
+const PARAM_SETS = {
+  'ML-DSA-44': {k:4, l:4, eta:2, tau:39, lambda:128, gamma1exp:17, gamma2div:88, omega:80, category:2},
+  'ML-DSA-65': {k:6, l:5, eta:4, tau:49, lambda:192, gamma1exp:19, gamma2div:32, omega:55, category:3},
+  'ML-DSA-87': {k:8, l:7, eta:2, tau:60, lambda:256, gamma1exp:19, gamma2div:32, omega:75, category:5},
+};
+const Q_CONST = 8380417, D_CONST = 13;
+
+function deriveParams(base, name) {
+  const q = Q_CONST, d = D_CONST;
+  const gamma1 = 1 << base.gamma1exp;
+  const gamma2 = Math.floor((q - 1) / base.gamma2div);
+  const beta = base.tau * base.eta;
+  const bitlenT1 = 10;
+  const bitlenGamma1 = base.gamma1exp + 1;
+  const pkBytes = 32 + 32 * bitlenT1 * base.k;
+  const bitlen2eta = Math.ceil(Math.log2(2 * base.eta + 1));
+  const skBytes = 32 + 32 + 64 + 32 * bitlen2eta * base.l + 32 * bitlen2eta * base.k + 32 * d * base.k;
+  const cTildeBytes = base.lambda / 4;
+  const zBytes = 32 * bitlenGamma1 * base.l;
+  const hintBytes = base.omega + base.k;
+  const sigBytes = cTildeBytes + zBytes + hintBytes;
+  return {...base, q, d, gamma1, gamma2, beta, bitlenT1, bitlenGamma1, bitlen2eta,
+          pkBytes, skBytes, sigBytes, cTildeBytes, zBytes, hintBytes, name};
+}
+
+let currentSetName = 'ML-DSA-65';
+let P = deriveParams(PARAM_SETS['ML-DSA-65'], 'ML-DSA-65');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tab management
+// ─────────────────────────────────────────────────────────────────────────────
+const RENDERERS = {
+  overview: drawOverview, matrix: drawMatrix,
+  mask: () => { drawMask(); drawChallenge(); },
+  rounding: () => { drawDecompose(); drawHint(); },
+  signflow: () => { sfStep(0, true); }, params: drawParams
+};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (RENDERERS[name]) RENDERERS[name]();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OVERVIEW / SIGN FLOW shared diagram
+// ─────────────────────────────────────────────────────────────────────────────
+const OVERVIEW_BOXES = {
+  sk:       [20, 150, 130, 56, '#1c1917', 'sk', 'ρ, K, tr, s1, s2, t0'],
+  M:        [20, 270, 130, 46, '#0f3460', "Message M'", 'M ‖ ctx, domain-separated'],
+  Ahat:     [195, 50, 140, 40, '#0e4f5c', 'Â = ExpandA(ρ)', 'K×L NTT-domain matrix'],
+  mu:       [195, 150, 140, 40, '#1d4ed8', "μ = H(tr ‖ M')", '64 bytes'],
+  rhoprime: [195, 270, 140, 50, '#4a1942', "ρ' = H(K‖rnd‖μ)", 'per-attempt seed'],
+  y:        [375, 270, 140, 50, '#4c1d95', "y = ExpandMask(ρ',κ)", 'coeffs in (−γ1, γ1]'],
+  w:        [375, 50, 140, 40, '#0e4f5c', 'w = NTT⁻¹(Â∘NTT(y))', ''],
+  w1:       [375, 150, 140, 40, '#065f46', 'w1 = HighBits(w)', 'commitment'],
+  ctilde:   [555, 50, 135, 40, '#78350f', 'c̃ = H(μ‖w1Encode)', 'challenge seed'],
+  c:        [555, 150, 135, 40, '#78350f', 'c = SampleInBall(c̃)', 'τ nonzero ±1'],
+  z:        [555, 270, 150, 50, '#78350f', 'z = y + c·s1', 'reject ‖z‖∞ ≥ γ1−β'],
+  reject:   [745, 150, 145, 80, '#3d1515', 'Accept?', '‖r0‖,‖c·t0‖,wt(h) — else κ+=L'],
+  sigma:    [745, 270, 145, 110, '#3b0764', 'Signature σ', 'c̃ ‖ z ‖ h'],
+};
+const OVERVIEW_ARROWS = [
+  ['sk','right','Ahat','left'], ['sk','right','mu','left'], ['sk','right','rhoprime','left'],
+  ['M','top','mu','bottom'], ['mu','bottom','rhoprime','top'], ['rhoprime','right','y','left'],
+  ['Ahat','right','w','left'], ['w','bottom','w1','top'], ['mu','right','ctilde','left'],
+  ['w1','right','ctilde','bottom'], ['ctilde','bottom','c','top'], ['y','right','z','left'],
+  ['c','bottom','z','top'], ['z','right','reject','left'], ['w','right','reject','top'],
+  ['reject','bottom','sigma','top'],
+];
+function boxMid(b, side) {
+  const [x,y,w,h] = b;
+  if (side==='left')   return [x, y+h/2];
+  if (side==='right')  return [x+w, y+h/2];
+  if (side==='top')    return [x+w/2, y];
+  return [x+w/2, y+h];
+}
+function drawBoxesAndArrows(svg, boxes, arrows, hiIds=[]) {
+  for (const [f,fs,t,ts] of arrows) {
+    const [x1,y1] = boxMid(boxes[f], fs);
+    const [x2,y2] = boxMid(boxes[t], ts);
+    arrow(svg, x1,y1,x2,y2, '#374151', 1.3);
+  }
+  for (const [id, b] of Object.entries(boxes)) {
+    const [x,y,w,h,fill,lbl,sub] = b;
+    const isHi = hiIds.includes(id);
+    rect(svg, x,y,w,h, fill, 6, isHi?'#fbbf24':'#ffffff18', isHi?2.5:1);
+    text(svg, x+w/2, sub ? y+h/2-8 : y+h/2, lbl, isHi?'#fef3c7':'#f0f6fc', 10.3, 'middle', isHi?'700':'600');
+    if (sub) text(svg, x+w/2, y+h/2+9, sub, '#94a3b8', 8);
+  }
+}
+function drawSpecialPaths(svg) {
+  // y -> w, routed around w1's left side (x=360 corridor)
+  line(svg, 375,295, 360,295, '#374151',1.3);
+  line(svg, 360,295, 360,70, '#374151',1.3);
+  arrow(svg, 360,70, 374,70, '#374151',1.3);
+  // reject -> y loop-back (dashed amber, retry path)
+  line(svg, 745,190, 720,190, '#d97706',1.5);
+  line(svg, 720,190, 720,400, '#d97706',1.5,'4,3');
+  line(svg, 720,400, 445,400, '#d97706',1.5,'4,3');
+  arrow(svg, 445,400, 445,321, '#d97706', 1.5);
+  text(svg, 582, 412, 'reject: κ += L, retry', '#d97706', 8.5);
+  // ctilde -> sigma
+  line(svg, 690,70, 925,70, '#374151',1.3);
+  line(svg, 925,70, 925,325, '#374151',1.3);
+  arrow(svg, 925,325, 891,325, '#374151',1.3);
+}
+
+function drawOverview() {
+  const svg = clear('svg-overview');
+  drawBoxesAndArrows(svg, OVERVIEW_BOXES, OVERVIEW_ARROWS, []);
+  drawSpecialPaths(svg);
+
+  const sl = clear('svg-siglayout');
+  const total = P.sigBytes, sw = 840, sx0 = 20;
+  const parts = [
+    {b: P.cTildeBytes, fill: '#78350f', lbl: `c̃ (${P.cTildeBytes} B)`},
+    {b: P.zBytes,      fill: '#4c1d95', lbl: `z (${P.zBytes.toLocaleString()} B)`},
+    {b: P.hintBytes,   fill: '#1d4ed8', lbl: `hint (${P.hintBytes} B)`},
+  ];
+  let px = sx0;
+  for (const {b, fill, lbl} of parts) {
+    const w = Math.max(4, Math.round(b / total * sw));
+    rect(sl, px, 8, w, 44, fill, 3, '#ffffff18', 1);
+    if (w > 60) text(sl, px + w/2, 30, lbl, '#f0f6fc', w > 150 ? 10 : 8);
+    px += w;
+  }
+  px = sx0;
+  for (const {b} of parts) {
+    const w = Math.max(4, Math.round(b / total * sw));
+    text(sl, px + w/2, 62, b.toLocaleString() + ' B', '#6e7681', 8);
+    px += w;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MATRIX A
+// ─────────────────────────────────────────────────────────────────────────────
+let selR = 0, selS = 0;
+function randHex(n) { return Array.from({length:n},()=>Math.floor(Math.random()*256).toString(16).padStart(2,'0')).join(''); }
+let rhoHex = randHex(32);
+function randomizeRho() { rhoHex = randHex(32); updateMatrixSelectText(); }
+
+let MX = {ox:70, oy:50, cw:0, ch:0, k:0, l:0};
+
+function drawMatrix() {
+  const svg = clear('svg-matrix');
+  selR = Math.min(selR, P.k-1);
+  selS = Math.min(selS, P.l-1);
+  const ox=70, oy=50, gw=600, gh=330;
+  const cw = gw/P.l, ch = gh/P.k;
+  MX = {ox,oy,cw,ch,k:P.k,l:P.l};
+
+  for (let s=0;s<P.l;s++) text(svg, ox+s*cw+cw/2, oy-14, `s=${s}`, '#6e7681', 8.5);
+  for (let r=0;r<P.k;r++) text(svg, ox-14, oy+r*ch+ch/2, `r=${r}`, '#6e7681', 8.5,'end');
+
+  for (let r=0;r<P.k;r++) {
+    for (let s=0;s<P.l;s++) {
+      const x=ox+s*cw, y=oy+r*ch;
+      const isSel = r===selR && s===selS;
+      const inRow = r===selR && !isSel;
+      const fill = isSel ? '#7c3aed' : inRow ? '#0f4a3a' : '#21262d';
+      const stroke = isSel ? '#a78bfa' : '#30363d';
+      rect(svg, x+2,y+2, cw-4, ch-4, fill, 4, stroke, isSel?2:1);
+      text(svg, x+cw/2, y+ch/2, `[${r},${s}]`, '#e6edf3', Math.min(11, cw/6), 'middle');
+    }
+  }
+  updateMatrixSelectText();
+}
+
+function matrixClick(evt) {
+  const svg = document.getElementById('svg-matrix');
+  const r0 = svg.getBoundingClientRect();
+  const vb = svg.viewBox.baseVal;
+  const sx = (evt.clientX-r0.left)/r0.width*vb.width;
+  const sy = (evt.clientY-r0.top)/r0.height*vb.height;
+  const s = Math.floor((sx-MX.ox)/MX.cw);
+  const r = Math.floor((sy-MX.oy)/MX.ch);
+  if (r>=0 && r<MX.k && s>=0 && s<MX.l) { selR=r; selS=s; drawMatrix(); }
+}
+
+function updateMatrixSelectText() {
+  const e = document.getElementById('matrix-select-text');
+  if (!e) return;
+  const sByte = selS.toString(16).padStart(2,'0');
+  const rByte = selR.toString(16).padStart(2,'0');
+  e.innerHTML = `<div class="ctitle">Â[${selR}][${selS}]</div><div class="cbody">seed = ρ (${rhoHex.slice(0,8)}…) ‖ 0x${sByte} ‖ 0x${rByte} — 34 bytes fed to RejNTTPoly (SHAKE128 rejection sampling) → 256-coefficient NTT-domain polynomial. Row ${selR} highlighted: t[${selR}] accumulates contributions from all L=${P.l} entries in that row.</div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MASK & CHALLENGE
+// ─────────────────────────────────────────────────────────────────────────────
+function seededRand(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+function updateMask() {
+  document.getElementById('mask-kappa-val').textContent = document.getElementById('mask-kappa').value;
+  drawMask();
+}
+function drawMask() {
+  const svg = clear('svg-mask');
+  const kappa = +document.getElementById('mask-kappa').value;
+  const rows = P.l, demoN = 16;
+  const ox=90, oy=20, rowH = Math.min(40, (240-40)/rows), barAreaW=560;
+  for (let r=0;r<rows;r++) {
+    const cy = oy + r*rowH + rowH/2;
+    text(svg, ox-16, cy, `y_${r}`, '#8b949e', 8.5, 'end');
+    line(svg, ox, cy, ox+barAreaW, cy, '#30363d', 1);
+    for (let i=0;i<demoN;i++) {
+      const rnd = seededRand(kappa*977+r*131+i*17+1);
+      const v = rnd*2-1;
+      const bx = ox + (i+0.5)/demoN*barAreaW;
+      const bh = v * (rowH/2-4);
+      rect(svg, bx-2, bh>=0?cy-bh:cy, 4, Math.abs(bh), v>=0?'#7c3aed':'#a78bfa', 1);
+    }
+  }
+  text(svg, ox+barAreaW/2, oy+rows*rowH+22,
+    `κ = ${kappa} — component r uses seed ρ'‖IntegerToBytes(κ+r,2); coeffs range (−γ1,γ1] = (−${P.gamma1.toLocaleString()}, ${P.gamma1.toLocaleString()}]`,
+    '#6e7681', 8.5);
+}
+
+let challengeC = null;
+function generateChallenge() {
+  const n=256, tau=P.tau;
+  const c = new Array(n).fill(0);
+  for (let i=n-tau; i<n; i++) {
+    const j = Math.floor(Math.random()*(i+1));
+    c[i]=c[j];
+    c[j] = Math.random()<0.5 ? 1 : -1;
+  }
+  return c;
+}
+function drawChallenge() {
+  const svg = clear('svg-challenge');
+  challengeC = generateChallenge();
+  const cols=16, rows=16, cs=18, ox=(700-cols*cs)/2, oy=10;
+  for (let idx=0; idx<256; idx++) {
+    const col=idx%cols, row=Math.floor(idx/cols);
+    const x=ox+col*cs, y=oy+row*cs;
+    const v = challengeC[idx];
+    const fill = v===1?'#7c3aed': v===-1?'#dc2626':'#21262d';
+    rect(svg, x+1,y+1,cs-2,cs-2, fill, 2);
+  }
+  const nz = challengeC.filter(v=>v!==0).length;
+  text(svg, 350, oy+rows*cs+22, `τ = ${P.tau} nonzero coefficients out of N = 256 (this sample: ${nz})`, '#6e7681', 9);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ROUNDING & HINTS
+// ─────────────────────────────────────────────────────────────────────────────
+function modPmJS(r, alpha) {
+  r = ((r % alpha) + alpha) % alpha;
+  if (r > alpha/2) r -= alpha;
+  return r;
+}
+function decomposeJS(r, bucket, q, wraparound) {
+  r = ((r % q) + q) % q;
+  const r0 = modPmJS(r, bucket);
+  if (wraparound && r - r0 === q - 1) return [0, r0 - 1];
+  return [Math.floor((r - r0) / bucket), r0];
+}
+function jumpWraparound() {
+  document.getElementById('round-mode').value = 'decompose';
+  document.getElementById('round-r').value = P.q - 1;
+  drawDecompose();
+}
+function randomizeR() {
+  document.getElementById('round-r').value = Math.floor(Math.random()*P.q);
+  drawDecompose();
+}
+function drawDecompose() {
+  const svg = clear('svg-round-decompose');
+  const mode = document.getElementById('round-mode').value;
+  const r = +document.getElementById('round-r').value;
+  const bucket = mode === 'decompose' ? 2*P.gamma2 : (1 << P.d);
+  const wraparound = mode === 'decompose';
+  const [r1, r0] = decomposeJS(r, bucket, P.q, wraparound);
+
+  const nBuckets = 5, startBucket = r1 - 2, bw = 120, bx0 = 40, by = 40, bh = 60;
+  for (let i=0;i<nBuckets;i++) {
+    const bIdx = startBucket + i;
+    const x = bx0 + i*bw;
+    const isCur = bIdx === r1;
+    rect(svg, x+2, by, bw-4, bh, isCur ? '#2d1b69' : '#161b22', 4, isCur?'#7c3aed':'#30363d', isCur?2:1);
+    text(svg, x+bw/2, by-10, `r1=${bIdx}`, '#6e7681', 8);
+    if (isCur) {
+      const px = x + 2 + (r0 + bucket/2)/bucket * (bw-4);
+      circle(svg, px, by+bh/2, 6, '#f0f6fc', '#7c3aed', 2);
+    }
+  }
+  text(svg, bx0+nBuckets*bw/2, by+bh+24,
+    mode==='decompose'
+      ? `Decompose(r): r1=${r1}, r0=${r0} (bucket = 2γ2 = ${bucket.toLocaleString()})`
+      : `Power2Round(r): r1=${r1}, r0=${r0} (bucket = 2^D = ${bucket.toLocaleString()})`,
+    '#8b949e', 9.5);
+  if (wraparound && r === P.q - 1) {
+    text(svg, bx0+nBuckets*bw/2, by+bh+44, `Wraparound: r=q−1 forces r1=0, r0=r0−1`, '#d97706', 8.5);
+  }
+
+  document.getElementById('decompose-result').innerHTML =
+    `<div class="ctitle">${mode==='decompose'?'HighBits / LowBits':'Power2Round'}</div>
+     <div class="cbody">r = ${r.toLocaleString()} &rarr; r1 = ${r1}, r0 = ${r0}</div>`;
+}
+
+function drawHint() {
+  const svg = clear('svg-round-hint');
+  const r = +document.getElementById('hint-r').value;
+  const z = +document.getElementById('hint-z').value;
+  document.getElementById('hint-z-val').textContent = z;
+  const bucket = 2*P.gamma2;
+  const [r1,] = decomposeJS(r, bucket, P.q, true);
+  const rz = ((r+z)%P.q+P.q)%P.q;
+  const [r1z,] = decomposeJS(rz, bucket, P.q, true);
+  const h = r1 !== r1z ? 1 : 0;
+
+  const [r1d, r0d] = decomposeJS(r, bucket, P.q, true);
+  const m = Math.floor((P.q-1)/bucket);
+  const r1_use = h===1 ? (r0d>0 ? (r1d+1)%m : ((r1d-1)%m+m)%m) : r1d;
+
+  const bx0=40, by=40, bw=620, bh=50;
+  rect(svg, bx0, by, bw, bh, '#161b22', 4, '#30363d', 1);
+  const rx = bx0 + 0.35*bw, rzx = bx0 + 0.65*bw;
+  circle(svg, rx, by+bh/2, 7, '#0891b2', '#fff', 1.5);
+  text(svg, rx, by-12, 'r', '#7dd3fc', 10);
+  circle(svg, rzx, by+bh/2, 7, h?'#d97706':'#059669', '#fff', 1.5);
+  text(svg, rzx, by-12, 'r+z', h?'#fcd34d':'#6ee7b7', 10);
+  arrow(svg, rx, by+bh/2, rzx, by+bh/2, h?'#d97706':'#059669', 1.3);
+  text(svg, bx0+bw/2, by+bh+20,
+    h ? 'HighBits(r) ≠ HighBits(r+z) — crosses a bucket boundary' : 'HighBits(r) = HighBits(r+z) — same bucket',
+    '#8b949e', 9);
+
+  document.getElementById('hint-result').innerHTML =
+    `<div class="ctitle">MakeHint(z, r) = ${h}</div>
+     <div class="cbody">HighBits(r)=${r1} &nbsp; HighBits(r+z)=${r1z}<br>
+     UseHint(${h}, r) reconstructs = ${r1_use} — ${r1_use===r1z ? '✓ matches HighBits(r+z)' : '✗ mismatch (z outside |z|≤γ2 bound)'}</div>`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SIGN FLOW
+// ─────────────────────────────────────────────────────────────────────────────
+let sf_cur = 0;
+function buildSteps() {
+  return [
+    { title: 'Step 1 — Decode sk & precompute',
+      body: "Decode sk → ρ, K (seed), tr, s1, s2, t0. Precompute NTT(s1), NTT(s2), NTT(t0), and Â = ExpandA(ρ) — the same K×L matrix used at KeyGen.",
+      hi: ['sk','Ahat'] },
+    { title: "Step 2 — μ = H(tr ‖ M′)",
+      body: "Build M′ = 0x00‖|ctx|‖ctx‖M (or the HashML-DSA prehash variant), then μ = H(tr‖M′), a 64-byte digest binding the message to the public key via tr = H(pk).",
+      hi: ['M','mu'] },
+    { title: "Step 3 — ρ′ = H(K ‖ rnd ‖ μ)",
+      body: "rnd is all-zero for deterministic signing or a fresh 32-byte random value for hedged (the default). ρ′ seeds ExpandMask for this attempt.",
+      hi: ['rhoprime'] },
+    { title: "Step 4 — y = ExpandMask(ρ′, κ)",
+      body: `κ starts at 0. y ∈ R_q^L has coefficients in (−γ1, γ1] = (−${P.gamma1.toLocaleString()}, ${P.gamma1.toLocaleString()}], derived independently per component.`,
+      hi: ['y'] },
+    { title: "Step 5 — w = NTT⁻¹(Â∘NTT(y)); w1 = HighBits(w)",
+      body: "Commit to only the high-order bits of w. This is what makes signatures compressible; the low bits never leave the signer except as 1-bit hints.",
+      hi: ['w','w1'] },
+    { title: "Step 6 — c̃ = H(μ‖w1Encode(w1)); c = SampleInBall(c̃)",
+      body: `The Fiat–Shamir challenge: a hash of the commitment w1 (and message digest μ) expands into a sparse polynomial c with exactly τ=${P.tau} nonzero ±1 coefficients.`,
+      hi: ['ctilde','c'] },
+    { title: "Step 7 — z = y + c·s1; check & reject",
+      body: `Compute z and r0=LowBits(w−c·s2). Reject and retry (κ+=L, back to Step 4) if ‖z‖∞≥γ1−β, ‖r0‖∞≥γ2−β, ‖c·t0‖∞≥γ2, or hint weight exceeds ω=${P.omega}. These bounds keep z independent of s1/s2 and the signature compact.`,
+      hi: ['z','reject'] },
+    { title: "Step 8 — Assemble the signature",
+      body: `h = MakeHint(−c·t0, w−c·s2+c·t0). σ = c̃‖z‖h (${P.cTildeBytes}+${P.zBytes.toLocaleString()}+${P.hintBytes} = ${P.sigBytes.toLocaleString()} bytes). Verify recomputes w1 from z, c, t1, and h, then checks H(μ‖w1Encode) == c̃.`,
+      hi: ['sigma'] },
+  ];
+}
+function sfStep(delta, reset) {
+  const steps = buildSteps();
+  if (reset) sf_cur = 0;
+  else sf_cur = Math.max(0, Math.min(steps.length - 1, sf_cur + delta));
+  const s = steps[sf_cur];
+  document.getElementById('sf-counter').textContent = `Step ${sf_cur+1} / ${steps.length}`;
+  document.getElementById('sf-title').textContent = s.title;
+  document.getElementById('sf-body').textContent = s.body;
+  drawSignFlow(s.hi, s.title);
+}
+function drawSignFlow(hi=[], stepTitle='') {
+  const svg = clear('svg-signflow');
+  drawBoxesAndArrows(svg, OVERVIEW_BOXES, OVERVIEW_ARROWS, hi);
+  drawSpecialPaths(svg);
+  text(svg, 475, 412, `Step ${sf_cur+1}: ${stepTitle}`, '#58a6ff', 10.5, 'middle', '600');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic text / param-set switching
+// ─────────────────────────────────────────────────────────────────────────────
+function updateDynamicTexts() {
+  document.title = `${P.name} — Interactive Visualization`;
+  document.getElementById('header-title').textContent = `${P.name} — Interactive Visualization`;
+  document.getElementById('siglayout-title').textContent = `Signature Layout — ${P.name}: ${P.sigBytes.toLocaleString()} bytes total`;
+
+  document.getElementById('matrix-p-structure').innerHTML =
+    `Â is a <strong>K×L = ${P.k}×${P.l}</strong> matrix of NTT-domain polynomials, used both at KeyGen (t = NTT⁻¹(Â·NTT(s1)) + s2) and at every Sign attempt (w = NTT⁻¹(Â·NTT(y))).`;
+  document.getElementById('mask-p-structure').innerHTML =
+    `y ∈ R_q<sup>L=${P.l}</sup> has coefficients independently sampled in <strong>(−γ1, γ1] = (−${P.gamma1.toLocaleString()}, ${P.gamma1.toLocaleString()}]</strong> from H(ρ′‖IntegerToBytes(κ+r,2)).`;
+  document.getElementById('challenge-p-structure').innerHTML =
+    `c ∈ R_q is sparse: exactly <strong>τ = ${P.tau}</strong> of its N = 256 coefficients are ±1 (β = τ·η = ${P.beta}), the rest are 0.`;
+
+  const hintZ = document.getElementById('hint-z');
+  hintZ.min = -P.gamma2; hintZ.max = P.gamma2;
+  if (+hintZ.value > P.gamma2) hintZ.value = P.gamma2;
+  if (+hintZ.value < -P.gamma2) hintZ.value = -P.gamma2;
+}
+
+function drawParams() {
+  const p = P;
+  document.getElementById('tab-params').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">${p.name} Parameters (FIPS 204 Table 1)</div>
+      <table class="params">
+        <thead><tr><th>Symbol</th><th>Value</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>q</td><td>${p.q.toLocaleString()}</td><td>Modulus, = 2²³−2¹³+1</td></tr>
+          <tr><td>d</td><td>${p.d}</td><td>Power2Round dropped-bits count</td></tr>
+          <tr><td>K</td><td>${p.k}</td><td>Rows of Â / length of t, s2</td></tr>
+          <tr><td>L</td><td>${p.l}</td><td>Columns of Â / length of s1, y, z</td></tr>
+          <tr><td>η</td><td>${p.eta}</td><td>Secret-key coefficient bound (s1, s2 ∈ [−η,η])</td></tr>
+          <tr><td>τ</td><td>${p.tau}</td><td>Nonzero coefficients in challenge c</td></tr>
+          <tr><td>λ</td><td>${p.lambda}</td><td>Collision-strength parameter; |c̃| = λ/4 bytes</td></tr>
+          <tr><td>γ1</td><td>2^${p.gamma1exp} = ${p.gamma1.toLocaleString()}</td><td>Mask coefficient range bound</td></tr>
+          <tr><td>γ2</td><td>(q−1)/${p.gamma2div} = ${p.gamma2.toLocaleString()}</td><td>Decompose bucket half-width</td></tr>
+          <tr><td>β</td><td>${p.beta}</td><td>τ·η — rejection-bound slack</td></tr>
+          <tr><td>ω</td><td>${p.omega}</td><td>Max total hint weight</td></tr>
+          <tr><td>|pk|</td><td>${p.pkBytes.toLocaleString()}</td><td>ρ (32B) ‖ t1 (packed, ${p.bitlenT1} bits/coeff × K)</td></tr>
+          <tr><td>|sk|</td><td>${p.skBytes.toLocaleString()}</td><td>ρ,K,tr ‖ s1,s2 (packed) ‖ t0 (packed)</td></tr>
+          <tr><td>|σ|</td><td>${p.sigBytes.toLocaleString()}</td><td>c̃ ‖ z (packed) ‖ hint</td></tr>
+          <tr><td>Security</td><td>Category ${p.category}</td><td>NIST PQC security category</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Signature Breakdown</div>
+      <table class="params">
+        <thead><tr><th>Component</th><th>Bytes</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>c̃</td><td>${p.cTildeBytes}</td><td>λ/4</td></tr>
+          <tr><td>z (packed)</td><td>${p.zBytes.toLocaleString()}</td><td>32 × bitlen(2γ1−1) × L = 32 × ${p.bitlenGamma1} × ${p.l}</td></tr>
+          <tr><td>hint</td><td>${p.hintBytes}</td><td>ω + K = ${p.omega} + ${p.k}</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>${p.sigBytes.toLocaleString()}</strong></td><td>c̃ ‖ z ‖ hint</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Hash / XOF usage (FIPS 204 — always SHAKE)</div>
+      <table class="params">
+        <thead><tr><th>Name</th><th>Primitive</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>H</td><td>SHAKE256</td><td>tr=H(pk), μ=H(tr‖M′), ρ′=H(K‖rnd‖μ), c̃=H(μ‖w1Encode), ExpandMask</td></tr>
+          <tr><td>XOF128</td><td>SHAKE128</td><td>RejNTTPoly — samples Â (ExpandA)</td></tr>
+          <tr><td>XOF256</td><td>SHAKE256</td><td>RejBoundedPoly (ExpandS), SampleInBall</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#6e7681;font-size:0.775rem;margin-top:10px">Unlike SLH-DSA's SHAKE/SHA2 split, every ML-DSA parameter set uses SHAKE — FIPS 204 defines no SHA2 instantiation.</p>
+    </div>
+  `;
+}
+
+function onParamSetChange() {
+  currentSetName = document.getElementById('param-set').value;
+  P = deriveParams(PARAM_SETS[currentSetName], currentSetName);
+  updateDynamicTexts();
+  const active = document.querySelector('.tab-panel.active');
+  if (active) {
+    const id = active.id.replace('tab-', '');
+    if (id === 'signflow') sfStep(0, false);
+    else if (RENDERERS[id]) RENDERERS[id]();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+updateDynamicTexts();
+drawOverview();
+drawMatrix();
+drawMask();
+drawChallenge();
+drawDecompose();
+drawHint();
+sfStep(0, true);
+</script>
+</body>
+</html>
