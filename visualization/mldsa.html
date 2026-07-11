@@ -104,6 +104,14 @@ table.params td:last-child { color: #8b949e; }
   <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
   <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
   <div class="nav-end">
+    <label class="nav-label">Algorithm:</label>
+    <select id="algo-set" onchange="onAlgoChange()">
+      <option value="index.html">SLH-DSA (FIPS 205)</option>
+      <option value="mldsa.html" selected>ML-DSA (FIPS 204)</option>
+      <option value="" disabled>ML-KEM (FIPS 203) — coming soon</option>
+    </select>
+  </div>
+  <div class="nav-end">
     <label class="nav-label">Parameter set:</label>
     <select id="param-set" onchange="onParamSetChange()">
       <option value="ML-DSA-44">ML-DSA-44</option>
@@ -782,6 +790,11 @@ function drawParams() {
       <p style="color:#6e7681;font-size:0.775rem;margin-top:10px">Unlike SLH-DSA's SHAKE/SHA2 split, every ML-DSA parameter set uses SHAKE — FIPS 204 defines no SHA2 instantiation.</p>
     </div>
   `;
+}
+
+function onAlgoChange() {
+  const v = document.getElementById('algo-set').value;
+  if (v) window.location.href = v;
 }
 
 function onParamSetChange() {
