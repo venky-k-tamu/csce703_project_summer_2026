@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ML-KEM-768 — Interactive Visualization</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #161b22, #21262d);
+  border-bottom: 1px solid #30363d;
+  padding: 18px 40px;
+}
+header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
+header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+
+nav.tabs {
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 0 40px;
+  display: flex; gap: 0; overflow-x: auto;
+}
+.tab-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: #8b949e; cursor: pointer; font-size: 0.875rem;
+  padding: 13px 18px; transition: color 0.15s; white-space: nowrap;
+}
+.tab-btn:hover { color: #c9d1d9; }
+.tab-btn.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+
+main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.two-col {
+  display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start;
+}
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+.panel {
+  background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px;
+  margin-bottom: 20px;
+}
+.panel-title {
+  font-size: 1rem; font-weight: 600; color: #f0f6fc;
+  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d;
+}
+.panel svg { display: block; width: 100%; height: auto; }
+
+.info h2 { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: 10px; }
+.info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
+.info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
+.info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
+.legend-dot { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+
+.controls { margin-top: 14px; }
+.ctrl-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ctrl-row label { color: #8b949e; font-size: 0.8rem; min-width: 110px; }
+input[type=range] { flex: 1; accent-color: #58a6ff; }
+.ctrl-val { color: #79c0ff; font-family: monospace; font-size: 0.8rem; min-width: 28px; }
+select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
+
+.btn { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; cursor: pointer; font-size: 0.825rem; padding: 7px 14px; transition: background 0.15s; }
+.btn:hover { background: #30363d; }
+.btn.primary { background: #1f6feb; border-color: #388bfd; color: #fff; }
+.btn.primary:hover { background: #388bfd; }
+
+.callout {
+  background: #0d1117; border: 1px solid #30363d; border-radius: 6px;
+  padding: 10px 12px; margin-top: 12px; font-size: 0.825rem; line-height: 1.6;
+}
+.callout .ctitle { color: #58a6ff; font-weight: 600; margin-bottom: 4px; font-size: 0.825rem; }
+.callout .cbody  { color: #8b949e; }
+
+table.params { width: 100%; border-collapse: collapse; font-size: 0.825rem; }
+table.params th { text-align: left; color: #8b949e; padding: 6px 8px; border-bottom: 1px solid #30363d; font-weight: 600; }
+table.params td { padding: 5px 8px; border-bottom: 1px solid #21262d; }
+table.params td:first-child { color: #d2a8ff; font-family: monospace; }
+table.params td:nth-child(2) { color: #79c0ff; text-align: right; font-family: monospace; }
+table.params td:last-child { color: #8b949e; }
+
+.nav-end { flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 16px; margin-left: 8px; border-left: 1px solid #30363d; }
+.nav-label { color: #8b949e; font-size: 0.8rem; white-space: nowrap; }
+#param-set { font-size: 0.8rem; min-width: 160px; }
+
+.demo-notice {
+  font-size: 0.75rem; color: #d97706;
+  background: #110d00; border-left: 3px solid #78350f;
+  padding: 5px 10px; margin-bottom: 10px;
+  border-radius: 0 4px 4px 0;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="header-title">ML-KEM-768 &mdash; Interactive Visualization</h1>
+  <p>FIPS 203 module-lattice key-encapsulation mechanism &mdash; explore the module-LWE core, NTT, sampling, compression, and the encaps/decaps flow</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('module',this)">Module-LWE</button>
+  <button class="tab-btn" onclick="showTab('ntt',this)">NTT</button>
+  <button class="tab-btn" onclick="showTab('sampling',this)">Sampling</button>
+  <button class="tab-btn" onclick="showTab('compress',this)">Compression</button>
+  <button class="tab-btn" onclick="showTab('flow',this)">KEM Flow</button>
+  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <div class="nav-end">
+    <label class="nav-label">Parameter set:</label>
+    <select id="param-set" onchange="onParamSetChange()">
+      <option value="ML-KEM-512">ML-KEM-512</option>
+      <option value="ML-KEM-768" selected>ML-KEM-768</option>
+      <option value="ML-KEM-1024">ML-KEM-1024</option>
+    </select>
+  </div>
+</nav>
+
+<main>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div id="tab-overview" class="tab-panel active">
+  <div class="panel">
+    <div class="panel-title">ML-KEM Architecture &mdash; KeyGen · Encaps · Decaps</div>
+    <svg id="svg-overview" viewBox="0 0 880 320"></svg>
+  </div>
+  <div class="panel">
+    <div class="panel-title" id="sizes-title">Key &amp; Ciphertext Sizes &mdash; ML-KEM-768</div>
+    <svg id="svg-sizes" viewBox="0 0 880 168"></svg>
+  </div>
+</div>
+
+<!-- ══════════ MODULE-LWE ══════════ -->
+<div id="tab-module" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Module-LWE key equation &mdash; t̂ = Â ∘ ŝ + ê</div>
+      <div class="demo-notice" id="module-demo-notice">Each cell is a 256-coefficient polynomial in R_q; ∘ is NTT pointwise multiplication</div>
+      <svg id="svg-module" viewBox="0 0 700 360"></svg>
+    </div>
+    <div class="info panel">
+      <h2>Module-LWE structure</h2>
+      <h3>The lattice problem</h3>
+      <p id="module-eq">The public key hides the secret <strong>ŝ</strong> behind a Module-LWE sample: <strong>t̂ = Â ∘ ŝ + ê</strong>, where <strong>Â</strong> is a <strong>k × k = 3 × 3</strong> matrix of polynomials, and <strong>ŝ, ê</strong> are length-<strong>k</strong> vectors of short (small-coefficient) polynomials. Recovering ŝ from (Â, t̂) is the hard problem.</p>
+      <h3>Everything is a polynomial</h3>
+      <p>Every entry lives in the ring <strong>R_q = ℤ_q[X]/(X²⁵⁶ + 1)</strong>, q = 3329 — a degree-255 polynomial with 256 coefficients. The matrix Â and vectors are stored in the <strong>NTT domain</strong> (hats), so the matrix–vector product uses cheap pointwise multiplication ∘.</p>
+      <h3>Matrix indexing</h3>
+      <p>Â[i][j] = SampleNTT(ρ ‖ j ‖ i) — byte order <strong>(j, i)</strong>, i.e. (col, row) — per FIPS 203 Alg 13. KeyGen multiplies by Â; K-PKE encryption uses <strong>Âᵀ</strong>.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Highlight row i:</label>
+          <input type="range" id="module-row" min="0" max="2" value="0" oninput="updateModule()">
+          <span class="ctrl-val" id="module-row-val">0</span>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#065f46"></div>Â row i (public matrix)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#3b0764"></div>ŝ (secret vector)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#78350f"></div>ê (error vector)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#155e63"></div>t̂ output row i</div>
+      </div>
+      <div class="callout">
+        <div class="ctitle">Row i product</div>
+        <div class="cbody" id="module-row-text">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ NTT ══════════ -->
+<div id="tab-ntt" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Number-Theoretic Transform &mdash; butterfly network</div>
+      <div class="demo-notice">Demo shows an 8-point radix-2 network (3 stages); ML-KEM runs 7 of 8 stages on 256 points</div>
+      <svg id="svg-ntt" viewBox="0 0 700 340"></svg>
+    </div>
+    <div class="info panel">
+      <h2>NTT &mdash; fast polynomial multiplication</h2>
+      <h3>Why the NTT</h3>
+      <p>Multiplying two degree-255 polynomials naively is O(n²). The NTT maps a polynomial to an evaluation basis where multiplication becomes <strong>pointwise</strong>, cutting a product to O(n log n).</p>
+      <h3 id="ntt-ring-title">The ring splits into 128 quadratics</h3>
+      <p id="ntt-ring">ζ = 17 is a primitive <strong>256th</strong> root of unity mod 3329 (not a 512th), so X²⁵⁶ + 1 factors into <strong>128 quadratic</strong> factors X² − ζ<sup>2·BitRev₇(i)+1</sup>, not 256 linear ones. The NTT therefore runs <strong>7 of 8</strong> butterfly stages and stops at 128 degree-1 pairs.</p>
+      <h3>Pointwise multiply</h3>
+      <p>Because each factor is a quadratic, pointwise multiplication is <strong>base_case_multiply</strong> — a product of two degree-1 polynomials mod (X² − γ), not a single scalar product. ZETAS[k] = ζ<sup>BitRev₇(k)</sup> mod q.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Highlight stage:</label>
+          <input type="range" id="ntt-stage" min="1" max="3" value="1" oninput="updateNTT()">
+          <span class="ctrl-val" id="ntt-stage-val">1</span>
+        </div>
+        <div class="ctrl-row">
+          <label>Direction:</label>
+          <select id="ntt-dir" onchange="updateNTT()">
+            <option value="fwd">Forward NTT</option>
+            <option value="inv">Inverse NTT⁻¹</option>
+          </select>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#1f6feb"></div>Active butterfly stage</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2d3748"></div>Other stages</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Twiddle factor (ζ power)</div>
+      </div>
+      <p class="note">A butterfly combines a pair (a, b) as (a + ζ·b, a − ζ·b), the atomic Cooley–Tukey step.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SAMPLING ══════════ -->
+<div id="tab-sampling" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title" id="samp-panel-title">Sampling &mdash; SampleNTT (rejection)</div>
+      <div class="demo-notice" id="samp-demo-notice">Illustrative byte stream — the real XOF emits thousands of bytes until 256 coefficients are accepted</div>
+      <svg id="svg-samp" viewBox="0 0 700 360"></svg>
+    </div>
+    <div class="info panel">
+      <h2>Sampling into R_q</h2>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Sampler:</label>
+          <select id="samp-mode" onchange="updateSamp()">
+            <option value="ntt">SampleNTT (matrix Â)</option>
+            <option value="cbd">SamplePolyCBD (noise)</option>
+          </select>
+        </div>
+      </div>
+      <div id="samp-ntt-info">
+        <h3>SampleNTT — rejection sampling</h3>
+        <p>Â is uniform mod q. A SHAKE-128 XOF stream is parsed 3 bytes at a time into two 12-bit values d₁, d₂. Each is <strong>accepted iff &lt; q = 3329</strong>, else rejected — this rejection makes the output uniform over ℤ_q. Acceptance rate ≈ 3329/4096 ≈ <strong>81.3%</strong>.</p>
+        <p class="note">Keep drawing until 256 coefficients are accepted for one polynomial.</p>
+        <button class="btn" onclick="reseedSamp()" style="margin-top:6px">Regenerate stream</button>
+      </div>
+      <div id="samp-cbd-info" style="display:none">
+        <h3 id="cbd-title">SamplePolyCBD — centered binomial</h3>
+        <p id="cbd-p">The secret ŝ and errors are <strong>short</strong>: each coefficient is drawn from a centered binomial distribution CBD<sub>η</sub>. Take 2η random bits, split into a and b, and output <strong>popcount(a) − popcount(b) ∈ [−η, η]</strong>.</p>
+        <div class="controls">
+          <div class="ctrl-row">
+            <label>Parameter η:</label>
+            <select id="cbd-eta" onchange="updateSamp()">
+              <option value="1">η₁ (secret / r)</option>
+              <option value="2">η₂ (errors e₁,e₂)</option>
+            </select>
+          </div>
+        </div>
+        <p class="note" id="cbd-note">Distribution is symmetric and concentrated at 0 — that "shortness" is what keeps decryption correct.</p>
+      </div>
+      <div class="callout">
+        <div class="ctitle" id="samp-callout-title">Result</div>
+        <div class="cbody" id="samp-callout-text">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ COMPRESSION ══════════ -->
+<div id="tab-compress" class="tab-panel">
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">Compress_d / Decompress_d &mdash; lossy rounding</div>
+      <div class="demo-notice" id="comp-demo-notice">Compression discards low bits: ℤ_q (3329 values) → ℤ_{2ᵈ} buckets and back</div>
+      <svg id="svg-compress" viewBox="0 0 700 300"></svg>
+    </div>
+    <div class="info panel">
+      <h2>Compression</h2>
+      <h3>The rounding map</h3>
+      <p id="comp-p">Ciphertexts are shrunk by dropping low-order bits. <strong>Compress_d(x) = round(2ᵈ/q · x) mod 2ᵈ</strong> quantizes ℤ_q into 2ᵈ buckets; <strong>Decompress_d(y) = round(q/2ᵈ · y)</strong> maps back to a representative. The round-trip error is bounded by ≈ q/2^{d+1}.</p>
+      <h3>Where it is used</h3>
+      <p><strong>d = 1</strong> encodes the message bit (0 → 0, 1 → ⌈q/2⌉ = 1665) — the widest gap, so noise up to ~q/4 still decodes. <strong>d = d_u, d_v</strong> compress the ciphertext parts u and v.</p>
+      <div class="controls">
+        <div class="ctrl-row">
+          <label>Input x ∈ [0, q):</label>
+          <input type="range" id="comp-x" min="0" max="3328" value="900" oninput="updateCompress()">
+          <span class="ctrl-val" id="comp-x-val">900</span>
+        </div>
+        <div class="ctrl-row">
+          <label>Bits d:</label>
+          <select id="comp-d" onchange="updateCompress()"></select>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#1f6feb"></div>Input x (in ℤ_q)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>Decompressed x′</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Bucket boundary</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7f1d1d"></div>Round-trip error</div>
+      </div>
+      <div class="callout">
+        <div class="ctitle">Round-trip</div>
+        <div class="cbody" id="comp-text">—</div>
+      </div>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title" id="ct-title">Ciphertext Layout &mdash; ML-KEM-768: 1,088 bytes</div>
+    <svg id="svg-ctlayout" viewBox="0 0 880 72"></svg>
+  </div>
+</div>
+
+<!-- ══════════ KEM FLOW ══════════ -->
+<div id="tab-flow" class="tab-panel">
+  <div class="panel">
+    <div class="panel-title" id="flow-title">Encapsulation — Step by Step (FIPS 203 Algorithm 17 / 14)</div>
+    <svg id="svg-flow" viewBox="0 0 880 420"></svg>
+  </div>
+  <div class="panel">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap">
+      <select id="flow-mode" onchange="onFlowModeChange()">
+        <option value="encaps">Encapsulation</option>
+        <option value="decaps">Decapsulation</option>
+      </select>
+      <button class="btn" onclick="kemStep(-1)">&#8592; Prev</button>
+      <span id="flow-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 7</span>
+      <button class="btn primary" onclick="kemStep(1)">Next &#8594;</button>
+    </div>
+    <div class="callout">
+      <div class="ctitle" id="flow-step-title"></div>
+      <div class="cbody"  id="flow-step-body"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PARAMETERS ══════════ -->
+<div id="tab-params" class="tab-panel">
+  <!-- generated dynamically by drawParams() -->
+</div>
+
+</main>
+
+<script>
+'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// SVG helpers
+// ─────────────────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function line(p, x1,y1,x2,y2, stroke='#374151', sw=1.5, dash='') {
+  return el('line',{x1,y1,x2,y2,stroke,'stroke-width':sw,'stroke-dasharray':dash},p);
+}
+function circle(p, cx,cy,r, fill, stroke='none', sw=1) {
+  return el('circle',{cx,cy,r,fill,stroke,'stroke-width':sw},p);
+}
+function rect(p, x,y,w,h, fill, rx=4, stroke='none', sw=1) {
+  return el('rect',{x,y,width:w,height:h,fill,rx,stroke,'stroke-width':sw},p);
+}
+function text(p, x,y, str, fill='#c9d1d9', size=11, anchor='middle', weight='normal') {
+  const e = el('text',{x,y,fill,'font-size':size,'text-anchor':anchor,
+    'font-family':'Segoe UI,system-ui,sans-serif','dominant-baseline':'middle',
+    'font-weight':weight},p);
+  e.textContent = str;
+  return e;
+}
+function arrow(p, x1,y1,x2,y2, color='#555', sw=1.5) {
+  const dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy)||1;
+  const ux=dx/len, uy=dy/len;
+  const ax=x2-ux*10, ay=y2-uy*10;
+  line(p, x1,y1, ax,ay, color, sw);
+  const px=-uy*5, py=ux*5;
+  el('polygon',{points:`${x2},${y2} ${ax+px},${ay+py} ${ax-px},${ay-py}`,fill:color},p);
+}
+function clear(id) {
+  const e = document.getElementById(id);
+  while (e.firstChild) e.removeChild(e.firstChild);
+  return e;
+}
+// deterministic pseudo-random in [0,1) from an integer seed
+function prand(seed) {
+  let x = (seed * 2654435761) >>> 0;
+  x ^= x >>> 15; x = (x * 2246822519) >>> 0; x ^= x >>> 13;
+  return (x >>> 0) / 4294967296;
+}
+function popcount(x) { let c = 0; while (x) { c += x & 1; x >>= 1; } return c; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Parameter sets (FIPS 203 Table 2). n = 256, q = 3329 for all.
+// ─────────────────────────────────────────────────────────────────────────────
+const N = 256, Q = 3329;
+const PARAM_SETS = {
+  'ML-KEM-512':  {k:2, eta1:3, eta2:2, du:10, dv:4},
+  'ML-KEM-768':  {k:3, eta1:2, eta2:2, du:10, dv:4},
+  'ML-KEM-1024': {k:4, eta1:2, eta2:2, du:11, dv:5},
+};
+
+function deriveParams(base, name) {
+  const k        = base.k;
+  const ekBytes  = 384 * k + 32;         // t̂ (12-bit encoded) ‖ ρ
+  const dkPke    = 384 * k;              // ŝ (12-bit encoded)
+  const dkBytes  = 768 * k + 96;         // dk_PKE ‖ ek ‖ H(ek) ‖ z
+  const c1Bytes  = 32 * base.du * k;     // Compress_{du}(u), k polys
+  const c2Bytes  = 32 * base.dv;         // Compress_{dv}(v), 1 poly
+  const ctBytes  = c1Bytes + c2Bytes;
+  const ssBytes  = 32;
+  const level    = name.includes('512') ? 1 : name.includes('768') ? 3 : 5;
+  const secBits  = level === 1 ? 128 : level === 3 ? 192 : 256;
+  return {...base, n:N, q:Q, k, ekBytes, dkPke, dkBytes,
+          c1Bytes, c2Bytes, ctBytes, ssBytes, level, secBits, name};
+}
+
+let currentSetName = 'ML-KEM-768';
+let P = deriveParams(PARAM_SETS['ML-KEM-768'], 'ML-KEM-768');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tab management
+// ─────────────────────────────────────────────────────────────────────────────
+const RENDERERS = {
+  overview: drawOverview, module: drawModule, ntt: drawNTT,
+  sampling: drawSamp, compress: drawCompress,
+  flow: () => { kemStep(0, true); }, params: drawParams
+};
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (RENDERERS[name]) RENDERERS[name]();
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// OVERVIEW
+// ─────────────────────────────────────────────────────────────────────────────
+function drawOverview() {
+  const svg = clear('svg-overview');
+
+  // [x,y,w,h,fill,label,sublabel]
+  const boxes = [
+    ['kg',   30,  120, 150, 78, '#0f3460', 'KeyGen', 'd → (ek, dk)'],
+    ['enc',  350, 55,  165, 62, '#4c1d95', 'Encaps(ek)', 'm → (K, c)'],
+    ['dec',  680, 55,  165, 62, '#155e63', 'Decaps(dk, c)', '→ K′'],
+    ['ss',   350, 225, 165, 60, '#3b0764', 'Shared secret K', '32 bytes, K = K′'],
+  ];
+  const B = {};
+  for (const [id,x,y,w,h,fill,lbl,sub] of boxes) {
+    B[id] = {x,y,w,h};
+    rect(svg, x,y,w,h, fill, 6, '#ffffff18', 1);
+    text(svg, x+w/2, y+h/2-8, lbl, '#f0f6fc', 12, 'middle', '700');
+    text(svg, x+w/2, y+h/2+10, sub, '#94a3b8', 9);
+  }
+
+  // Party labels
+  text(svg, 105, 108, 'Party A (owner)', '#6e7681', 8.5);
+  text(svg, 432, 43, 'Party B (sender)', '#6e7681', 8.5);
+  text(svg, 762, 43, 'Party A (owner)', '#6e7681', 8.5);
+
+  // ek: KeyGen → Encaps
+  arrow(svg, 180, 150, 350, 90, '#58a6ff', 1.8);
+  text(svg, 265, 108, 'ek (public)', '#58a6ff', 9);
+  // c: Encaps → Decaps
+  arrow(svg, 515, 86, 680, 86, '#d97706', 1.8);
+  text(svg, 597, 74, 'ciphertext c', '#d97706', 9);
+  // dk: KeyGen → Decaps (kept private, along the top)
+  arrow(svg, 130, 120, 130, 30, '#8b949e', 1.4);
+  line(svg, 130, 30, 762, 30, '#8b949e', 1.4);
+  arrow(svg, 762, 30, 762, 55, '#8b949e', 1.4);
+  text(svg, 300, 22, 'dk (secret, kept by A)', '#8b949e', 9);
+  // K from Encaps → shared secret
+  arrow(svg, 432, 117, 432, 225, '#a78bfa', 1.6);
+  text(svg, 470, 175, 'K', '#a78bfa', 10, 'middle', '700');
+  // K′ from Decaps → shared secret
+  arrow(svg, 762, 117, 762, 255, '#67e8f9', 1.6);
+  line(svg, 762, 255, 515, 255, '#67e8f9', 1.6);
+  arrow(svg, 515, 255, 515, 255, '#67e8f9', 1.6);
+  text(svg, 640, 247, 'K′', '#67e8f9', 10, 'middle', '700');
+
+  // FO note
+  text(svg, 440, 308,
+    'Each operation wraps K-PKE via the Fujisaki–Okamoto transform: hashing binds K to (m, c); decaps re-encrypts and compares for implicit rejection.',
+    '#6e7681', 8.5);
+
+  // Sizes bars
+  drawSizes();
+}
+
+function drawSizes() {
+  const sl = clear('svg-sizes');
+  const rows = [
+    {lbl:'Encapsulation key  ek', b:P.ekBytes, fill:'#1f6feb'},
+    {lbl:'Decapsulation key  dk', b:P.dkBytes, fill:'#8957e5'},
+    {lbl:'Ciphertext  c',         b:P.ctBytes, fill:'#d97706'},
+    {lbl:'Shared secret  K',      b:P.ssBytes, fill:'#3fb950'},
+  ];
+  const maxB = Math.max(...rows.map(r => r.b));
+  const x0 = 190, x1 = 830, y0 = 14, rh = 36, bh = 22;
+  rows.forEach((r, i) => {
+    const y = y0 + i*rh;
+    text(sl, 180, y+bh/2, r.lbl, '#8b949e', 9.5, 'end');
+    const w = Math.max(3, (r.b / maxB) * (x1 - x0));
+    rect(sl, x0, y, w, bh, r.fill, 3, '#ffffff18', 1);
+    text(sl, x0 + w + 8, y+bh/2, r.b.toLocaleString() + ' B', '#c9d1d9', 9.5, 'start');
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// MODULE-LWE
+// ─────────────────────────────────────────────────────────────────────────────
+let module_row = 0;
+
+function updateModule() {
+  module_row = +document.getElementById('module-row').value;
+  document.getElementById('module-row-val').textContent = module_row;
+  drawModule();
+}
+
+function drawModule() {
+  const svg = clear('svg-module');
+  const k = P.k;
+  const cell = 46, gap = 8, top = 60;
+  const matX = 60;
+  const vecSX = matX + k*(cell+gap) + 44;      // ŝ vector x
+  const errX  = vecSX + cell + 60;             // ê vector x
+  const outX  = errX + cell + 60;              // t̂ vector x
+
+  // symbols row
+  text(svg, matX + k*(cell+gap)/2 - gap/2, 34, 'Â  (k × k)', '#8b949e', 10, 'middle', '600');
+  text(svg, vecSX + cell/2, 34, 'ŝ', '#c4b5fd', 11, 'middle', '700');
+  text(svg, errX + cell/2, 34, 'ê', '#fbbf24', 11, 'middle', '700');
+  text(svg, outX + cell/2, 34, 't̂', '#67e8f9', 11, 'middle', '700');
+
+  // operators
+  text(svg, vecSX - 30, top + k*(cell+gap)/2 - gap/2, '∘', '#8b949e', 20);
+  text(svg, errX - 30,  top + k*(cell+gap)/2 - gap/2, '+', '#8b949e', 18);
+  text(svg, outX - 30,  top + k*(cell+gap)/2 - gap/2, '=', '#8b949e', 18);
+
+  // matrix Â
+  for (let i=0; i<k; i++) {
+    for (let j=0; j<k; j++) {
+      const x = matX + j*(cell+gap);
+      const y = top + i*(cell+gap);
+      const active = i===module_row;
+      rect(svg, x, y, cell, cell, active ? '#065f46' : '#123', 5,
+           active ? '#22c55e' : '#30363d', active ? 2 : 1);
+      text(svg, x+cell/2, y+cell/2, `Â${i}${j}`, active ? '#dcfce7' : '#8b949e', 9.5);
+    }
+  }
+  // ŝ vector
+  for (let i=0; i<k; i++) {
+    const y = top + i*(cell+gap);
+    rect(svg, vecSX, y, cell, cell, '#3b0764', 5, '#7c3aed', 1);
+    text(svg, vecSX+cell/2, y+cell/2, `ŝ${i}`, '#c4b5fd', 9.5);
+  }
+  // ê vector
+  for (let i=0; i<k; i++) {
+    const y = top + i*(cell+gap);
+    const active = i===module_row;
+    rect(svg, errX, y, cell, cell, '#78350f', 5, active ? '#fbbf24' : '#30363d', active ? 2 : 1);
+    text(svg, errX+cell/2, y+cell/2, `ê${i}`, '#fde68a', 9.5);
+  }
+  // t̂ vector
+  for (let i=0; i<k; i++) {
+    const y = top + i*(cell+gap);
+    const active = i===module_row;
+    rect(svg, outX, y, cell, cell, active ? '#155e63' : '#0d2b2e', 5,
+         active ? '#22d3ee' : '#30363d', active ? 2 : 1);
+    text(svg, outX+cell/2, y+cell/2, `t̂${i}`, active ? '#cffafe' : '#8b949e', 9.5);
+  }
+
+  // coefficient strip for highlighted t̂_i
+  const stripY = top + k*(cell+gap) + 26;
+  text(svg, 60, stripY - 6, `t̂${module_row} — one polynomial = 256 coefficients in ℤ_q (first 40 shown):`,
+       '#6e7681', 8.5, 'start');
+  const nC = 40, sw = 14, sx = 60, sBase = stripY + 70, sH = 60;
+  for (let c=0; c<nC; c++) {
+    const v = prand(module_row*1000 + c*7 + P.k);
+    const h = 4 + v * sH;
+    rect(svg, sx + c*sw, sBase - h, sw-3, h, '#155e63', 1);
+  }
+  line(svg, sx, sBase, sx + nC*sw, sBase, '#30363d', 1);
+
+  // row product text
+  const terms = Array.from({length:k}, (_,j) => `Â${module_row}${j}∘ŝ${j}`).join(' + ');
+  document.getElementById('module-row-text').textContent =
+    `t̂${module_row} = ${terms} + ê${module_row}. Each product is a pointwise (NTT-domain) multiply of two polynomials; the sum plus the short error ê${module_row} gives one component of the public key.`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// NTT (8-point radix-2 butterfly demo)
+// ─────────────────────────────────────────────────────────────────────────────
+const NTT_N = 8, NTT_STAGES = 3;
+let ntt_stage = 1, ntt_dir = 'fwd';
+
+function updateNTT() {
+  ntt_stage = +document.getElementById('ntt-stage').value;
+  ntt_dir   = document.getElementById('ntt-dir').value;
+  document.getElementById('ntt-stage-val').textContent = ntt_stage;
+  drawNTT();
+}
+
+function drawNTT() {
+  const svg = clear('svg-ntt');
+  const n = NTT_N, stages = NTT_STAGES;
+  const colW = 150, x0 = 90, rowH = 34, y0 = 40;
+  const colX = s => x0 + s*colW;              // column 0..stages
+  const nodeY = i => y0 + i*rowH;
+
+  // column headers
+  text(svg, colX(0), 18, 'input', '#6e7681', 9);
+  for (let s=1; s<=stages; s++)
+    text(svg, colX(s), 18, `stage ${s}`, s===ntt_stage ? '#58a6ff' : '#6e7681', 9,
+         'middle', s===ntt_stage ? '700' : 'normal');
+
+  // butterflies per stage (decimation-in-frequency: block halves each stage)
+  for (let s=1; s<=stages; s++) {
+    const block = n >> (s-1);       // stage1=8, stage2=4, stage3=2
+    const half  = block >> 1;
+    const on = s===ntt_stage;
+    const edgeCol = on ? '#1f6feb' : '#2d3748';
+    const edgeSw  = on ? 2 : 1;
+    for (let b=0; b<n; b+=block) {
+      for (let j=0; j<half; j++) {
+        const top = b + j, bot = b + j + half;
+        const xa = colX(s-1), xb = colX(s);
+        // straight + cross edges of the butterfly
+        line(svg, xa, nodeY(top), xb, nodeY(top), edgeCol, edgeSw);
+        line(svg, xa, nodeY(bot), xb, nodeY(bot), edgeCol, edgeSw);
+        line(svg, xa, nodeY(top), xb, nodeY(bot), edgeCol, edgeSw);
+        line(svg, xa, nodeY(bot), xb, nodeY(top), edgeCol, edgeSw);
+        // twiddle marker on the bottom output of the active stage
+        if (on) {
+          const mx = (xa+xb)/2, my = (nodeY(top)+nodeY(bot))/2;
+          const zk = (b/block)* (n/block>0?1:1) + j;  // illustrative index
+          circle(svg, mx, my, 9, '#7c2d12', '#d97706', 1.2);
+          text(svg, mx, my, `ζ${(1 + (b>>1) + j) % n}`, '#fdba74', 7.5);
+        }
+      }
+    }
+  }
+
+  // nodes
+  for (let s=0; s<=stages; s++) {
+    for (let i=0; i<n; i++) {
+      circle(svg, colX(s), nodeY(i), 8, '#161b22', '#30363d', 1.2);
+      if (s===0) text(svg, colX(0)-24, nodeY(i), `a${i}`, '#8b949e', 8.5, 'middle');
+      if (s===stages) text(svg, colX(stages)+24, nodeY(i), `â${i}`, '#67e8f9', 8.5, 'middle');
+    }
+  }
+
+  // footer
+  const fy = y0 + n*rowH + 6;
+  const dirTxt = ntt_dir === 'fwd'
+    ? 'Forward: coefficients → evaluations. Each stage applies butterflies with ζ twiddles; blocks halve each stage.'
+    : 'Inverse: evaluations → coefficients. Same network reversed, twiddles are ζ⁻¹, with a final scale by n⁻¹ (= 256⁻¹ mod q).';
+  text(svg, x0, fy, dirTxt, '#6e7681', 8.5, 'start');
+  text(svg, x0, fy + 16,
+    'ML-KEM stops one stage early: 7 of 8 stages on 256 points, leaving 128 degree-1 pairs (X² − γ factors).',
+    '#555', 8.5, 'start');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SAMPLING
+// ─────────────────────────────────────────────────────────────────────────────
+let samp_seed = 7;
+
+function updateSamp() {
+  const mode = document.getElementById('samp-mode').value;
+  document.getElementById('samp-ntt-info').style.display = mode==='ntt' ? 'block' : 'none';
+  document.getElementById('samp-cbd-info').style.display = mode==='cbd' ? 'block' : 'none';
+  document.getElementById('samp-panel-title').textContent =
+    mode==='ntt' ? 'Sampling — SampleNTT (rejection)' : 'Sampling — SamplePolyCBD (noise)';
+  document.getElementById('samp-demo-notice').textContent =
+    mode==='ntt'
+      ? 'Illustrative byte stream — the real XOF emits thousands of bytes until 256 coefficients are accepted'
+      : 'Centered binomial distribution — every secret/error coefficient is drawn this way';
+  drawSamp();
+}
+
+function reseedSamp() { samp_seed = (samp_seed * 1103515245 + 12345) & 0x7fffffff; drawSamp(); }
+
+function drawSamp() {
+  const mode = document.getElementById('samp-mode').value;
+  if (mode === 'ntt') drawSampNTT(); else drawSampCBD();
+}
+
+function drawSampNTT() {
+  const svg = clear('svg-samp');
+  const nBytes = 18;
+  const bytes = Array.from({length:nBytes}, (_,i) => Math.floor(prand(samp_seed + i*13)*256));
+
+  // byte row
+  const bw = 34, bx0 = 22, by = 40;
+  text(svg, bx0, by-16, 'SHAKE-128 XOF byte stream:', '#8b949e', 9, 'start');
+  bytes.forEach((b, i) => {
+    const x = bx0 + i*bw;
+    rect(svg, x, by, bw-4, 26, '#21262d', 3, '#30363d', 1);
+    text(svg, x+(bw-4)/2, by+13, b.toString(16).padStart(2,'0'), '#79c0ff', 8.5);
+  });
+
+  // parse 3 bytes -> 2 candidates
+  const cy = 130, cw = 96, cx0 = 30;
+  text(svg, cx0, cy-18, 'Parse 3 bytes → two 12-bit candidates; accept iff < q = 3329:', '#8b949e', 9, 'start');
+  let accepted = 0, drawn = 0;
+  for (let t=0; t+2<nBytes && drawn<12; t+=3) {
+    const b0=bytes[t], b1=bytes[t+1], b2=bytes[t+2];
+    const d1 = b0 + 256*(b1 & 0x0F);
+    const d2 = (b1 >> 4) + 16*b2;
+    [d1, d2].forEach(d => {
+      if (drawn >= 12) return;
+      const col = drawn % 6, rowi = Math.floor(drawn/6);
+      const x = cx0 + col*cw, y = cy + rowi*70;
+      const ok = d < Q;
+      if (ok) accepted++;
+      rect(svg, x, y, cw-10, 46, ok ? '#0f2e1a' : '#2e1214', 5, ok ? '#22c55e' : '#f85149', 1.5);
+      text(svg, x+(cw-10)/2, y+16, d.toString(), ok ? '#7ee787' : '#ff7b72', 11, 'middle', '700');
+      text(svg, x+(cw-10)/2, y+33, ok ? 'accept' : 'reject ≥ q', ok ? '#3fb950' : '#f85149', 8);
+      drawn++;
+    });
+  }
+
+  const rate = (Q/4096*100).toFixed(1);
+  document.getElementById('samp-callout-title').textContent = 'Acceptance';
+  document.getElementById('samp-callout-text').textContent =
+    `This batch: ${accepted}/${drawn} candidates accepted. Long-run rate ≈ ${rate}% (= q/4096). Keep drawing until 256 coefficients fill one polynomial of Â.`;
+}
+
+function drawSampCBD() {
+  const svg = clear('svg-samp');
+  const eta = +document.getElementById('cbd-eta').value === 1 ? P.eta1 : P.eta2;
+  const which = +document.getElementById('cbd-eta').value === 1 ? 'η₁' : 'η₂';
+
+  // sampled bits demo
+  const seed = samp_seed + eta*101;
+  const bits = Array.from({length:2*eta}, (_,i) => Math.floor(prand(seed + i*17)*2));
+  const a = bits.slice(0, eta), b = bits.slice(eta);
+  const pa = a.reduce((s,x)=>s+x,0), pb = b.reduce((s,x)=>s+x,0);
+  const val = pa - pb;
+
+  const bw = 34, by = 46, bx0 = 40;
+  text(svg, bx0, by-18, `Draw 2η = ${2*eta} bits → split a | b, output popcount(a) − popcount(b):`, '#8b949e', 9, 'start');
+  bits.forEach((bit, i) => {
+    const x = bx0 + i*bw + (i>=eta ? 16 : 0);
+    const grp = i < eta ? '#1f3a5f' : '#4a1942';
+    rect(svg, x, by, bw-4, 28, grp, 3, '#30363d', 1);
+    text(svg, x+(bw-4)/2, by+14, bit, '#f0f6fc', 11, 'middle', '700');
+  });
+  text(svg, bx0 + eta*bw/2, by+44, `a: popcount=${pa}`, '#79c0ff', 8.5);
+  text(svg, bx0 + 16 + eta*bw + eta*bw/2, by+44, `b: popcount=${pb}`, '#f0abfc', 8.5);
+  text(svg, 350, by+66, `coefficient = ${pa} − ${pb} = ${val}`, '#7ee787', 10.5, 'middle', '700');
+
+  // binomial histogram
+  const hy0 = 150, hBase = 300, hH = 130, hx0 = 90, colW = Math.min(70, 520/(2*eta+1));
+  text(svg, hx0, hy0-8, `Distribution CBD(η=${eta}) over [−${eta}, ${eta}]:`, '#8b949e', 9, 'start');
+  const total = Math.pow(2, 2*eta);
+  function binom(nn, kk){ let r=1; for(let i=0;i<kk;i++) r=r*(nn-i)/(i+1); return r; }
+  for (let v=-eta; v<=eta; v++) {
+    const p = binom(2*eta, eta+v) / total;
+    const x = hx0 + (v+eta)*colW;
+    const h = p * hH * 2.2;
+    const isVal = v===val;
+    rect(svg, x, hBase - h, colW-8, h, isVal ? '#7c3aed' : '#1f6feb', 3,
+         isVal ? '#a78bfa' : '#30363d', isVal ? 2 : 1);
+    text(svg, x+(colW-8)/2, hBase+12, `${v}`, '#8b949e', 8.5);
+    text(svg, x+(colW-8)/2, hBase - h - 8, `${(p*100).toFixed(1)}%`, '#6e7681', 7.5);
+  }
+  line(svg, hx0-6, hBase, hx0 + (2*eta+1)*colW, hBase, '#30363d', 1);
+
+  document.getElementById('samp-callout-title').textContent = `${which} = ${eta}`;
+  document.getElementById('samp-callout-text').textContent =
+    `Sampled coefficient = ${val}. The distribution is symmetric about 0 and concentrated near it — small coefficients keep the Module-LWE error short, which is what makes decryption correct.`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPRESSION
+// ─────────────────────────────────────────────────────────────────────────────
+function compress(x, d)   { return ((Math.round((1<<d)/Q * x) % (1<<d)) + (1<<d)) % (1<<d); }
+function decompress(y, d) { return Math.round(Q/(1<<d) * y); }
+
+function updateCompress() {
+  document.getElementById('comp-x-val').textContent = document.getElementById('comp-x').value;
+  drawCompress();
+}
+
+function buildCompressDOptions() {
+  const sel = document.getElementById('comp-d');
+  const opts = [
+    {v:1, l:'d = 1 (message bit)'},
+    {v:P.dv, l:`d = d_v = ${P.dv} (v)`},
+    {v:P.du, l:`d = d_u = ${P.du} (u)`},
+  ];
+  sel.innerHTML = opts.map(o => `<option value="${o.v}">${o.l}</option>`).join('');
+  sel.value = P.dv;
+}
+
+function drawCompress() {
+  const svg = clear('svg-compress');
+  const x = +document.getElementById('comp-x').value;
+  const d = +document.getElementById('comp-d').value;
+  const buckets = 1 << d;
+  const y = compress(x, d);
+  const xp = decompress(y, d);
+  const err = Math.min((x - xp + Q) % Q, (xp - x + Q) % Q);
+
+  const lx0 = 50, lx1 = 650, lineY = 150;
+  const pos = v => lx0 + (v / Q) * (lx1 - lx0);
+
+  // main axis (ℤ_q)
+  line(svg, lx0, lineY, lx1, lineY, '#484f58', 2);
+  text(svg, lx0, lineY+34, '0', '#6e7681', 9);
+  text(svg, lx1, lineY+34, `q = ${Q}`, '#6e7681', 9, 'end');
+  text(svg, (lx0+lx1)/2, lineY-52, `ℤ_q  →  ${buckets.toLocaleString()} buckets (d = ${d})  →  ℤ_q`, '#8b949e', 10);
+
+  // bucket boundaries (only if few enough to draw)
+  if (buckets <= 64) {
+    for (let bkt=0; bkt<buckets; bkt++) {
+      const rep = decompress(bkt, d);
+      const px = pos(rep);
+      line(svg, px, lineY-8, px, lineY+8, '#d97706', 1);
+    }
+  } else {
+    text(svg, (lx0+lx1)/2, lineY+50, `(${buckets.toLocaleString()} bucket centers — spacing ≈ q/2ᵈ ≈ ${(Q/buckets).toFixed(2)}; too dense to draw individually)`,
+         '#6e7681', 8);
+  }
+
+  // input marker (above)
+  const ix = pos(x);
+  line(svg, ix, lineY-30, ix, lineY, '#1f6feb', 2);
+  circle(svg, ix, lineY-30, 6, '#1f6feb', '#79c0ff', 1.5);
+  text(svg, ix, lineY-42, `x = ${x}`, '#79c0ff', 9);
+
+  // decompressed marker (below)
+  const ox = pos(xp);
+  line(svg, ox, lineY, ox, lineY+30, '#059669', 2);
+  circle(svg, ox, lineY+30, 6, '#059669', '#3fb950', 1.5);
+  text(svg, ox, lineY+50, `x′ = ${xp}`, '#3fb950', 9);
+
+  // error span
+  if (Math.abs(ix-ox) > 1) {
+    line(svg, Math.min(ix,ox), lineY+68, Math.max(ix,ox), lineY+68, '#7f1d1d', 3);
+    text(svg, (ix+ox)/2, lineY+82, `error = ${err}`, '#f85149', 8.5);
+  }
+
+  // compressed value tag
+  text(svg, (lx0+lx1)/2, lineY+120, `Compress_${d}(${x}) = ${y}   ·   Decompress_${d}(${y}) = ${xp}`,
+       '#c9d1d9', 10, 'middle', '600');
+
+  document.getElementById('comp-text').textContent =
+    `Compress_${d}(${x}) = ${y} (a ${d}-bit value), then Decompress_${d}(${y}) = ${xp}. Round-trip error = ${err} ≤ ⌈q/2^${d+1}⌉ = ${Math.ceil(Q/(1<<(d+1)))}.`;
+
+  drawCtLayout();
+}
+
+function drawCtLayout() {
+  const sl = clear('svg-ctlayout');
+  const total = P.ctBytes, sw = 840, sx0 = 20;
+  const parts = [
+    {b: P.c1Bytes, fill:'#1d4ed8', lbl:`c₁ = Compress_{d_u}(u): ${P.c1Bytes.toLocaleString()} B`},
+    {b: P.c2Bytes, fill:'#b45309', lbl:`c₂ = Compress_{d_v}(v): ${P.c2Bytes.toLocaleString()} B`},
+  ];
+  let px = sx0;
+  for (const {b, fill, lbl} of parts) {
+    const w = Math.max(30, Math.round(b/total*sw));
+    rect(sl, px, 8, w, 44, fill, 3, '#ffffff18', 1);
+    if (w > 120) text(sl, px+w/2, 30, lbl, '#f0f6fc', w>240?10:8);
+    else text(sl, px+w/2, 30, b.toLocaleString()+' B', '#f0f6fc', 8);
+    px += w;
+  }
+  px = sx0;
+  for (const {b} of parts) {
+    const w = Math.max(30, Math.round(b/total*sw));
+    text(sl, px+w/2, 62, b.toLocaleString()+' B', '#6e7681', 8);
+    px += w;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// KEM FLOW (Encaps / Decaps)
+// ─────────────────────────────────────────────────────────────────────────────
+let flow_mode = 'encaps', flow_cur = 0;
+
+function buildFlow() {
+  return {
+    encaps: {
+      title: 'Encapsulation — Step by Step (FIPS 203 Algorithm 17 / 14)',
+      // id: [x,y,w,h,fill,label]
+      boxes: {
+        'm':    [30, 175, 110, 44, '#0f3460', 'message m'],
+        'Hek':  [30, 85,  110, 40, '#1e3a5f', 'H(ek)'],
+        'G':    [185,120, 115, 46, '#4c1d95', 'G = SHA3-512'],
+        'K':    [185,30,  100, 36, '#3b0764', 'shared K'],
+        'r':    [185,215, 100, 36, '#0f3460', 'r (coins)'],
+        'A':    [345,95,  125, 40, '#065f46', 'Âᵀ from ρ'],
+        'samp': [345,205, 140, 44, '#78350f', 'CBD: r, e₁, e₂'],
+        'u':    [530,95,  130, 36, '#155e63', 'u = Âᵀr + e₁'],
+        'v':    [530,175, 130, 36, '#155e63', 'v = tᵀr + e₂ + μ'],
+        'comp': [530,265, 140, 44, '#78350f', 'Compress + Encode'],
+        'c':    [720,150, 120, 90, '#3b0764', 'ciphertext c'],
+      },
+      arrows: [
+        [140,197, 185,150], [140,105, 185,140],
+        [242,120, 242,66],  [242,166, 235,215],
+        [285,233, 345,227],
+        [470,115, 530,113], [485,220, 530,120], [485,227, 530,190],
+        [140,205, 530,193],
+        [595,131, 570,265], [595,211, 590,265],
+        [670,287, 720,220],
+      ],
+      steps: () => [
+        {title:'Step 1 — Sample message m', hi:['m'],
+         body:`Draw a fresh 32-byte random message m. This m — not the shared secret directly — is what gets encrypted; the shared secret is derived from it. Randomness here is what makes ML-KEM IND-CCA2 secure.`},
+        {title:'Step 2 — Derive (K, r) = G(m ‖ H(ek))', hi:['Hek','G','K','r'],
+         body:`Hash m together with H(ek) using G = SHA3-512 (64-byte output). The first 32 bytes are the shared secret K; the last 32 bytes are r, the coins that seed all encryption randomness. Binding H(ek) ties K to this exact public key.`},
+        {title:'Step 3 — Expand Âᵀ and sample noise', hi:['A','samp'],
+         body:`Regenerate the public matrix Âᵀ from ρ (inside ek) via SampleNTT, and derive the short vectors r, e₁ and error e₂ from r via SamplePolyCBD (PRF = SHAKE-256). k = ${P.k}, η₁ = ${P.eta1}, η₂ = ${P.eta2}.`},
+        {title:'Step 4 — Compute u', hi:['u'],
+         body:`u = NTT⁻¹(Âᵀ ∘ NTT(r)) + e₁ — a length-${P.k} vector of polynomials. This is a fresh Module-LWE sample against the same matrix, carrying the sender's randomness.`},
+        {title:'Step 5 — Compute v', hi:['v'],
+         body:`v = NTT⁻¹(t̂ᵀ ∘ NTT(r)) + e₂ + Decompress₁(m). The message bits are added at magnitude ⌈q/2⌉ so they sit far from the noise; t̂ comes from ek.`},
+        {title:'Step 6 — Compress & encode', hi:['comp','c'],
+         body:`c = ByteEncode(Compress_{d_u}(u)) ‖ ByteEncode(Compress_{d_v}(v)). Compression drops low bits to shrink the ciphertext to ${P.ctBytes.toLocaleString()} bytes (d_u = ${P.du}, d_v = ${P.dv}).`},
+        {title:'Step 7 — Output (K, c)', hi:['K','c'],
+         body:`Return shared secret K (kept) and ciphertext c (sent to the key owner). The owner will run Decaps(dk, c) and recover the same K.`},
+      ],
+    },
+    decaps: {
+      title: 'Decapsulation — Step by Step (FIPS 203 Algorithm 18 / 15)',
+      boxes: {
+        'dk':   [30, 65,  115, 40, '#1e3a5f', 'dk'],
+        'c':    [30, 185, 115, 40, '#0f3460', 'ciphertext c'],
+        'dec':  [180,165, 150, 54, '#155e63', 'K-PKE.Decrypt'],
+        'mp':   [370,180, 90,  36, '#0f3460', "m′"],
+        'h':    [180,65,  110, 36, '#1e3a5f', 'h = H(ek)'],
+        'G':    [500,115, 120, 46, '#4c1d95', "G(m′ ‖ h)"],
+        'Kp':   [670,55,  130, 36, '#3b0764', "(K′, r′)"],
+        'reenc':[500,215, 150, 46, '#78350f', 'Re-Encrypt → c′'],
+        'z':    [180,300, 100, 36, '#1e3a5f', 'z'],
+        'J':    [370,300, 130, 40, '#4c1d95', 'J(z ‖ c) → K̄'],
+        'cmp':  [690,150, 120, 60, '#7f1d1d', 'c = c′ ?'],
+      },
+      arrows: [
+        [145,90, 180,180], [145,205, 180,192],
+        [330,192, 370,196],
+        [415,180, 500,145], [290,83, 500,130],
+        [620,130, 670,75], [620,152, 585,215],
+        [650,232, 690,195], [145,210, 690,180],
+        [230,300, 230,101], [280,318, 370,320], [145,215, 370,315],
+      ],
+      steps: () => [
+        {title:'Step 1 — Parse dk', hi:['dk','h','z'],
+         body:`Split the decapsulation key: dk = dk_PKE ‖ ek ‖ h ‖ z, where h = H(ek) (32 B) and z (32 B) is the implicit-rejection secret. dk is ${P.dkBytes.toLocaleString()} bytes total.`},
+        {title:'Step 2 — Decrypt to m′', hi:['c','dec','mp'],
+         body:`m′ = K-PKE.Decrypt(dk_PKE, c): decompress u and v, compute w = v − NTT⁻¹(ŝᵀ ∘ NTT(u)), then m′ = Compress₁(w). If c is honest, m′ = m because the noise stays below q/4.`},
+        {title:'Step 3 — Re-derive (K′, r′) = G(m′ ‖ h)', hi:['G','Kp'],
+         body:`Re-run the same G = SHA3-512 the sender used. K′ is the candidate shared secret and r′ the candidate coins — both correct only if m′ = m.`},
+        {title:'Step 4 — Compute rejection key K̄ = J(z ‖ c)', hi:['z','J'],
+         body:`In parallel derive K̄ = J(z ‖ c) with J = SHAKE-256. This pseudorandom key is returned instead of K′ if the ciphertext is invalid — implicit rejection with no failure oracle.`},
+        {title:'Step 5 — Re-encrypt', hi:['reenc'],
+         body:`c′ = K-PKE.Encrypt(ek, m′, r′). Deterministically re-encrypt the recovered message with the recovered coins. A valid ciphertext must reproduce itself exactly.`},
+        {title:'Step 6 — Compare and select', hi:['cmp'],
+         body:`If c = c′ (constant-time compare) return K′; otherwise return K̄. This Fujisaki–Okamoto check upgrades the CPA-secure K-PKE to CCA2 security.`},
+        {title:'Step 7 — Output shared secret', hi:['cmp','Kp'],
+         body:`The returned 32-byte key equals the sender's K exactly when the ciphertext is well-formed — completing the shared-secret agreement.`},
+      ],
+    },
+  };
+}
+
+function onFlowModeChange() {
+  flow_mode = document.getElementById('flow-mode').value;
+  kemStep(0, true);
+}
+
+function kemStep(delta, reset) {
+  const data  = buildFlow()[flow_mode];
+  const steps = data.steps();
+  if (reset) flow_cur = 0;
+  else flow_cur = Math.max(0, Math.min(steps.length-1, flow_cur + delta));
+  const s = steps[flow_cur];
+  document.getElementById('flow-title').textContent      = data.title;
+  document.getElementById('flow-counter').textContent    = `Step ${flow_cur+1} / ${steps.length}`;
+  document.getElementById('flow-step-title').textContent = s.title;
+  document.getElementById('flow-step-body').textContent  = s.body;
+  drawFlow(data, s.hi, s.title);
+}
+
+function drawFlow(data, hi=[], stepTitle='') {
+  const svg = clear('svg-flow');
+  for (const [x1,y1,x2,y2] of data.arrows) arrow(svg, x1,y1,x2,y2, '#374151', 1.2);
+  for (const [id, [x,y,w,h,fill,lbl]] of Object.entries(data.boxes)) {
+    const isHi = hi.includes(id);
+    rect(svg, x,y,w,h, fill, 5, isHi?'#fbbf24':'#ffffff18', isHi?2.5:1);
+    text(svg, x+w/2, y+h/2, lbl, isHi?'#fef3c7':'#f0f6fc', 10, 'middle', isHi?'700':'600');
+  }
+  text(svg, 440, 410, `Step ${flow_cur+1}: ${stepTitle}`, '#58a6ff', 10.5, 'middle', '600');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PARAMETERS
+// ─────────────────────────────────────────────────────────────────────────────
+function drawParams() {
+  const p = P;
+  const nistLevel = p.level === 1 ? 'I' : p.level === 3 ? 'III' : 'V';
+  document.getElementById('tab-params').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">${p.name} Parameters (FIPS 203 Table 2)</div>
+      <table class="params">
+        <thead><tr><th>Symbol</th><th>Value</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>n</td><td>${p.n}</td><td>Polynomial degree — coefficients per ring element R_q</td></tr>
+          <tr><td>q</td><td>${p.q}</td><td>Prime modulus (q = 13·256 + 1); ζ = 17 is a primitive 256th root of unity</td></tr>
+          <tr><td>k</td><td>${p.k}</td><td>Module rank — Â is k × k, vectors are length k</td></tr>
+          <tr><td>η₁</td><td>${p.eta1}</td><td>CBD parameter for the secret ŝ and encryption randomness r</td></tr>
+          <tr><td>η₂</td><td>${p.eta2}</td><td>CBD parameter for the errors e₁, e₂</td></tr>
+          <tr><td>d_u</td><td>${p.du}</td><td>Compression bits for ciphertext component u (k polynomials)</td></tr>
+          <tr><td>d_v</td><td>${p.dv}</td><td>Compression bits for ciphertext component v (1 polynomial)</td></tr>
+          <tr><td>|ek|</td><td>${p.ekBytes.toLocaleString()}</td><td>Encapsulation key: 384k + 32 = ByteEncode₁₂(t̂) ‖ ρ</td></tr>
+          <tr><td>|dk|</td><td>${p.dkBytes.toLocaleString()}</td><td>Decapsulation key: 768k + 96 = dk_PKE ‖ ek ‖ H(ek) ‖ z</td></tr>
+          <tr><td>|c|</td><td>${p.ctBytes.toLocaleString()}</td><td>Ciphertext: 32(d_u·k + d_v) = ${p.c1Bytes.toLocaleString()} + ${p.c2Bytes.toLocaleString()}</td></tr>
+          <tr><td>|K|</td><td>${p.ssBytes}</td><td>Shared secret (fixed 32 bytes)</td></tr>
+          <tr><td>Security</td><td>Level ${p.level}</td><td>NIST category ${nistLevel} (≈ ${p.secBits}-bit)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Ciphertext Breakdown</div>
+      <table class="params">
+        <thead><tr><th>Component</th><th>Bytes</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>c₁ = Compress_{d_u}(u)</td><td>${p.c1Bytes.toLocaleString()}</td><td>32 · d_u · k = 32 · ${p.du} · ${p.k}</td></tr>
+          <tr><td>c₂ = Compress_{d_v}(v)</td><td>${p.c2Bytes.toLocaleString()}</td><td>32 · d_v = 32 · ${p.dv}</td></tr>
+          <tr><td><strong>Total c</strong></td><td><strong>${p.ctBytes.toLocaleString()}</strong></td><td>32(d_u·k + d_v)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="panel">
+      <div class="panel-title">Hash / XOF Functions (FIPS 203 §4.1)</div>
+      <table class="params">
+        <thead><tr><th>Name</th><th>Instantiation</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>H</td><td>SHA3-256</td><td>Hash ek and m; H(ek) binds K to the public key</td></tr>
+          <tr><td>J</td><td>SHAKE-256</td><td>Implicit-rejection key K̄ = J(z ‖ c)</td></tr>
+          <tr><td>G</td><td>SHA3-512</td><td>(K, r) = G(m ‖ H(ek)) — derive shared secret and coins</td></tr>
+          <tr><td>PRF_η</td><td>SHAKE-256</td><td>SamplePolyCBD input for ŝ, r, e₁, e₂</td></tr>
+          <tr><td>XOF</td><td>SHAKE-128</td><td>SampleNTT stream for the uniform matrix Â</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#6e7681;font-size:0.775rem;margin-top:10px">Working ring: R_q = ℤ_q[X]/(X²⁵⁶ + 1), q = 3329. The NTT factors this into 128 quadratic factors (ζ is a 256th, not 512th, root of unity), so pointwise multiplication uses base_case_multiply.</p>
+    </div>
+  `;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Dynamic content on parameter-set change
+// ─────────────────────────────────────────────────────────────────────────────
+function updateDynamic() {
+  document.title = `${P.name} — Interactive Visualization`;
+  document.getElementById('header-title').textContent = `${P.name} — Interactive Visualization`;
+  document.getElementById('sizes-title').textContent  = `Key & Ciphertext Sizes — ${P.name}`;
+  document.getElementById('ct-title').textContent      =
+    `Ciphertext Layout — ${P.name}: ${P.ctBytes.toLocaleString()} bytes`;
+
+  document.getElementById('module-eq').innerHTML =
+    `The public key hides the secret <strong>ŝ</strong> behind a Module-LWE sample: <strong>t̂ = Â ∘ ŝ + ê</strong>, where <strong>Â</strong> is a <strong>k × k = ${P.k} × ${P.k}</strong> matrix of polynomials, and <strong>ŝ, ê</strong> are length-<strong>k</strong> vectors of short (small-coefficient) polynomials. Recovering ŝ from (Â, t̂) is the hard problem.`;
+
+  // module row slider range depends on k
+  const rowSlider = document.getElementById('module-row');
+  rowSlider.max = P.k - 1;
+  if (module_row > P.k - 1) { module_row = P.k - 1; rowSlider.value = module_row;
+    document.getElementById('module-row-val').textContent = module_row; }
+
+  buildCompressDOptions();
+}
+
+function onParamSetChange() {
+  currentSetName = document.getElementById('param-set').value;
+  P = deriveParams(PARAM_SETS[currentSetName], currentSetName);
+  updateDynamic();
+  const active = document.querySelector('.tab-panel.active');
+  if (active) {
+    const id = active.id.replace('tab-', '');
+    if (id === 'flow') kemStep(0, false);
+    else if (RENDERERS[id]) RENDERERS[id]();
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+updateDynamic();
+drawOverview();
+drawModule();
+drawNTT();
+updateSamp();
+drawCompress();
+kemStep(0, true);
+</script>
+</body>
+</html>

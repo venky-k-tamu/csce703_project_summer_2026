@@ -144,11 +144,13 @@ assert slhdsa.hash_verify(b"message", sig_h, pk, hash_alg="SHA2-512")
 ## Repository layout
 
 ```
-common/    # primitives proven-shared across standards (BitsToBytes/BytesToBits)
-mlkem/     # FIPS 203 ML-KEM-768   — lattice/NTT-based KEM
-mldsa/     # FIPS 204 ML-DSA-65    — lattice/NTT-based signatures
-slhdsa/    # FIPS 205 SLH-DSA-SHAKE-128s — hash-based signatures (Merkle/XMSS/FORS)
-docs/      # PLAN.md (authoritative plan) + PROMPTS.md (design-decision log)
+common/        # primitives proven-shared across standards (BitsToBytes/BytesToBits)
+mlkem/         # FIPS 203 ML-KEM-768   — lattice/NTT-based KEM
+mldsa/         # FIPS 204 ML-DSA-65    — lattice/NTT-based signatures
+slhdsa/        # FIPS 205 SLH-DSA-SHAKE-128s — hash-based signatures (Merkle/XMSS/FORS)
+hardware/      # SystemVerilog Keccak-f[1600] / SHAKE accelerator (shared PQC core)
+visualization/ # interactive webpages: SLH-DSA (slh-dsa.html) and ML-KEM (mlkem.html)
+docs/          # PLAN.md (authoritative plan) + PROMPTS.md (design-decision log)
 ```
 
 Each algorithm package's modules form a bottom-up dependency stack where every
@@ -156,6 +158,22 @@ layer only uses those below it, and tests live in-package under
 `<pkg>/tests/`. See [`CLAUDE.md`](CLAUDE.md) for the per-package module-to-FIPS
 mapping, ring/NTT details, and implementation gotchas; see
 [`docs/PLAN.md`](docs/PLAN.md) for the authoritative project plan.
+
+## Companion artifacts
+
+Two directories accompany the Python reference implementations:
+
+- **`hardware/`** — a from-scratch SystemVerilog **Keccak-f[1600] / SHAKE /
+  SHA3** accelerator, the one primitive every scheme depends on. The core
+  (`keccak_round`, `keccak_f1600`, `keccak_sponge`, `shake_xof`) is functional
+  and passes a self-checking Icarus smoke test against Python `hashlib` golden
+  vectors (`make smoke`). See [`hardware/README.md`](hardware/README.md).
+- **`visualization/`** — self-contained interactive webpages (no build step,
+  no dependencies; open directly in a browser). `slh-dsa.html` walks through the
+  SLH-DSA-SHAKE-128s building blocks (WOTS+, XMSS, FORS, hypertree);
+  `mlkem.html` walks through ML-KEM (the module-LWE key equation, NTT, sampling,
+  compression, and the encaps/decaps flow). Both support all parameter sets via
+  a selector.
 
 ## Scope & non-goals
 
