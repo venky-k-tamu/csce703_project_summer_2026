@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PQC Reference Implementations — Overview &amp; Size Comparison</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+
+header {
+  background: linear-gradient(135deg, #161b22, #21262d);
+  border-bottom: 1px solid #30363d;
+  padding: 18px 40px;
+}
+header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
+header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+
+nav.tabs {
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  padding: 0 40px;
+  display: flex; gap: 0; overflow-x: auto; align-items: center;
+}
+.tab-btn {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: #8b949e; cursor: pointer; font-size: 0.875rem; text-decoration: none;
+  padding: 13px 18px; transition: color 0.15s; white-space: nowrap; display: inline-block;
+}
+.tab-btn:hover { color: #c9d1d9; }
+
+main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
+
+.panel {
+  background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px;
+  margin-bottom: 20px;
+}
+.panel-title {
+  font-size: 1rem; font-weight: 600; color: #f0f6fc;
+  margin-bottom: 6px;
+}
+.panel-sub { font-size: 0.8rem; color: #8b949e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+.panel svg { display: block; width: 100%; height: auto; }
+
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 24px; }
+@media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  background: #161b22; border: 1px solid #30363d; border-top: 3px solid var(--accent);
+  border-radius: 8px; padding: 18px; text-decoration: none; display: block;
+  transition: border-color 0.15s, transform 0.1s;
+}
+.card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.card .fips { color: #6e7681; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.card h3 { color: #f0f6fc; font-size: 1.1rem; margin: 4px 0 8px; }
+.card p { color: #8b949e; font-size: 0.825rem; line-height: 1.55; margin-bottom: 10px; }
+.card .go { color: var(--accent); font-size: 0.8rem; font-weight: 600; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #8b949e; }
+.legend-dot { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; }
+
+.note { font-size: 0.775rem; color: #6e7681; margin-top: 10px; line-height: 1.6; }
+
+table.params { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+table.params th { text-align: left; color: #8b949e; padding: 6px 8px; border-bottom: 1px solid #30363d; font-weight: 600; }
+table.params td { padding: 5px 8px; border-bottom: 1px solid #21262d; }
+table.params td:first-child { color: #d2a8ff; font-family: monospace; }
+table.params td.num { color: #79c0ff; text-align: right; font-family: monospace; }
+table.params td:last-child { color: #8b949e; }
+
+.btn { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; cursor: pointer; font-size: 0.825rem; padding: 7px 14px; }
+.btn:hover { background: #30363d; }
+
+.chart-tooltip {
+  position: fixed; pointer-events: none; z-index: 50; display: none;
+  background: #21262d; border: 1px solid #30363d; border-radius: 6px;
+  padding: 6px 10px; font-size: 0.78rem; box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.chart-tooltip .tt-value { color: #f0f6fc; font-weight: 700; font-size: 0.85rem; }
+.chart-tooltip .tt-label { color: #8b949e; margin-top: 1px; }
+
+.nav-end { flex-shrink: 0; display: flex; align-items: center; gap: 8px; padding: 8px 0 8px 16px; margin-left: auto; border-left: 1px solid #30363d; }
+.nav-label { color: #8b949e; font-size: 0.8rem; white-space: nowrap; }
+select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
+#algo-set { font-size: 0.8rem; min-width: 160px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PQC Reference Implementations &mdash; Overview &amp; Size Comparison</h1>
+  <p>CSCE 703 &mdash; ML-KEM-768 (FIPS 203), ML-DSA-65 (FIPS 204), SLH-DSA-SHAKE-128s (FIPS 205), compared side by side</p>
+</header>
+
+<nav class="tabs">
+  <a class="tab-btn" href="#compare">Size Comparison</a>
+  <a class="tab-btn" href="#all-variants">All Parameter Sets</a>
+  <div class="nav-end">
+    <label class="nav-label">Algorithm:</label>
+    <select id="algo-set" onchange="onAlgoChange()">
+      <option value="index.html" selected>Overview</option>
+      <option value="slh-dsa.html">SLH-DSA (FIPS 205)</option>
+      <option value="mldsa.html">ML-DSA (FIPS 204)</option>
+      <option value="mlkem.html">ML-KEM (FIPS 203)</option>
+    </select>
+  </div>
+</nav>
+
+<main>
+
+<div class="cards">
+  <a class="card" style="--accent:#3987e5" href="mlkem.html">
+    <div class="fips">FIPS 203 &middot; Key Encapsulation</div>
+    <h3>ML-KEM-768</h3>
+    <p>Module-LWE lattice KEM. Explore the key equation, NTT, rejection sampling, compression, and the encaps/decaps flow.</p>
+    <div class="go">Open visualization &rarr;</div>
+  </a>
+  <a class="card" style="--accent:#199e70" href="mldsa.html">
+    <div class="fips">FIPS 204 &middot; Digital Signatures</div>
+    <h3>ML-DSA-65</h3>
+    <p>Fiat&ndash;Shamir-with-aborts lattice signatures. Explore Matrix A, ExpandMask/SampleInBall, rounding &amp; hints, and the Sign rejection loop.</p>
+    <div class="go">Open visualization &rarr;</div>
+  </a>
+  <a class="card" style="--accent:#c98500" href="slh-dsa.html">
+    <div class="fips">FIPS 205 &middot; Digital Signatures</div>
+    <h3>SLH-DSA-SHAKE-128s</h3>
+    <p>Stateless hash-based signatures. Explore WOTS+ chains, the XMSS Merkle tree, FORS, the hypertree, and the sign flow.</p>
+    <div class="go">Open visualization &rarr;</div>
+  </a>
+</div>
+
+<div class="panel" id="compare">
+  <div class="panel-title">Public Key / Secret Key / Primary Artifact — headline parameter sets</div>
+  <div class="panel-sub">The three parameter sets actually implemented and tested in this repo (568/568 tests). "Primary artifact" is what gets transmitted per operation: ciphertext for the KEM, signature for the two signing schemes.</div>
+  <div class="legend" id="hero-legend"></div>
+  <svg id="svg-hero" viewBox="0 0 760 360"></svg>
+  <p class="note">Note: ML-KEM's ciphertext and ML-DSA/SLH-DSA's signatures are different kinds of object (both measured in bytes transmitted per operation) — shown together for scale, not as a like-for-like substitute.</p>
+</div>
+
+<div class="panel" id="all-variants">
+  <div class="panel-title">Primary artifact size — every size-distinct parameter set</div>
+  <div class="panel-sub">Sorted descending. SHA2 and SHAKE variants of the same security level/speed are byte-identical (only the hash instantiation differs), so each is shown once. Bold green labels mark the sets implemented in this repo.</div>
+  <div class="legend" id="all-legend"></div>
+  <svg id="svg-all" viewBox="0 0 760 400"></svg>
+  <div class="controls" style="margin-top:14px">
+    <button class="btn" onclick="toggleTable(event)">Show table view</button>
+  </div>
+  <div id="table-view" style="display:none; margin-top:16px"></div>
+</div>
+
+</main>
+
+<div id="chart-tooltip" class="chart-tooltip"></div>
+
+<script>
+'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// SVG helpers
+// ─────────────────────────────────────────────────────────────────────────────
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function line(p, x1,y1,x2,y2, stroke='#374151', sw=1.5) {
+  return el('line',{x1,y1,x2,y2,stroke,'stroke-width':sw},p);
+}
+function text(p, x,y, str, fill='#c9d1d9', size=11, anchor='middle', weight='normal') {
+  const e = el('text',{x,y,fill,'font-size':size,'text-anchor':anchor,
+    'font-family':'Segoe UI,system-ui,sans-serif','dominant-baseline':'middle',
+    'font-weight':weight},p);
+  e.textContent = str;
+  return e;
+}
+function clear(id) {
+  const e = document.getElementById(id);
+  while (e.firstChild) e.removeChild(e.firstChild);
+  return e;
+}
+// 4px-radius rounded data-end, square at the baseline
+function roundedTopBar(p, x, y, w, h, r, fill) {
+  h = Math.max(h, 2);
+  r = Math.min(r, w/2, h);
+  const d = `M${x},${y+h} L${x},${y+r} Q${x},${y} ${x+r},${y} L${x+w-r},${y} Q${x+w},${y} ${x+w},${y+r} L${x+w},${y+h} Z`;
+  return el('path', {d, fill}, p);
+}
+function roundedRightBar(p, x, y, w, h, r, fill) {
+  w = Math.max(w, 2);
+  r = Math.min(r, h/2, w);
+  const d = `M${x},${y} L${x+w-r},${y} Q${x+w},${y} ${x+w},${y+r} L${x+w},${y+h-r} Q${x+w},${y+h} ${x+w-r},${y+h} L${x},${y+h} Z`;
+  return el('path', {d, fill}, p);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tooltip
+// ─────────────────────────────────────────────────────────────────────────────
+function showTooltip(evt, valueStr, labelStr) {
+  const t = document.getElementById('chart-tooltip');
+  t.innerHTML = '';
+  const v = document.createElement('div'); v.className = 'tt-value'; v.textContent = valueStr;
+  const l = document.createElement('div'); l.className = 'tt-label'; l.textContent = labelStr;
+  t.appendChild(v); t.appendChild(l);
+  t.style.display = 'block';
+  moveTooltip(evt);
+}
+function moveTooltip(evt) {
+  const t = document.getElementById('chart-tooltip');
+  t.style.left = (evt.clientX + 14) + 'px';
+  t.style.top = (evt.clientY + 14) + 'px';
+}
+function hideTooltip() { document.getElementById('chart-tooltip').style.display = 'none'; }
+function wireHover(node, valueStr, labelStr) {
+  node.style.cursor = 'pointer';
+  node.addEventListener('mouseenter', e => { node.setAttribute('stroke', '#fff'); node.setAttribute('stroke-width','1.5'); showTooltip(e, valueStr, labelStr); });
+  node.addEventListener('mousemove', e => moveTooltip(e));
+  node.addEventListener('mouseleave', () => { node.removeAttribute('stroke'); node.removeAttribute('stroke-width'); hideTooltip(); });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Data — sizes in bytes, verified against FIPS 203 Table 2, FIPS 204 Table 2,
+// FIPS 205 Table 1 (and cross-checked against mlkem/mldsa/params.py formulas)
+// ─────────────────────────────────────────────────────────────────────────────
+const SERIES = [
+  {key:'mlkem',  label:'ML-KEM (FIPS 203)',  color:'#3987e5'},
+  {key:'mldsa',  label:'ML-DSA (FIPS 204)',  color:'#199e70'},
+  {key:'slhdsa', label:'SLH-DSA (FIPS 205)', color:'#c98500'},
+];
+const SERIES_BY_KEY = Object.fromEntries(SERIES.map(s => [s.key, s]));
+
+const HERO_GROUPS = [
+  {label: 'Public Key', values: {mlkem:1184, mldsa:1952, slhdsa:32}},
+  {label: 'Secret Key', values: {mlkem:2400, mldsa:4032, slhdsa:64}},
+  {label: 'Primary Artifact', values: {mlkem:1088, mldsa:3309, slhdsa:7856}},
+];
+
+const ALL_VARIANTS = [
+  {scheme:'slhdsa', label:'SLH-DSA-256f', pk:64,   sk:128,  primary:49856, cat:'Cat. 5'},
+  {scheme:'slhdsa', label:'SLH-DSA-192f', pk:48,   sk:96,   primary:35664, cat:'Cat. 3'},
+  {scheme:'slhdsa', label:'SLH-DSA-256s', pk:64,   sk:128,  primary:29792, cat:'Cat. 5'},
+  {scheme:'slhdsa', label:'SLH-DSA-128f', pk:32,   sk:64,   primary:17088, cat:'Cat. 1'},
+  {scheme:'slhdsa', label:'SLH-DSA-192s', pk:48,   sk:96,   primary:16224, cat:'Cat. 3'},
+  {scheme:'slhdsa', label:'SLH-DSA-128s', pk:32,   sk:64,   primary:7856,  cat:'Cat. 1', impl:true},
+  {scheme:'mldsa',  label:'ML-DSA-87',    pk:2592, sk:4896, primary:4627,  cat:'Cat. 5'},
+  {scheme:'mldsa',  label:'ML-DSA-65',    pk:1952, sk:4032, primary:3309,  cat:'Cat. 3', impl:true},
+  {scheme:'mldsa',  label:'ML-DSA-44',    pk:1312, sk:2560, primary:2420,  cat:'Cat. 2'},
+  {scheme:'mlkem',  label:'ML-KEM-1024',  pk:1568, sk:3168, primary:1568,  cat:'Cat. 5'},
+  {scheme:'mlkem',  label:'ML-KEM-768',   pk:1184, sk:2400, primary:1088,  cat:'Cat. 3', impl:true},
+  {scheme:'mlkem',  label:'ML-KEM-512',   pk:800,  sk:1632, primary:768,   cat:'Cat. 1'},
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Legends (shared HTML, not SVG — reuses .legend/.legend-item/.legend-dot)
+// ─────────────────────────────────────────────────────────────────────────────
+function buildLegend(id, extraNote) {
+  const box = document.getElementById(id);
+  box.innerHTML = '';
+  for (const s of SERIES) {
+    const item = document.createElement('div'); item.className = 'legend-item';
+    const dot = document.createElement('div'); dot.className = 'legend-dot'; dot.style.background = s.color;
+    const lbl = document.createElement('span'); lbl.textContent = s.label;
+    item.appendChild(dot); item.appendChild(lbl);
+    box.appendChild(item);
+  }
+  if (extraNote) {
+    const item = document.createElement('div'); item.className = 'legend-item';
+    const dot = document.createElement('div'); dot.className = 'legend-dot'; dot.style.background = '#0ca30c';
+    const lbl = document.createElement('span'); lbl.textContent = extraNote;
+    item.appendChild(dot); item.appendChild(lbl);
+    box.appendChild(item);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Hero chart — grouped bar, 3 metrics × 3 schemes (headline sets)
+// ─────────────────────────────────────────────────────────────────────────────
+function drawHeroChart() {
+  buildLegend('hero-legend');
+  const svg = clear('svg-hero');
+  const W=760, H=360, marginL=60, marginR=20, marginT=20, marginB=60;
+  const plotW = W-marginL-marginR, plotH = H-marginT-marginB;
+  const niceMax = 8000;
+  const yOf = v => marginT + plotH - (v/niceMax)*plotH;
+
+  for (const t of [0,2000,4000,6000,8000]) {
+    const y = yOf(t);
+    line(svg, marginL, y, W-marginR, y, '#2c2c2a', 1);
+    text(svg, marginL-10, y, t.toLocaleString(), '#898781', 8.5, 'end');
+  }
+  line(svg, marginL, yOf(0), W-marginR, yOf(0), '#383835', 1.3);
+
+  const groupW = plotW/HERO_GROUPS.length;
+  const barW = 26, gap = 4;
+  const totalBarsW = SERIES.length*barW + (SERIES.length-1)*gap;
+
+  HERO_GROUPS.forEach((g, gi) => {
+    const gcx = marginL + gi*groupW + groupW/2;
+    let bx = gcx - totalBarsW/2;
+    SERIES.forEach(s => {
+      const v = g.values[s.key];
+      const y = yOf(v);
+      const h = yOf(0)-y;
+      const barEl = roundedTopBar(svg, bx, y, barW, h, 4, s.color);
+      wireHover(barEl, `${v.toLocaleString()} bytes`, `${s.label} — ${g.label}`);
+      text(svg, bx+barW/2, y-10, v.toLocaleString(), '#c9d1d9', 8.5);
+      bx += barW+gap;
+    });
+    text(svg, gcx, H-marginB+22, g.label, '#8b949e', 9.5, 'middle', '600');
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// All-variants chart — horizontal bar, sorted descending by primary artifact
+// ─────────────────────────────────────────────────────────────────────────────
+function drawAllChart() {
+  buildLegend('all-legend', 'bold green label = implemented in this repo');
+  const svg = clear('svg-all');
+  const sorted = [...ALL_VARIANTS].sort((a,b) => b.primary - a.primary);
+  const W=760, H=400, marginL=150, marginR=90, marginT=20, marginB=30;
+  const plotW = W-marginL-marginR, plotH = H-marginT-marginB;
+  const niceMax = 50000;
+  const xOf = v => marginL + (v/niceMax)*plotW;
+  const rowH = plotH/sorted.length;
+  const barH = Math.min(20, rowH-6);
+
+  for (const t of [0,10000,20000,30000,40000,50000]) {
+    const x = xOf(t);
+    line(svg, x, marginT, x, marginT+plotH, '#2c2c2a', 1);
+    text(svg, x, marginT+plotH+16, t.toLocaleString(), '#898781', 8);
+  }
+  line(svg, marginL, marginT, marginL, marginT+plotH, '#383835', 1.3);
+
+  sorted.forEach((row, i) => {
+    const cy = marginT + i*rowH + rowH/2;
+    const y = cy - barH/2;
+    const w = (row.primary/niceMax)*plotW;
+    const color = SERIES_BY_KEY[row.scheme].color;
+    const barEl = roundedRightBar(svg, marginL, y, w, barH, 4, color);
+    wireHover(barEl, `${row.primary.toLocaleString()} bytes`, `${row.label} (${row.cat}) — pk ${row.pk.toLocaleString()} B, sk ${row.sk.toLocaleString()} B`);
+    text(svg, marginL-10, cy, row.label, row.impl ? '#0ca30c' : '#c9d1d9', 8.5, 'end', row.impl ? '700' : 'normal');
+    text(svg, marginL+w+8, cy, row.primary.toLocaleString(), '#8b949e', 8, 'start');
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Table view
+// ─────────────────────────────────────────────────────────────────────────────
+function toggleTable(evt) {
+  const box = document.getElementById('table-view');
+  const btn = evt.target;
+  if (box.style.display === 'none') {
+    box.style.display = 'block';
+    btn.textContent = 'Hide table view';
+    if (!box.dataset.built) { buildTable(); box.dataset.built = '1'; }
+  } else {
+    box.style.display = 'none';
+    btn.textContent = 'Show table view';
+  }
+}
+function buildTable() {
+  const box = document.getElementById('table-view');
+  const sorted = [...ALL_VARIANTS].sort((a,b) => b.primary - a.primary);
+  const table = document.createElement('table');
+  table.className = 'params';
+  const thead = document.createElement('thead');
+  const headRow = document.createElement('tr');
+  for (const h of ['Parameter set','Scheme','Security','Public key','Secret key','Primary artifact','Implemented here']) {
+    const th = document.createElement('th'); th.textContent = h; headRow.appendChild(th);
+  }
+  thead.appendChild(headRow);
+  table.appendChild(thead);
+  const tbody = document.createElement('tbody');
+  for (const row of sorted) {
+    const tr = document.createElement('tr');
+    const cells = [
+      row.label,
+      SERIES_BY_KEY[row.scheme].label,
+      row.cat,
+      row.pk.toLocaleString() + ' B',
+      row.sk.toLocaleString() + ' B',
+      row.primary.toLocaleString() + ' B',
+      row.impl ? 'Yes' : '',
+    ];
+    cells.forEach((c, idx) => {
+      const td = document.createElement('td');
+      td.textContent = c;
+      if (idx >= 3 && idx <= 5) td.classList.add('num');
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  box.innerHTML = '';
+  box.appendChild(table);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Nav
+// ─────────────────────────────────────────────────────────────────────────────
+function onAlgoChange() {
+  const v = document.getElementById('algo-set').value;
+  if (v && v !== 'index.html') window.location.href = v;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Init
+// ─────────────────────────────────────────────────────────────────────────────
+drawHeroChart();
+drawAllChart();
+</script>
+</body>
+</html>

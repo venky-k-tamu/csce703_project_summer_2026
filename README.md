@@ -149,7 +149,7 @@ mlkem/         # FIPS 203 ML-KEM-768   — lattice/NTT-based KEM
 mldsa/         # FIPS 204 ML-DSA-65    — lattice/NTT-based signatures
 slhdsa/        # FIPS 205 SLH-DSA-SHAKE-128s — hash-based signatures (Merkle/XMSS/FORS)
 hardware/      # SystemVerilog Keccak-f[1600] / SHAKE accelerator (shared PQC core)
-visualization/ # interactive webpages: SLH-DSA (slh-dsa.html) and ML-KEM (mlkem.html)
+visualization/ # interactive webpages: SLH-DSA, ML-DSA, ML-KEM (slh-dsa/mldsa/mlkem.html)
 docs/          # PLAN.md (authoritative plan) + PROMPTS.md (design-decision log)
 ```
 
@@ -171,9 +171,12 @@ Two directories accompany the Python reference implementations:
 - **`visualization/`** — self-contained interactive webpages (no build step,
   no dependencies; open directly in a browser). `slh-dsa.html` walks through the
   SLH-DSA-SHAKE-128s building blocks (WOTS+, XMSS, FORS, hypertree);
-  `mlkem.html` walks through ML-KEM (the module-LWE key equation, NTT, sampling,
-  compression, and the encaps/decaps flow). Both support all parameter sets via
-  a selector.
+  `mldsa.html` walks through ML-DSA (Matrix A / ExpandA, ExpandMask &
+  SampleInBall, rounding & hints, and the Sign rejection loop); `mlkem.html`
+  walks through ML-KEM (the module-LWE key equation, NTT, sampling,
+  compression, and the encaps/decaps flow). All three support their full
+  range of parameter sets via a selector, and cross-link to each other via an
+  Algorithm dropdown in the nav bar.
 
 ## Scope & non-goals
 
