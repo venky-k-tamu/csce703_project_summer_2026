@@ -8,13 +8,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
 
+.site-topbar { position: sticky; top: 0; z-index: 100; }
 header {
-  background: linear-gradient(135deg, #161b22, #21262d);
-  border-bottom: 1px solid #30363d;
-  padding: 18px 40px;
+  background: linear-gradient(135deg, #dde1e6, #ccd2d8);
+  border-bottom: 1px solid #b8c0c8;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
-header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+header .logo-group { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+header .site-logo { display: flex; align-items: center; transition: opacity 0.15s; }
+header .site-logo:hover { opacity: 0.85; }
+header .site-logo img { height: 58px; width: auto; display: block; }
+header .site-logo.github-logo img { height: 34px; }
+header h1 { font-size: 1.5rem; color: #1a1f24; font-weight: 700; }
+header p  { color: #57606a; font-size: 0.875rem; margin-top: 3px; }
 
 nav.tabs {
   background: #161b22;
@@ -61,6 +70,11 @@ main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
 
 .note { font-size: 0.775rem; color: #6e7681; margin-top: 10px; line-height: 1.6; }
 
+.summary p { color: #c9d1d9; font-size: 0.875rem; line-height: 1.7; margin-bottom: 12px; }
+.summary p:last-of-type { margin-bottom: 0; }
+.summary strong { color: #f0f6fc; }
+.summary table.params { margin-top: 14px; }
+
 table.params { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
 table.params th { text-align: left; color: #8b949e; padding: 6px 8px; border-bottom: 1px solid #30363d; font-weight: 600; }
 table.params td { padding: 5px 8px; border-bottom: 1px solid #21262d; }
@@ -70,6 +84,15 @@ table.params td:last-child { color: #8b949e; }
 
 .btn { background: #21262d; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; cursor: pointer; font-size: 0.825rem; padding: 7px 14px; }
 .btn:hover { background: #30363d; }
+
+.github-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #21262d; border: 1px solid #30363d; border-radius: 6px;
+  color: #c9d1d9; text-decoration: none; font-size: 0.8rem; font-weight: 600; padding: 6px 13px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.github-btn:hover { background: #30363d; border-color: #6e7681; }
+.github-btn img { height: 15px; width: auto; filter: invert(1); display: block; }
 
 .chart-tooltip {
   position: fixed; pointer-events: none; z-index: 50; display: none;
@@ -87,9 +110,20 @@ select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding
 </head>
 <body>
 
+<div class="site-topbar">
 <header>
-  <h1>PQC Reference Implementations &mdash; Overview &amp; Size Comparison</h1>
-  <p>CSCE 703 &mdash; ML-KEM-768 (FIPS 203), ML-DSA-65 (FIPS 204), SLH-DSA-SHAKE-128s (FIPS 205), compared side by side</p>
+  <div class="logo-group">
+    <a class="site-logo" href="index.html" title="Back to PQC overview">
+      <img src="assets/tamu-engineering-logo.png?v=2" alt="Texas A&amp;M University logo" onerror="this.style.display='none'">
+    </a>
+    <a class="site-logo github-logo" href="https://github.com/venky-k-tamu/csce703_project_summer_2026" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+      <img src="assets/github.png?v=1" alt="GitHub repository" onerror="this.style.display='none'">
+    </a>
+  </div>
+  <div>
+    <h1>PQC Reference Implementations &mdash; Overview &amp; Size Comparison</h1>
+    <p>CSCE 703 &mdash; ML-KEM-768 (FIPS 203), ML-DSA-65 (FIPS 204), SLH-DSA-SHAKE-128s (FIPS 205), compared side by side</p>
+  </div>
 </header>
 
 <nav class="tabs">
@@ -104,9 +138,33 @@ select { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding
       <option value="mlkem.html">ML-KEM (FIPS 203)</option>
     </select>
   </div>
+  <div class="nav-end" style="margin-left:16px;">
+    <a class="github-btn" href="https://github.com/venky-k-tamu/csce703_project_summer_2026" target="_blank" rel="noopener noreferrer">
+      <img src="assets/github.png?v=1" alt="">
+      View on GitHub
+    </a>
+  </div>
 </nav>
+</div>
 
 <main>
+
+<div class="panel summary">
+  <div class="panel-title">What is Post-Quantum Cryptography?</div>
+  <div class="panel-sub">Background on the NIST standards this repository implements</div>
+  <p>Nearly all modern digital security &mdash; banking, communication, identity, data sharing &mdash; depends on public-key cryptography. Today that means algorithms like RSA and elliptic-curve cryptography (ECC), whose security rests on math problems (factoring large integers, computing discrete logarithms) that are practically impossible for classical computers to solve without the private key.</p>
+  <p>A sufficiently capable quantum computer changes that: <strong>Shor's algorithm</strong> solves both problems efficiently, which would render RSA and ECC insecure. Large-scale quantum computers capable of this don't exist yet, but the threat isn't purely future-dated &mdash; under a <strong>&ldquo;harvest now, decrypt later&rdquo;</strong> attack, an adversary can record encrypted traffic today and simply wait until quantum hardware catches up to decrypt it. <strong>Post-Quantum Cryptography (PQC)</strong> refers to algorithms designed to resist both classical and quantum attack.</p>
+  <p>In August 2024 the National Institute of Standards and Technology (NIST) finalized the first three PQC standards. Two &mdash; ML-KEM and ML-DSA &mdash; are built on <strong>lattice cryptography</strong>, where security reduces to the hardness of Module-LWE (Learning With Errors) and Module-SIS (Short Integer Solution) problems over high-dimensional structured lattices. The third, SLH-DSA, takes a different approach entirely, relying only on the one-wayness of a cryptographic hash function (WOTS+ chains, Merkle trees, and a hypertree of one-time signatures) &mdash; a conservative fallback that doesn't depend on lattice assumptions at all.</p>
+  <table class="params">
+    <thead><tr><th>Standard</th><th>Scheme</th><th>Type</th><th>Hardness basis</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td>FIPS 203</td><td>ML-KEM</td><td>Key Encapsulation</td><td>Module-LWE (lattice)</td><td>Replaces Diffie&ndash;Hellman/RSA key exchange</td></tr>
+      <tr><td>FIPS 204</td><td>ML-DSA</td><td>Digital Signature</td><td>Module-SIS (lattice)</td><td>Replaces RSA/ECDSA signatures for general-purpose identity &amp; data authenticity</td></tr>
+      <tr><td>FIPS 205</td><td>SLH-DSA</td><td>Digital Signature</td><td>Hash-based, stateless</td><td>Conservative long-term-security fallback signature scheme</td></tr>
+    </tbody>
+  </table>
+  <p class="note">This site is an educational, spec-faithful (not performance- or side-channel-hardened) reference implementation of one parameter set per standard &mdash; ML-KEM-768, ML-DSA-65, and SLH-DSA-SHAKE-128s &mdash; verified against NIST's official ACVP test vectors. See the cards below to explore each algorithm's internal structure interactively.</p>
+</div>
 
 <div class="cards">
   <a class="card" style="--accent:#3987e5" href="mlkem.html">

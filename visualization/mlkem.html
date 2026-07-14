@@ -8,13 +8,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
 
+.site-topbar { position: sticky; top: 0; z-index: 100; }
 header {
-  background: linear-gradient(135deg, #161b22, #21262d);
-  border-bottom: 1px solid #30363d;
-  padding: 18px 40px;
+  background: linear-gradient(135deg, #dde1e6, #ccd2d8);
+  border-bottom: 1px solid #b8c0c8;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
-header h1 { font-size: 1.5rem; color: #f0f6fc; font-weight: 700; }
-header p  { color: #8b949e; font-size: 0.875rem; margin-top: 3px; }
+header .logo-group { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+header .site-logo { display: flex; align-items: center; transition: opacity 0.15s; }
+header .site-logo:hover { opacity: 0.85; }
+header .site-logo img { height: 58px; width: auto; display: block; }
+header .site-logo.github-logo img { height: 34px; }
+header h1 { font-size: 1.5rem; color: #1a1f24; font-weight: 700; }
+header p  { color: #57606a; font-size: 0.875rem; margin-top: 3px; }
 
 nav.tabs {
   background: #161b22;
@@ -98,9 +107,20 @@ table.params td:last-child { color: #8b949e; }
 </head>
 <body>
 
+<div class="site-topbar">
 <header>
-  <h1 id="header-title">ML-KEM-768 &mdash; Interactive Visualization</h1>
-  <p>FIPS 203 module-lattice key-encapsulation mechanism &mdash; explore the module-LWE core, NTT, sampling, compression, and the encaps/decaps flow</p>
+  <div class="logo-group">
+    <a class="site-logo" href="index.html" title="Back to PQC overview">
+      <img src="assets/tamu-engineering-logo.png?v=2" alt="Texas A&amp;M University logo" onerror="this.style.display='none'">
+    </a>
+    <a class="site-logo github-logo" href="https://github.com/venky-k-tamu/csce703_project_summer_2026" target="_blank" rel="noopener noreferrer" title="View source on GitHub">
+      <img src="assets/github.png?v=1" alt="GitHub repository" onerror="this.style.display='none'">
+    </a>
+  </div>
+  <div>
+    <h1 id="header-title">ML-KEM-768 &mdash; Interactive Visualization</h1>
+    <p>FIPS 203 module-lattice key-encapsulation mechanism &mdash; explore the module-LWE core, NTT, sampling, compression, and the encaps/decaps flow</p>
+  </div>
 </header>
 
 <nav class="tabs">
@@ -129,6 +149,7 @@ table.params td:last-child { color: #8b949e; }
     </select>
   </div>
 </nav>
+</div>
 
 <main>
 
