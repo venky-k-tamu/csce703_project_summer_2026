@@ -1,0 +1,3376 @@
+{
+  "timestamp": "20260712T181821Z",
+  "params": {
+    "repeats": 3,
+    "expensive_trials": 5,
+    "cheap_trials": 20
+  },
+  "raw": [
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.653391300002113,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.692305100033991,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.6540347000118345,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.6613019999931566,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.6801121000316925,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.3651959000271745,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.3913074000156485,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.466280199994799,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.223030199995264,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.1875575999729335,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.211604200012516,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.361797400051728,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.3139126999885775,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.247443500033114,
+      "repeat": 0
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.397215999953914,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.233584100031294,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.3478037000168115,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.315935700025875,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.367401900002733,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.4143317000125535,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.274553299997933,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.235096600023098,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.215233299997635,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.191942600009497,
+      "repeat": 0
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.258340700005647,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.006340300024021417,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005662899988237768,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.010279099980834872,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.004819100024178624,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.005526499997358769,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.008363899949472398,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.007580099976621568,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.006074999982956797,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.005862999998498708,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.004857299965806305,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.004720799974165857,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.007133500010240823,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.005133299971930683,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.004635699966456741,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.005850000015925616,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.004920799983665347,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.004710299952421337,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.005025099962949753,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.004668099980335683,
+      "repeat": 0
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.00469959998736158,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.004881499975454062,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005009599961340427,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.004963500017765909,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.004799199989065528,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.005074400047305971,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.004850400029681623,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.0046953000128269196,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.005097899993415922,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.0047636000090278685,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.00500040000770241,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.004766700032632798,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.005748299998231232,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.004894400015473366,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.005509199982043356,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.006718800053931773,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.00498410000000149,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.005246099957730621,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.004810900019947439,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.00479149998864159,
+      "repeat": 0
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.004963900020811707,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.299625899991952,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.389038699970115,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.327102099952754,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.322620899998583,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.5669487999984995,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.473855999996886,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.391285999969114,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.278411799983587,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.372036099957768,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.3854959000018425,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.330692499992438,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.355161899991799,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.357910999970045,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.3513701999909244,
+      "repeat": 0
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.339071800000966,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.005629299965221435,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.0049434000393375754,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005383400013670325,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.005611800006590784,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.005079699971247464,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.005009800021070987,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.005575699964538217,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.005254100018646568,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.005903699959162623,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.005392799968831241,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.0049374999944120646,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.005837899981997907,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.006120700039900839,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.005148899974301457,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.005904499965254217,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.00617680000141263,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.005009000014979392,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.0050172999617643654,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.005148200027178973,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.005012100038584322,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.0063871999736875296,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.005459200008772314,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005793899996206164,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.005537500022910535,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.005517799989320338,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.006243099982384592,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.00836059998255223,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.008380199957173318,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.007558100041933358,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.006201400014106184,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.007890800014138222,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.005603900004643947,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.005655799992382526,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.005909100000280887,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.006912300013937056,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.005656399996951222,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.005188699986319989,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.005870299995876849,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.005340499978046864,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.005264299979899079,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.005311799992341548,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.005173099983949214,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005323600023984909,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.005920699972193688,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.005491499963682145,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.005514999967999756,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.0053391000255942345,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.005770699994172901,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.005328300001565367,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.006183899997267872,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.00557819998357445,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.005648799997288734,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.006098099984228611,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.005211899988353252,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.005007600004319102,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.006041999964509159,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.006563099974300712,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.0053810999961569905,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.006171400018502027,
+      "repeat": 0
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.004987500025890768,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.6521503999829292,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.699454500048887,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.6518076999927871,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.7054912999738008,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.6784598000231199,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.3817883000010625,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.4210163000389,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.309966100030579,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.370626199990511,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.380297199997585,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.258384000044316,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.228177700017113,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.259334600006696,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.364681999955792,
+      "repeat": 1
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.272633999993559,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.304475000011735,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.260904899972957,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.3829932999797165,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.392847899987828,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.371462200011592,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.256684600026347,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.2580928999814205,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.352513700025156,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.132449100026861,
+      "repeat": 1
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.182300499989651,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.004995499970391393,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005522299965377897,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.005234800046309829,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.005038999952375889,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.004978399956598878,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.004932900017593056,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.005329500010702759,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.004939300008118153,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.005114400002639741,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.004982799990102649,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.005510900053195655,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.005018500029109418,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.004976099997293204,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.004870900011155754,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.004921599989756942,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.005378400033805519,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.006881700013764203,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.007189500029198825,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.005418899992946535,
+      "repeat": 1
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.005272699985653162,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.005326899990905076,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005342099990230054,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.005266699998173863,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.005283900012727827,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.005388899997342378,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.005575800023507327,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.005316200025845319,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.005633299995679408,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.005519700003787875,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.005360300012398511,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.0056105999974533916,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.005486599984578788,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.005095499975141138,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.005131100013386458,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.005111899983603507,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.004922299995087087,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.0063785999664105475,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.007091800041962415,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.005966900032944977,
+      "repeat": 1
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.00632339995354414,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 4.80930340004852,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 4.739843700022902,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.222938899998553,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.1813003999996,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.321422699955292,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.251809900044464,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.243972700031009,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.188056499988306,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.257708100019954,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.3265718999900855,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.3902223000186495,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.271091700007673,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.3668066000100225,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.591798599984031,
+      "repeat": 1
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.34864609997021,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.004839200002606958,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.004670099995564669,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005328500003088266,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.004760400042869151,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.0047587999724783,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.004694500006735325,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.0047617999953217804,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.005456599988974631,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.00477820000378415,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.004731799999717623,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.0047904999810270965,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.004778900009114295,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.0048390000010840595,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.009172899997793138,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.008469099993817508,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.008461199991870672,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.005958299967460334,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.006360200000926852,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.00755470001604408,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.0048871999606490135,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.005650700011756271,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.005356499983463436,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005526499997358769,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.00550699996529147,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.006012599973473698,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.006737799965776503,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.005091200000606477,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.006082899984903634,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.007030600041616708,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.005401100032031536,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.005868799984455109,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.006312999990768731,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.006004599970765412,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.007724400027655065,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.005868899985216558,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.006207899947185069,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.005605999962426722,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.005717099993489683,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.006265299976803362,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.0053604000131599605,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.005286000028718263,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.005098900001030415,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.005474400008097291,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.0054929000325500965,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.005232300027273595,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.006014399987179786,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.006162700010463595,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.0052964999922551215,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.005903800018131733,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.00501530000474304,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.0061012000078335404,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.009679799957666546,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.006768300023395568,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.005892899993341416,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.005957299959845841,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.005416099971625954,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.005244100000709295,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.005591399967670441,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.0060255000134930015,
+      "repeat": 1
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.006236699991859496,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.6806136000086553,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.6402795999892987,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.6868354000034742,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.6574420999968424,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.661126899998635,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.337099299998954,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.300661800021771,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.348419199988712,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.320891900046263,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.370584900025278,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.229337400000077,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.4942294000065885,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.480355900013819,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.273913600016385,
+      "repeat": 2
+    },
+    {
+      "config": "sign/det/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.37055390002206,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.125280299980659,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.258625200018287,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.2154230999876745,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.2618848999845795,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/small",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.171234900015406,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 0,
+      "seconds": 5.358891699986998,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 1,
+      "seconds": 5.398695899988525,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 2,
+      "seconds": 5.258730000001378,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 3,
+      "seconds": 5.2590130000025965,
+      "repeat": 2
+    },
+    {
+      "config": "sign/hedged/large",
+      "op": "sign",
+      "trial": 4,
+      "seconds": 5.500088499975391,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.005084200005512685,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005745200032833964,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.0046787000028416514,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.006182499986607581,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.006762299977708608,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.0046372999786399305,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.005211299983784556,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.004695400013588369,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.004663400002755225,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.004899999999906868,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.006290599994827062,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.005405600008089095,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.004740700009278953,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.005286600033286959,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.004937599995173514,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.004974499985110015,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.005284899962134659,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.004807999997865409,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.005045099998824298,
+      "repeat": 2
+    },
+    {
+      "config": "verify/small",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.005418599990662187,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 0,
+      "seconds": 0.006146800005808473,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 1,
+      "seconds": 0.005438000021968037,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 2,
+      "seconds": 0.006574900005944073,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 3,
+      "seconds": 0.005391400016378611,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 4,
+      "seconds": 0.006541999988257885,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 5,
+      "seconds": 0.005548299988731742,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 6,
+      "seconds": 0.006478400027845055,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 7,
+      "seconds": 0.005973300023470074,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 8,
+      "seconds": 0.006689499947242439,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 9,
+      "seconds": 0.0049909999943338335,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 10,
+      "seconds": 0.005606499966233969,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 11,
+      "seconds": 0.005590899963863194,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 12,
+      "seconds": 0.0059281999710947275,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 13,
+      "seconds": 0.005412200000137091,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 14,
+      "seconds": 0.006812900013756007,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 15,
+      "seconds": 0.005378900037612766,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 16,
+      "seconds": 0.00546259997645393,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 17,
+      "seconds": 0.005337200011126697,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 18,
+      "seconds": 0.005780799954663962,
+      "repeat": 2
+    },
+    {
+      "config": "verify/large",
+      "op": "verify",
+      "trial": 19,
+      "seconds": 0.005757300008554012,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.280570400005672,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 5.291057399997953,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 5.303423599980306,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 5.110788899997715,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 5.194773700030055,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 5.263461299997289,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 4.805993500049226,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 4.623329500027467,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 4.5982603000011295,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHA2-512",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 4.62438590003876,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 0,
+      "seconds": 4.736446499999147,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 1,
+      "seconds": 4.564848600013647,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 2,
+      "seconds": 4.591383500024676,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 3,
+      "seconds": 4.499918999965303,
+      "repeat": 2
+    },
+    {
+      "config": "hash_sign/SHAKE-256",
+      "op": "hash_sign",
+      "trial": 4,
+      "seconds": 4.505346500023734,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.0044550999882631,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.004448599996976554,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.004729200038127601,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.004498600028455257,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.004418700002133846,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.004563199996482581,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.004487199999857694,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.00442409998504445,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.00442409998504445,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.004576299979817122,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.004441600001882762,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.004414600029122084,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.004573000012896955,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.0044024999951943755,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.004451499960850924,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.004406499967444688,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.004552800033707172,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.004471100051887333,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.004430199973285198,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.004543700022622943,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.004453299974557012,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.0050626000156626105,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.00425509997876361,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.004331800038926303,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.004745299986097962,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.004627900023479015,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.004290899960324168,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.004369499976746738,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.005712500016670674,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.0045344000100158155,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.004355599987320602,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.005122200003825128,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.004650000017136335,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.00437959999544546,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.0045890999608673155,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.004622899985406548,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.004385799984447658,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.0042760000214912,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.00456179998582229,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHA2-512",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.004659000027459115,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 0,
+      "seconds": 0.004343200009316206,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 1,
+      "seconds": 0.004695400013588369,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 2,
+      "seconds": 0.00457819999428466,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 3,
+      "seconds": 0.004996199975721538,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 4,
+      "seconds": 0.004360300023108721,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 5,
+      "seconds": 0.005061299947556108,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 6,
+      "seconds": 0.004499699978623539,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 7,
+      "seconds": 0.004374000011011958,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 8,
+      "seconds": 0.005133499973453581,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 9,
+      "seconds": 0.00485080003272742,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 10,
+      "seconds": 0.004379199992399663,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 11,
+      "seconds": 0.00466849998338148,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 12,
+      "seconds": 0.0058031000080518425,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 13,
+      "seconds": 0.0045137000270187855,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 14,
+      "seconds": 0.004304800007957965,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 15,
+      "seconds": 0.004990599991288036,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 16,
+      "seconds": 0.004566500021610409,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 17,
+      "seconds": 0.0044098999933339655,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 18,
+      "seconds": 0.004469400038942695,
+      "repeat": 2
+    },
+    {
+      "config": "hash_verify/SHAKE-256",
+      "op": "hash_verify",
+      "trial": 19,
+      "seconds": 0.004740400006994605,
+      "repeat": 2
+    }
+  ],
+  "overall_summary": {
+    "keygen": {
+      "n": 15,
+      "mean": 0.6703204333394145,
+      "median": 0.6613019999931566,
+      "stdev": 0.01994416690629602,
+      "min": 0.6402795999892987,
+      "max": 0.7054912999738008
+    },
+    "sign/det/small": {
+      "n": 15,
+      "mean": 5.344981500009696,
+      "median": 5.3651959000271745,
+      "stdev": 0.07094438160526736,
+      "min": 5.1875575999729335,
+      "max": 5.466280199994799
+    },
+    "sign/det/large": {
+      "n": 15,
+      "mean": 5.317571753341084,
+      "median": 5.273913600016385,
+      "stdev": 0.09015442014337982,
+      "min": 5.211604200012516,
+      "max": 5.4942294000065885
+    },
+    "sign/hedged/small": {
+      "n": 15,
+      "mean": 5.294945920002647,
+      "median": 5.304475000011735,
+      "stdev": 0.08609423420399251,
+      "min": 5.125280299980659,
+      "max": 5.4143317000125535
+    },
+    "sign/hedged/large": {
+      "n": 15,
+      "mean": 5.275508426669209,
+      "median": 5.258340700005647,
+      "stdev": 0.09312203309903266,
+      "min": 5.132449100026861,
+      "max": 5.500088499975391
+    },
+    "verify/small": {
+      "n": 60,
+      "mean": 0.0054687499951493615,
+      "median": 0.005099300004076213,
+      "stdev": 0.0010103902042829984,
+      "min": 0.004635699966456741,
+      "max": 0.010279099980834872
+    },
+    "verify/large": {
+      "n": 60,
+      "mean": 0.005492388333853644,
+      "median": 0.005383900017477572,
+      "stdev": 0.0005901427273950681,
+      "min": 0.0046953000128269196,
+      "max": 0.007091800041962415
+    },
+    "hash_sign/SHA2-256": {
+      "n": 15,
+      "mean": 5.224050633329898,
+      "median": 5.291057399997953,
+      "stdev": 0.20981269116772638,
+      "min": 4.739843700022902,
+      "max": 5.5669487999984995
+    },
+    "hash_sign/SHA2-512": {
+      "n": 15,
+      "mean": 5.138975693339792,
+      "median": 5.257708100019954,
+      "stdev": 0.30882638166560783,
+      "min": 4.5982603000011295,
+      "max": 5.473855999996886
+    },
+    "hash_sign/SHAKE-256": {
+      "n": 15,
+      "mean": 5.106714453330884,
+      "median": 5.339071800000966,
+      "stdev": 0.3949545650533877,
+      "min": 4.499918999965303,
+      "max": 5.591798599984031
+    },
+    "hash_verify/SHA2-256": {
+      "n": 60,
+      "mean": 0.005197684998468806,
+      "median": 0.004839100001845509,
+      "stdev": 0.0010190591931919988,
+      "min": 0.0044024999951943755,
+      "max": 0.009172899997793138
+    },
+    "hash_verify/SHA2-512": {
+      "n": 60,
+      "mean": 0.005600828328169882,
+      "median": 0.005532000010134652,
+      "stdev": 0.0010158228702273136,
+      "min": 0.00425509997876361,
+      "max": 0.008380199957173318
+    },
+    "hash_verify/SHAKE-256": {
+      "n": 60,
+      "mean": 0.005394609998135517,
+      "median": 0.005317700008163229,
+      "stdev": 0.0008343641337171185,
+      "min": 0.004304800007957965,
+      "max": 0.009679799957666546
+    }
+  },
+  "per_repeat_summary": [
+    {
+      "keygen": {
+        "n": 5,
+        "mean": 0.6682290400145575,
+        "median": 0.6613019999931566,
+        "stdev": 0.017251706304581064,
+        "min": 0.653391300002113,
+        "max": 0.692305100033991
+      },
+      "sign/det/small": {
+        "n": 5,
+        "mean": 5.326674260001164,
+        "median": 5.3651959000271745,
+        "stdev": 0.11752309804018167,
+        "min": 5.1875575999729335,
+        "max": 5.466280199994799
+      },
+      "sign/det/large": {
+        "n": 5,
+        "mean": 5.30639476000797,
+        "median": 5.3139126999885775,
+        "stdev": 0.0771928929493574,
+        "min": 5.211604200012516,
+        "max": 5.397215999953914
+      },
+      "sign/hedged/small": {
+        "n": 5,
+        "mean": 5.335811420017853,
+        "median": 5.3478037000168115,
+        "stdev": 0.0673659349607213,
+        "min": 5.233584100031294,
+        "max": 5.4143317000125535
+      },
+      "sign/hedged/large": {
+        "n": 5,
+        "mean": 5.235033300006762,
+        "median": 5.235096600023098,
+        "stdev": 0.03299211166141821,
+        "min": 5.191942600009497,
+        "max": 5.274553299997933
+      },
+      "verify/small": {
+        "n": 20,
+        "mean": 0.0058432199846720325,
+        "median": 0.005329899984644726,
+        "stdev": 0.0014846893402671473,
+        "min": 0.004635699966456741,
+        "max": 0.010279099980834872
+      },
+      "verify/large": {
+        "n": 20,
+        "mean": 0.0050784850056516005,
+        "median": 0.004963700019288808,
+        "stdev": 0.00046448954107363317,
+        "min": 0.0046953000128269196,
+        "max": 0.006718800053931773
+      },
+      "hash_sign/SHA2-256": {
+        "n": 5,
+        "mean": 5.38106727998238,
+        "median": 5.327102099952754,
+        "stdev": 0.1090600767738928,
+        "min": 5.299625899991952,
+        "max": 5.5669487999984995
+      },
+      "hash_sign/SHA2-512": {
+        "n": 5,
+        "mean": 5.380217159981839,
+        "median": 5.3854959000018425,
+        "stdev": 0.06955191899170952,
+        "min": 5.278411799983587,
+        "max": 5.473855999996886
+      },
+      "hash_sign/SHAKE-256": {
+        "n": 5,
+        "mean": 5.3468414799892345,
+        "median": 5.3513701999909244,
+        "stdev": 0.01154805663883968,
+        "min": 5.330692499992438,
+        "max": 5.357910999970045
+      },
+      "hash_verify/SHA2-256": {
+        "n": 20,
+        "mean": 0.005404829996405169,
+        "median": 0.005318750016158447,
+        "stdev": 0.00041204061612714336,
+        "min": 0.0049374999944120646,
+        "max": 0.00617680000141263
+      },
+      "hash_verify/SHA2-512": {
+        "n": 20,
+        "mean": 0.00623655499657616,
+        "median": 0.0058320999960415065,
+        "stdev": 0.0010269417056317264,
+        "min": 0.005188699986319989,
+        "max": 0.008380199957173318
+      },
+      "hash_verify/SHAKE-256": {
+        "n": 20,
+        "mean": 0.005602369992993772,
+        "median": 0.005503249965840951,
+        "stdev": 0.0004353109706696541,
+        "min": 0.004987500025890768,
+        "max": 0.006563099974300712
+      }
+    },
+    {
+      "keygen": {
+        "n": 5,
+        "mean": 0.6774727400043048,
+        "median": 0.6784598000231199,
+        "stdev": 0.025343277944326476,
+        "min": 0.6518076999927871,
+        "max": 0.7054912999738008
+      },
+      "sign/det/small": {
+        "n": 5,
+        "mean": 5.372738820011728,
+        "median": 5.380297199997585,
+        "stdev": 0.04004564524092419,
+        "min": 5.309966100030579,
+        "max": 5.4210163000389
+      },
+      "sign/det/large": {
+        "n": 5,
+        "mean": 5.276642460003496,
+        "median": 5.259334600006696,
+        "stdev": 0.05183819702919529,
+        "min": 5.228177700017113,
+        "max": 5.364681999955792
+      },
+      "sign/hedged/small": {
+        "n": 5,
+        "mean": 5.342536659992765,
+        "median": 5.371462200011592,
+        "stdev": 0.05726491434268143,
+        "min": 5.260904899972957,
+        "max": 5.392847899987828
+      },
+      "sign/hedged/large": {
+        "n": 5,
+        "mean": 5.236408160009887,
+        "median": 5.256684600026347,
+        "stdev": 0.08381077409115018,
+        "min": 5.132449100026861,
+        "max": 5.352513700025156
+      },
+      "verify/small": {
+        "n": 20,
+        "mean": 0.005325405002804473,
+        "median": 0.005076699977507815,
+        "stdev": 0.0006221688824483776,
+        "min": 0.004870900011155754,
+        "max": 0.007189500029198825
+      },
+      "verify/large": {
+        "n": 20,
+        "mean": 0.005556624999735504,
+        "median": 0.0053746000048704445,
+        "stdev": 0.000522124575132431,
+        "min": 0.004922299995087087,
+        "max": 0.007091800041962415
+      },
+      "hash_sign/SHA2-256": {
+        "n": 5,
+        "mean": 5.054961820004974,
+        "median": 5.1813003999996,
+        "stdev": 0.26211954599889253,
+        "min": 4.739843700022902,
+        "max": 5.321422699955292
+      },
+      "hash_sign/SHA2-512": {
+        "n": 5,
+        "mean": 5.253623820014764,
+        "median": 5.251809900044464,
+        "stdev": 0.04932953373309471,
+        "min": 5.188056499988306,
+        "max": 5.3265718999900855
+      },
+      "hash_sign/SHAKE-256": {
+        "n": 5,
+        "mean": 5.393713059998118,
+        "median": 5.3668066000100225,
+        "stdev": 0.11941634410529751,
+        "min": 5.271091700007673,
+        "max": 5.591798599984031
+      },
+      "hash_verify/SHA2-256": {
+        "n": 20,
+        "mean": 0.005702594996546395,
+        "median": 0.004839100001845509,
+        "stdev": 0.0014835789466322623,
+        "min": 0.004670099995564669,
+        "max": 0.009172899997793138
+      },
+      "hash_verify/SHA2-512": {
+        "n": 20,
+        "mean": 0.005966664990410209,
+        "median": 0.005868849984835833,
+        "stdev": 0.0006342485779756361,
+        "min": 0.005091200000606477,
+        "max": 0.007724400027655065
+      },
+      "hash_verify/SHAKE-256": {
+        "n": 20,
+        "mean": 0.005894524999894202,
+        "median": 0.005742149980505928,
+        "stdev": 0.0010003480720029512,
+        "min": 0.00501530000474304,
+        "max": 0.009679799957666546
+      }
+    },
+    {
+      "keygen": {
+        "n": 5,
+        "mean": 0.6652595199993812,
+        "median": 0.661126899998635,
+        "stdev": 0.018731346575720276,
+        "min": 0.6402795999892987,
+        "max": 0.6868354000034742
+      },
+      "sign/det/small": {
+        "n": 5,
+        "mean": 5.335531420016196,
+        "median": 5.337099299998954,
+        "stdev": 0.026587146915911703,
+        "min": 5.300661800021771,
+        "max": 5.370584900025278
+      },
+      "sign/det/large": {
+        "n": 5,
+        "mean": 5.369678040011786,
+        "median": 5.37055390002206,
+        "stdev": 0.11898499937856773,
+        "min": 5.229337400000077,
+        "max": 5.4942294000065885
+      },
+      "sign/hedged/small": {
+        "n": 5,
+        "mean": 5.206489679997321,
+        "median": 5.2154230999876745,
+        "stdev": 0.05853292183096868,
+        "min": 5.125280299980659,
+        "max": 5.2618848999845795
+      },
+      "sign/hedged/large": {
+        "n": 5,
+        "mean": 5.355083819990978,
+        "median": 5.358891699986998,
+        "stdev": 0.10180438567294954,
+        "min": 5.258730000001378,
+        "max": 5.500088499975391
+      },
+      "verify/small": {
+        "n": 20,
+        "mean": 0.005237624997971579,
+        "median": 0.0050646500021684915,
+        "stdev": 0.0005943591193911115,
+        "min": 0.0046372999786399305,
+        "max": 0.006762299977708608
+      },
+      "verify/large": {
+        "n": 20,
+        "mean": 0.0058420549961738285,
+        "median": 0.00568189998739399,
+        "stdev": 0.0005288880387345998,
+        "min": 0.0049909999943338335,
+        "max": 0.006812900013756007
+      },
+      "hash_sign/SHA2-256": {
+        "n": 5,
+        "mean": 5.23612280000234,
+        "median": 5.280570400005672,
+        "stdev": 0.08206876942433067,
+        "min": 5.110788899997715,
+        "max": 5.303423599980306
+      },
+      "hash_sign/SHA2-512": {
+        "n": 5,
+        "mean": 4.783086100022774,
+        "median": 4.62438590003876,
+        "stdev": 0.28113768103777664,
+        "min": 4.5982603000011295,
+        "max": 5.263461299997289
+      },
+      "hash_sign/SHAKE-256": {
+        "n": 5,
+        "mean": 4.579588820005301,
+        "median": 4.564848600013647,
+        "stdev": 0.09594259043389529,
+        "min": 4.499918999965303,
+        "max": 4.736446499999147
+      },
+      "hash_verify/SHA2-256": {
+        "n": 20,
+        "mean": 0.004485630002454855,
+        "median": 0.004453299974557012,
+        "stdev": 8.214621003044632e-05,
+        "min": 0.0044024999951943755,
+        "max": 0.004729200038127601
+      },
+      "hash_verify/SHA2-512": {
+        "n": 20,
+        "mean": 0.004599264997523278,
+        "median": 0.004548099997919053,
+        "stdev": 0.0003538406436300513,
+        "min": 0.00425509997876361,
+        "max": 0.005712500016670674
+      },
+      "hash_verify/SHAKE-256": {
+        "n": 20,
+        "mean": 0.0046869350015185775,
+        "median": 0.004572350007947534,
+        "stdev": 0.0003686631770501783,
+        "min": 0.004304800007957965,
+        "max": 0.0058031000080518425
+      }
+    }
+  ]
+}

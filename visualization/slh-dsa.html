@@ -131,6 +131,7 @@ table.params td:last-child { color: #8b949e; }
   <button class="tab-btn" onclick="showTab('ht',this)">Hypertree</button>
   <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
   <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
   <div class="nav-end">
     <label class="nav-label">Algorithm:</label>
     <select id="algo-set" onchange="onAlgoChange()">
@@ -360,6 +361,11 @@ table.params td:last-child { color: #8b949e; }
   <!-- generated dynamically by drawParams() -->
 </div>
 
+<!-- ══════════ PERFORMANCE ══════════ -->
+<div id="tab-performance" class="tab-panel">
+  <!-- generated dynamically by drawPerformance() -->
+</div>
+
 </main>
 
 <script>
@@ -494,7 +500,8 @@ function buildSteps() {
 // ─────────────────────────────────────────────────────────────────────────────
 const RENDERERS = {
   overview: drawOverview, wots: drawWOTS, xmss: drawXMSS,
-  fors: drawFORS, ht: drawHT, signflow: () => { sfStep(0, true); }, params: drawParams
+  fors: drawFORS, ht: drawHT, signflow: () => { sfStep(0, true); }, params: drawParams,
+  performance: drawPerformance
 };
 function showTab(name, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1111,6 +1118,175 @@ function updateDynamic() {
     `Demo uses K = 4, A = 3 (8 leaves per tree) — ${P.name} uses K = ${P.k}, A = ${P.a} (${forsLeaves.toLocaleString()} leaves)`;
   document.getElementById('ht-demo-notice').textContent =
     `Demo uses D = 4, h′ = 2 (4 leaves each) — ${P.name} uses D = ${P.d}, h′ = ${P.hp}`;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFORMANCE
+// ─────────────────────────────────────────────────────────────────────────────
+// Captured from slhdsa/tests/perf/bench_param_sets.py and bench_slhdsa.py
+// (3 repeats each; see slhdsa/tests/perf/results/perf_param_sets_20260717T002341Z.json
+// and perf_20260717T000852Z.json). Only the SHAKE parameter sets have real,
+// runnable code in this repo (SHA2 sets are not implemented — see CLAUDE.md),
+// so no data exists for the SHA2-* entries in the parameter-set selector.
+// Only SLH-DSA-SHAKE-128s is NIST-ACVP-KAT-verified; the other five SHAKE
+// sets were run via monkeypatch + reload of the same algorithm code
+// (slhdsa/tests/perf/param_loader.py) and checked only by a sign/verify
+// self-test, not by NIST vectors.
+const PERF_DATA = {
+  'SHAKE-128s': {keygen:{mean:0.5482,median:0.5394,stdev:0.0196,n:9}, sign:{mean:4.4079,median:4.3415,stdev:0.1404,n:9}, verify:{mean:0.0046,median:0.0045,stdev:0.0006,n:30}},
+  'SHAKE-128f': {keygen:{mean:0.0083,median:0.0083,stdev:0.0002,n:9}, sign:{mean:0.2036,median:0.2039,stdev:0.0014,n:9}, verify:{mean:0.0131,median:0.0127,stdev:0.0009,n:30}},
+  'SHAKE-192s': {keygen:{mean:0.7834,median:0.7833,stdev:0.0041,n:9}, sign:{mean:8.1632,median:8.1814,stdev:0.0718,n:9}, verify:{mean:0.0063,median:0.0063,stdev:0.0002,n:30}},
+  'SHAKE-192f': {keygen:{mean:0.0124,median:0.0121,stdev:0.0008,n:9}, sign:{mean:0.3486,median:0.3480,stdev:0.0051,n:9}, verify:{mean:0.0187,median:0.0187,stdev:0.0004,n:30}},
+  'SHAKE-256s': {keygen:{mean:0.5134,median:0.5123,stdev:0.0067,n:9}, sign:{mean:7.4302,median:7.4382,stdev:0.0153,n:9}, verify:{mean:0.0093,median:0.0091,stdev:0.0006,n:30}},
+  'SHAKE-256f': {keygen:{mean:0.0318,median:0.0318,stdev:0.0004,n:9}, sign:{mean:0.7177,median:0.7185,stdev:0.0055,n:9}, verify:{mean:0.0189,median:0.0187,stdev:0.0006,n:30}},
+};
+const PERF_ORDER = ['SHAKE-128s','SHAKE-128f','SHAKE-192s','SHAKE-192f','SHAKE-256s','SHAKE-256f'];
+
+// SLH-DSA-SHAKE-128s only: does det-vs-hedged / message size / pre-hash
+// algorithm move the needle on signing cost? (bench_slhdsa.py, 13 configs)
+const PERF_128S_CONFIGS = [
+  {name:'keygen',                     mean:0.5481, median:0.5405, stdev:0.0137, n:15},
+  {name:'sign — det, small msg',      mean:4.4443, median:4.4088, stdev:0.1284, n:15},
+  {name:'sign — det, large msg',      mean:4.3441, median:4.3431, stdev:0.0278, n:15},
+  {name:'sign — hedged, small msg',   mean:4.3452, median:4.3433, stdev:0.0487, n:15},
+  {name:'sign — hedged, large msg',   mean:4.3552, median:4.3520, stdev:0.0326, n:15},
+  {name:'verify — small msg',         mean:0.0046, median:0.0045, stdev:0.0003, n:60},
+  {name:'verify — large msg',         mean:0.0045, median:0.0045, stdev:0.0002, n:60},
+  {name:'hash_sign (SHA2-256)',       mean:4.4348, median:4.3613, stdev:0.2350, n:15},
+  {name:'hash_sign (SHA2-512)',       mean:4.5846, median:4.3598, stdev:0.3745, n:15},
+  {name:'hash_sign (SHAKE-256)',      mean:4.5009, median:4.3652, stdev:0.3240, n:15},
+  {name:'hash_verify (SHA2-256)',     mean:0.0045, median:0.0045, stdev:0.0002, n:60},
+  {name:'hash_verify (SHA2-512)',     mean:0.0047, median:0.0046, stdev:0.0004, n:60},
+  {name:'hash_verify (SHAKE-256)',    mean:0.0047, median:0.0046, stdev:0.0003, n:60},
+];
+
+function fmtSec(v) {
+  return v >= 1 ? `${v.toFixed(3)} s` : `${(v*1000).toFixed(2)} ms`;
+}
+
+function drawPerfChart() {
+  const svg = clear('svg-perf');
+  const domainMin = 0.001, domainMax = 16;
+  const logMin = Math.log10(domainMin), logMax = Math.log10(domainMax);
+  const chartX = 132, chartW = 610, rowH = 17, groupGap = 16, barGap = 3;
+  const ops = [
+    {key:'keygen', color:'#0891b2', label:'keygen'},
+    {key:'sign',   color:'#7c3aed', label:'sign'},
+    {key:'verify', color:'#059669', label:'verify'},
+  ];
+  const topMargin = 26;
+  const totalH = topMargin + PERF_ORDER.length * (ops.length*rowH + groupGap);
+  svg.setAttribute('viewBox', `0 0 860 ${totalH + 10}`);
+
+  function xPos(v) {
+    const t = (Math.log10(Math.max(v, domainMin)) - logMin) / (logMax - logMin);
+    return chartX + t * chartW;
+  }
+
+  // Decade gridlines
+  for (const d of [0.001, 0.01, 0.1, 1, 10]) {
+    const x = xPos(d);
+    line(svg, x, topMargin-6, x, totalH, '#21262d', 1);
+    text(svg, x, topMargin-14, d >= 1 ? `${d}s` : `${Math.round(d*1000)}ms`, '#6e7681', 8, 'middle');
+  }
+
+  let y = topMargin;
+  for (const name of PERF_ORDER) {
+    const d = PERF_DATA[name];
+    const isCurrent = name === currentSetName;
+    const groupH = ops.length*rowH;
+    if (isCurrent) rect(svg, 2, y-3, chartX+chartW-2, groupH+4, '#58a6ff0d', 4, '#58a6ff', 1.2);
+    text(svg, chartX-10, y+groupH/2-2, name, isCurrent?'#f0f6fc':'#8b949e', 9, 'end', isCurrent?'700':'normal');
+    text(svg, chartX-10, y+groupH/2+10, name.endsWith('f') ? 'fast' : 'small', isCurrent?'#79c0ff':'#555', 7.5, 'end');
+    ops.forEach((op, i) => {
+      const val = d[op.key].mean;
+      const by = y + i*rowH;
+      const bw = Math.max(2, xPos(val) - chartX);
+      rect(svg, chartX, by, bw, rowH-barGap, op.color, 2);
+      text(svg, xPos(val) + 6, by + (rowH-barGap)/2, fmtSec(val), '#c9d1d9', 8, 'start');
+    });
+    y += groupH + groupGap;
+  }
+}
+
+function drawPerformance() {
+  const p = P;
+  const hasData = PERF_DATA.hasOwnProperty(currentSetName);
+  const rows192v256 = PERF_DATA['SHAKE-192s'].sign.mean > PERF_DATA['SHAKE-256s'].sign.mean;
+
+  document.getElementById('tab-performance').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">Signing cost across parameter sets (log scale)</div>
+      ${!hasData ? `<div class="demo-notice">No benchmark data for ${currentSetName} — only the six SHAKE parameter sets are implemented in this repo (see CLAUDE.md); SHA2 variants are not. Showing all six SHAKE sets below for comparison.</div>` : ''}
+      <svg id="svg-perf" viewBox="0 0 860 470"></svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>keygen</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>sign</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>verify</div>
+      </div>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">Mean of 9 trials (keygen/sign) or 30 trials (verify) across 3 repeats, one Python process per parameter set. Bars are on a <strong>log</strong> x-axis — sign cost spans a ~40&times; range across sets.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Cross-parameter-set summary</div>
+      <table class="params">
+        <thead><tr><th>Parameter set</th><th>n</th><th>h</th><th>d</th><th>h′</th><th>a</th><th>k</th><th>sig (B)</th><th>keygen</th><th>sign</th><th>verify</th></tr></thead>
+        <tbody>
+          ${PERF_ORDER.map(name => {
+            const base = PARAM_SETS[name];
+            const dp = deriveParams(base, name);
+            const d = PERF_DATA[name];
+            const hi = name === currentSetName;
+            return `<tr${hi ? ' style="background:#1f6feb22"' : ''}>
+              <td style="color:#d2a8ff;font-family:monospace">${name}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.n}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.h}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.d}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.hp}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.a}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.k}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.sigBytes.toLocaleString()}</td>
+              <td style="text-align:right;font-family:monospace">${fmtSec(d.keygen.mean)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtSec(d.sign.mean)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtSec(d.verify.mean)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:12px">
+        <div class="ctitle">Why doesn't category track raw speed?</div>
+        <div class="cbody">
+          "s" (small) sets have the smallest signatures but the slowest signing — their per-layer and FORS trees are rebuilt from scratch for every authentication-path node (this reference implementation does no treehash caching, per its spec-fidelity-over-performance design goal), so cost scales with 2<sup>h′</sup> and 2<sup>a</sup>. "f" (fast) sets sign ${(PERF_DATA['SHAKE-128s'].sign.mean/PERF_DATA['SHAKE-128f'].sign.mean).toFixed(0)}&times;–${(PERF_DATA['SHAKE-256s'].sign.mean/PERF_DATA['SHAKE-256f'].sign.mean).toFixed(0)}&times; faster at 2&ndash;3&times; the signature size, but <em>verify</em> slower (verify cost scales with d, the hypertree layer count, which is much larger for "f" sets — see SHAKE-128f verifying ${(PERF_DATA['SHAKE-128f'].verify.mean/PERF_DATA['SHAKE-128s'].verify.mean).toFixed(1)}&times; slower than SHAKE-128s above).
+          ${rows192v256 ? `Category (128/192/256) tracks classical security level, not wall-clock cost: <strong>SHAKE-256s signs faster than SHAKE-192s</strong> (${fmtSec(PERF_DATA['SHAKE-256s'].sign.mean)} vs ${fmtSec(PERF_DATA['SHAKE-192s'].sign.mean)}) because h′ drops from 9 to 8 (halving the dominant 2<sup>h′</sup> hypertree-rebuild cost) even though k rises from 17 to 22 — FIPS 205's parameter table optimizes signature size and security margin per category, not monotonic cross-category runtime.` : ''}
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">SLH-DSA-SHAKE-128s — does operational configuration matter?</div>
+      <table class="params">
+        <thead><tr><th>Configuration</th><th>mean</th><th>median</th><th>stdev</th><th>n</th></tr></thead>
+        <tbody>
+          ${PERF_128S_CONFIGS.map(c => `<tr>
+            <td style="color:#d2a8ff">${c.name}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtSec(c.mean)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtSec(c.median)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtSec(c.stdev)}</td>
+            <td style="text-align:right;color:#8b949e">${c.n}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">Deterministic vs. hedged signing, 32 B vs. 16 KiB messages, and HashSLH-DSA's pre-hash algorithm choice (SHA2-256/512, SHAKE-256) all land within run-to-run noise of each other — signing cost is dominated by hypertree + FORS tree construction, not by the message or by which of these options is chosen.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Methodology</div>
+      <p style="color:#8b949e;font-size:0.825rem;line-height:1.65">
+        Only <strong>SLH-DSA-SHAKE-128s</strong> is a real, NIST-ACVP-KAT-verified implementation in this repo. The other five SHAKE sets shown here run the <em>same, unmodified</em> algorithm code under monkeypatched parameters (<code>slhdsa/tests/perf/param_loader.py</code> reloads the module stack with a different n/h/d/a/k), verified only by a sign/verify round-trip self-test before timing — not by NIST vectors, since none exist for them in this repo. SHA2 parameter sets have no implementation at all (SHAKE-only, per CLAUDE.md), hence no data. Absolute numbers reflect an unoptimized, spec-fidelity reference implementation (naive recursive tree rebuilding, no caching, no constant-time hardening) on whatever machine ran the benchmark — treat them as relative/structural, not as a production performance claim. Full methodology and raw JSON: <code>slhdsa/tests/perf/README.md</code>.
+      </p>
+    </div>
+  `;
+  drawPerfChart();
 }
 
 function drawParams() {

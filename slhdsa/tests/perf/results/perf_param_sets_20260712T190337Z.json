@@ -1,0 +1,2354 @@
+{
+  "SHAKE-128s": {
+    "param_set": "SHAKE-128s",
+    "constants": {
+      "N": 16,
+      "H": 63,
+      "D": 7,
+      "HP": 9,
+      "A": 12,
+      "K": 14,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 32,
+      "LEN2": 3,
+      "LEN": 35,
+      "M_BYTES": 30,
+      "PK_SIZE": 32,
+      "SK_SIZE": 64,
+      "SIG_SIZE": 7856,
+      "_KA_BYTES": 21,
+      "_IDX_TREE_BYTES": 7,
+      "_IDX_LEAF_BYTES": 2,
+      "MD_END": 21,
+      "TREE_END": 28,
+      "LEAF_END": 30,
+      "IDX_TREE_MASK": 18014398509481983,
+      "IDX_LEAF_MASK": 511
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.6550902999588288,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.6491202000179328,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.6637520000222139,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 5.343906599970069,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 5.304397100000642,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 5.369652700028382,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.005313300003763288,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.004935799981467426,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.005135399987921119,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.005250099988188595,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.005128300050273538,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.007291299989446998,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.005534800002351403,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.0056508000125177205,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.00805260002380237,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.005438900028821081,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.6654864000156522,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.6647376000182703,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.6555890999734402,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 5.525877000007313,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 5.522224500018638,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 5.567409900017083,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.0050882999785244465,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.005266199994366616,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.005113899998832494,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.007492300006560981,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.007329199986997992,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.005803300009574741,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.005835499963723123,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.005140400025993586,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.0055100999888964,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.005503599997609854,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.6566374000394717,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.6694331999751739,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.6587837000261061,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 5.416354100045282,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 5.372081400011666,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 5.435941200004891,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.0060887999716214836,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.0067340999958105385,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.0055330999894067645,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.007472900033462793,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.00643170002149418,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.006869399978313595,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.007307500054594129,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.007066400023177266,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.005927199963480234,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.005339000024832785,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.6598477666718989,
+        "median": 0.6587837000261061,
+        "stdev": 0.006423758006775757,
+        "min": 0.6491202000179328,
+        "max": 0.6694331999751739
+      },
+      "sign": {
+        "n": 9,
+        "mean": 5.428649388900441,
+        "median": 5.416354100045282,
+        "stdev": 0.09149375122257125,
+        "min": 5.304397100000642,
+        "max": 5.567409900017083
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.006019473335860918,
+        "median": 0.005592800007434562,
+        "stdev": 0.0009247799772282342,
+        "min": 0.004935799981467426,
+        "max": 0.00805260002380237
+      }
+    }
+  },
+  "SHAKE-128f": {
+    "param_set": "SHAKE-128f",
+    "constants": {
+      "N": 16,
+      "H": 66,
+      "D": 22,
+      "HP": 3,
+      "A": 6,
+      "K": 33,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 32,
+      "LEN2": 3,
+      "LEN": 35,
+      "M_BYTES": 34,
+      "PK_SIZE": 32,
+      "SK_SIZE": 64,
+      "SIG_SIZE": 17088,
+      "_KA_BYTES": 25,
+      "_IDX_TREE_BYTES": 8,
+      "_IDX_LEAF_BYTES": 1,
+      "MD_END": 25,
+      "TREE_END": 33,
+      "LEAF_END": 34,
+      "IDX_TREE_MASK": 9223372036854775807,
+      "IDX_LEAF_MASK": 7
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.011826400004792958,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.011261300009209663,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.009716900007333606,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.2907077999552712,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.29202249995432794,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.2890834999852814,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.016314400010742247,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.01687540003331378,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.01414179999846965,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.014133799995761365,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.01578509999671951,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.014994900033343583,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.01673149998532608,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.015797399973962456,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.015429900027811527,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.01489460002630949,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.009273600007873029,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.00946009997278452,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.009767699986696243,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.29028010001638904,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.3078728000400588,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.2701086000306532,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.018789199995808303,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.017547200026456267,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.019305800029542297,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.01572130003478378,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.018036500026937574,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.017366699990816414,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.02031140000326559,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.016534400056116283,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.01872769999317825,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.015904800035059452,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.01204990001861006,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.009233899996615946,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.009440999943763018,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.25929010001709685,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.24613400001544505,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.2620059999753721,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.014664700021967292,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.018612199986819178,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.014523599995300174,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.01854369998909533,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.018495599972084165,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.021827400021720678,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.014597800036426634,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.014891800004988909,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.014585800003260374,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.022099100053310394,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.010225644438631006,
+        "median": 0.009716900007333606,
+        "stdev": 0.0011469042152086853,
+        "min": 0.009233899996615946,
+        "max": 0.01204990001861006
+      },
+      "sign": {
+        "n": 9,
+        "mean": 0.2786117111099884,
+        "median": 0.2890834999852814,
+        "stdev": 0.020013634488621295,
+        "min": 0.24613400001544505,
+        "max": 0.3078728000400588
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.016872850011956566,
+        "median": 0.016424400033429265,
+        "stdev": 0.002208749854593389,
+        "min": 0.014133799995761365,
+        "max": 0.022099100053310394
+      }
+    }
+  },
+  "SHAKE-192s": {
+    "param_set": "SHAKE-192s",
+    "constants": {
+      "N": 24,
+      "H": 63,
+      "D": 7,
+      "HP": 9,
+      "A": 14,
+      "K": 17,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 48,
+      "LEN2": 3,
+      "LEN": 51,
+      "M_BYTES": 39,
+      "PK_SIZE": 48,
+      "SK_SIZE": 96,
+      "SIG_SIZE": 16224,
+      "_KA_BYTES": 30,
+      "_IDX_TREE_BYTES": 7,
+      "_IDX_LEAF_BYTES": 2,
+      "MD_END": 30,
+      "TREE_END": 37,
+      "LEAF_END": 39,
+      "IDX_TREE_MASK": 18014398509481983,
+      "IDX_LEAF_MASK": 511
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.9507786000031047,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.9333629999891855,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.9514080000226386,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 10.059143500053324,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 10.452755399979651,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 10.272095100022852,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.00756060000276193,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.007112700026482344,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.0076991000096313655,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.007138599990867078,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.007154099992476404,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.007116299995686859,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.006992699985858053,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.007253500050865114,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.007721500005573034,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.011417900037486106,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.9643990999902599,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.9885969999595545,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.9583977999864146,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 10.09582720004255,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 10.318552999990061,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 10.238610400003381,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.0070667999680154026,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.006940399995073676,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.007647900027222931,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.007856800046283752,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.008022600028198212,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.011137800000142306,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.00959189998684451,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.00933130003977567,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.00808649999089539,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.007362900010775775,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.9465606000158004,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.9929025999736041,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.9634469000156969,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 10.516830899985507,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 10.260541399999056,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 10.460199199966155,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.008727299980819225,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.007340200012549758,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.008176599978469312,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.008511400024872273,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.008593800012022257,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.009168299962766469,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.007749800046440214,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.008419300022069365,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.007539300015196204,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.008026900002732873,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.9610948444395844,
+        "median": 0.9583977999864146,
+        "stdev": 0.019275585273017582,
+        "min": 0.9333629999891855,
+        "max": 0.9929025999736041
+      },
+      "sign": {
+        "n": 9,
+        "mean": 10.297172900004727,
+        "median": 10.272095100022852,
+        "stdev": 0.15893734999756517,
+        "min": 10.059143500053324,
+        "max": 10.516830899985507
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.008082160008295128,
+        "median": 0.007735650026006624,
+        "stdev": 0.0011229365549727311,
+        "min": 0.006940399995073676,
+        "max": 0.011417900037486106
+      }
+    }
+  },
+  "SHAKE-192f": {
+    "param_set": "SHAKE-192f",
+    "constants": {
+      "N": 24,
+      "H": 66,
+      "D": 22,
+      "HP": 3,
+      "A": 8,
+      "K": 33,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 48,
+      "LEN2": 3,
+      "LEN": 51,
+      "M_BYTES": 42,
+      "PK_SIZE": 48,
+      "SK_SIZE": 96,
+      "SIG_SIZE": 35664,
+      "_KA_BYTES": 33,
+      "_IDX_TREE_BYTES": 8,
+      "_IDX_LEAF_BYTES": 1,
+      "MD_END": 33,
+      "TREE_END": 41,
+      "LEAF_END": 42,
+      "IDX_TREE_MASK": 9223372036854775807,
+      "IDX_LEAF_MASK": 7
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.014026799995917827,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.014902999973855913,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.01486800005659461,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.4762021000497043,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.4214917999925092,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.434871600009501,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.020698600041214377,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.022604099998716265,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.02417089999653399,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.024460199987515807,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.02181219996418804,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.021940200007520616,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.022430799959693104,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.021652799972798675,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.022161100001540035,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.021887300012167543,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.013862099964171648,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.01521599997067824,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.0180891000200063,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.43537530000321567,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.44744730001548305,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.4467106999945827,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.021448599989525974,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.020933899970259517,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.02346849994501099,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.023363000014796853,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.0238406999851577,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.024837200006004423,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.023406899999827147,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.025891500001307577,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.02418589999433607,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.022012599976733327,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.01466789998812601,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.016634500003419816,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.01958069996908307,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.4586504999897443,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.4268463999615051,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.4483087999979034,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.023155700007919222,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.023071100004017353,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.026148099976126105,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.023836699954699725,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.023578999971505255,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.024654699955135584,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.0221472000121139,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.021808099991176277,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.02271279995329678,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.02614420000463724,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.01576089999353927,
+        "median": 0.014902999973855913,
+        "stdev": 0.0019497415320646279,
+        "min": 0.013862099964171648,
+        "max": 0.01958069996908307
+      },
+      "sign": {
+        "n": 9,
+        "mean": 0.44398938889046097,
+        "median": 0.4467106999945827,
+        "stdev": 0.016763006561168036,
+        "min": 0.4214917999925092,
+        "max": 0.4762021000497043
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.02314881998851585,
+        "median": 0.023113400005968288,
+        "stdev": 0.0014710181313422285,
+        "min": 0.020698600041214377,
+        "max": 0.026148099976126105
+      }
+    }
+  },
+  "SHAKE-256s": {
+    "param_set": "SHAKE-256s",
+    "constants": {
+      "N": 32,
+      "H": 64,
+      "D": 8,
+      "HP": 8,
+      "A": 14,
+      "K": 22,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 64,
+      "LEN2": 3,
+      "LEN": 67,
+      "M_BYTES": 47,
+      "PK_SIZE": 64,
+      "SK_SIZE": 128,
+      "SIG_SIZE": 29792,
+      "_KA_BYTES": 39,
+      "_IDX_TREE_BYTES": 7,
+      "_IDX_LEAF_BYTES": 1,
+      "MD_END": 39,
+      "TREE_END": 46,
+      "LEAF_END": 47,
+      "IDX_TREE_MASK": 72057594037927935,
+      "IDX_LEAF_MASK": 255
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.6602674999739975,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.6501483999891207,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.6958321999991313,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 9.224398999998812,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 9.267073400027584,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 9.214501400012523,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.010736399970483035,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.010575299966149032,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.012592900020536035,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.011719100002665073,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.010717700002714992,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.011426500044763088,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.012190999987069517,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.01126020000083372,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.011027100030332804,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.014904399984516203,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.6013366000261158,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.5513998999958858,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.5508820000104606,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 8.406481999962125,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 8.189292999973986,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 8.284607800014783,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.009719699970446527,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.010405600012745708,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.009669199993368238,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.009831400006078184,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.009773399971891195,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.010027299984358251,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.01010600000154227,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.009995699976570904,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.01026010001078248,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.009632200002670288,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.5395497999852523,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.5454630999593064,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.5440904999850318,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 7.984533499984536,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 7.97215960000176,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 8.039400999958161,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.010474300011992455,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.009871499962173402,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.010970100003760308,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.009845900000073016,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.010420500009786338,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.01019360002828762,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.00982589996419847,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.010265199991408736,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.00951919995713979,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.0100273999851197,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.593218888880478,
+        "median": 0.5513998999958858,
+        "stdev": 0.06067093558897025,
+        "min": 0.5395497999852523,
+        "max": 0.6958321999991313
+      },
+      "sign": {
+        "n": 9,
+        "mean": 8.509161188881585,
+        "median": 8.284607800014783,
+        "stdev": 0.5624792564811004,
+        "min": 7.97215960000176,
+        "max": 9.267073400027584
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.010599493328481913,
+        "median": 0.010262650001095608,
+        "stdev": 0.0011175244117529771,
+        "min": 0.00951919995713979,
+        "max": 0.014904399984516203
+      }
+    }
+  },
+  "SHAKE-256f": {
+    "param_set": "SHAKE-256f",
+    "constants": {
+      "N": 32,
+      "H": 68,
+      "D": 17,
+      "HP": 4,
+      "A": 9,
+      "K": 35,
+      "LG_W": 4,
+      "W": 16,
+      "LEN1": 64,
+      "LEN2": 3,
+      "LEN": 67,
+      "M_BYTES": 49,
+      "PK_SIZE": 64,
+      "SK_SIZE": 128,
+      "SIG_SIZE": 49856,
+      "_KA_BYTES": 40,
+      "_IDX_TREE_BYTES": 8,
+      "_IDX_LEAF_BYTES": 1,
+      "MD_END": 40,
+      "TREE_END": 48,
+      "LEAF_END": 49,
+      "IDX_TREE_MASK": 18446744073709551615,
+      "IDX_LEAF_MASK": 15
+    },
+    "raw": [
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.034048100002110004,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.03474609996192157,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.034692599961999804,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.7714371000183746,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.7677991000236943,
+        "repeat": 0
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.7717205999651924,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.021297700004652143,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.02035870001418516,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.020205300010275096,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.020986500021535903,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.02100609999615699,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.020055700035300106,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.020417099993210286,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.02049790002638474,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.02098380000097677,
+        "repeat": 0
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.020622999989427626,
+        "repeat": 0
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.03429609996965155,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.034664099977817386,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.03461189998779446,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.8014497000258416,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.7924926000414416,
+        "repeat": 1
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.7818809000309557,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.02041040000040084,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.019897299993317574,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.019875300000421703,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.0196830999921076,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.020027799997478724,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.021166599995922297,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.022453000012319535,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.02318409999134019,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.028466599993407726,
+        "repeat": 1
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.023032700002659112,
+        "repeat": 1
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 0,
+        "seconds": 0.03472559998044744,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 1,
+        "seconds": 0.035695400030817837,
+        "repeat": 2
+      },
+      {
+        "config": "keygen",
+        "op": "keygen",
+        "trial": 2,
+        "seconds": 0.03602100000716746,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 0,
+        "seconds": 0.7611279000411741,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 1,
+        "seconds": 0.7593590000178665,
+        "repeat": 2
+      },
+      {
+        "config": "sign",
+        "op": "sign",
+        "trial": 2,
+        "seconds": 0.7590132000041194,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 0,
+        "seconds": 0.019513200037181377,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 1,
+        "seconds": 0.019620200037024915,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 2,
+        "seconds": 0.01968180004041642,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 3,
+        "seconds": 0.019433800014667213,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 4,
+        "seconds": 0.019337299978360534,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 5,
+        "seconds": 0.01989060000050813,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 6,
+        "seconds": 0.021443000005092472,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 7,
+        "seconds": 0.02037039998685941,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 8,
+        "seconds": 0.0204712999984622,
+        "repeat": 2
+      },
+      {
+        "config": "verify",
+        "op": "verify",
+        "trial": 9,
+        "seconds": 0.02072339999722317,
+        "repeat": 2
+      }
+    ],
+    "overall_summary": {
+      "keygen": {
+        "n": 9,
+        "mean": 0.03483343331996972,
+        "median": 0.034692599961999804,
+        "stdev": 0.0006300413452646937,
+        "min": 0.034048100002110004,
+        "max": 0.03602100000716746
+      },
+      "sign": {
+        "n": 9,
+        "mean": 0.7740311222409623,
+        "median": 0.7714371000183746,
+        "stdev": 0.015051708578465424,
+        "min": 0.7590132000041194,
+        "max": 0.8014497000258416
+      },
+      "verify": {
+        "n": 30,
+        "mean": 0.0208371233389092,
+        "median": 0.020413749996805564,
+        "stdev": 0.0017371201184944935,
+        "min": 0.019337299978360534,
+        "max": 0.028466599993407726
+      }
+    }
+  }
+}
