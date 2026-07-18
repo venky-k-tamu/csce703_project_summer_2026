@@ -131,6 +131,7 @@ table.params td:last-child { color: #8b949e; }
   <button class="tab-btn" onclick="showTab('compress',this)">Compression</button>
   <button class="tab-btn" onclick="showTab('flow',this)">KEM Flow</button>
   <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
   <div class="nav-end">
     <label class="nav-label">Algorithm:</label>
     <select id="algo-set" onchange="onAlgoChange()">
@@ -360,6 +361,11 @@ table.params td:last-child { color: #8b949e; }
   <!-- generated dynamically by drawParams() -->
 </div>
 
+<!-- ══════════ PERFORMANCE ══════════ -->
+<div id="tab-performance" class="tab-panel">
+  <!-- generated dynamically by drawPerformance() -->
+</div>
+
 </main>
 
 <script>
@@ -445,7 +451,8 @@ let P = deriveParams(PARAM_SETS['ML-KEM-768'], 'ML-KEM-768');
 const RENDERERS = {
   overview: drawOverview, module: drawModule, ntt: drawNTT,
   sampling: drawSamp, compress: drawCompress,
-  flow: () => { kemStep(0, true); }, params: drawParams
+  flow: () => { kemStep(0, true); }, params: drawParams,
+  performance: drawPerformance
 };
 function showTab(name, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -1023,6 +1030,149 @@ function drawFlow(data, hi=[], stepTitle='') {
 // ─────────────────────────────────────────────────────────────────────────────
 // PARAMETERS
 // ─────────────────────────────────────────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFORMANCE
+// ─────────────────────────────────────────────────────────────────────────────
+// Captured from mlkem/tests/perf/bench_param_sets.py and bench_mlkem.py
+// (3 repeats, 100 trials/config each; see mlkem/tests/perf/results/).
+// Only ML-KEM-768 is NIST-ACVP-KAT-verified; ML-KEM-512/1024 were run via
+// monkeypatch + reload of the same algorithm code (mlkem/tests/perf/param_loader.py)
+// and checked only by an encaps/decaps self-test, not by NIST vectors.
+const PERF_DATA = {
+  'ML-KEM-512':  {keygen:{mean:5.4883,median:5.4176,stdev:0.2931,n:300}, encaps:{mean:8.3343,median:8.1948,stdev:0.5901,n:300}, decaps:{mean:9.2312,median:9.0995,stdev:0.5259,n:300}},
+  'ML-KEM-768':  {keygen:{mean:8.0958,median:7.9975,stdev:0.4043,n:300}, encaps:{mean:12.1867,median:12.0181,stdev:0.5515,n:300}, decaps:{mean:13.0715,median:12.9403,stdev:0.5723,n:300}},
+  'ML-KEM-1024': {keygen:{mean:11.3880,median:11.2767,stdev:0.4205,n:300}, encaps:{mean:16.9402,median:16.6948,stdev:0.9377,n:300}, decaps:{mean:18.4083,median:18.0404,stdev:0.9920,n:300}},
+};
+const PERF_ORDER = ['ML-KEM-512', 'ML-KEM-768', 'ML-KEM-1024'];
+
+// ML-KEM-768 only: does decaps take a different amount of time on a valid
+// vs. a bit-flipped (implicit-rejection-path) ciphertext? (bench_mlkem.py)
+const PERF_768_CONFIGS = [
+  {name:'keygen',                        mean:7.9881,  median:7.9131,  stdev:0.3426, n:300},
+  {name:'encaps',                        mean:12.1382, median:11.9670, stdev:0.6238, n:300},
+  {name:'decaps — valid ciphertext',     mean:13.1500, median:12.9136, stdev:0.6022, n:300},
+  {name:'decaps — corrupted ciphertext', mean:13.0456, median:12.8772, stdev:0.7138, n:300},
+];
+
+function fmtMs(v) {
+  return `${v.toFixed(2)} ms`;
+}
+
+function drawPerfChart() {
+  const svg = clear('svg-perf');
+  const ops = [
+    {key:'keygen', color:'#0891b2', label:'keygen'},
+    {key:'encaps', color:'#7c3aed', label:'encaps'},
+    {key:'decaps', color:'#059669', label:'decaps'},
+  ];
+  const domainMax = Math.max(...PERF_ORDER.flatMap(name => ops.map(op => PERF_DATA[name][op.key].mean))) * 1.15;
+  const chartX = 132, chartW = 610, rowH = 20, groupGap = 18, barGap = 3;
+  const topMargin = 26;
+  const totalH = topMargin + PERF_ORDER.length * (ops.length*rowH + groupGap);
+  svg.setAttribute('viewBox', `0 0 860 ${totalH + 10}`);
+
+  function xPos(v) { return chartX + (v / domainMax) * chartW; }
+
+  // Gridlines every ~5ms
+  const step = domainMax > 15 ? 5 : 2;
+  for (let g = 0; g <= domainMax; g += step) {
+    const x = xPos(g);
+    line(svg, x, topMargin-6, x, totalH, '#21262d', 1);
+    text(svg, x, topMargin-14, `${g}ms`, '#6e7681', 8, 'middle');
+  }
+
+  let y = topMargin;
+  for (const name of PERF_ORDER) {
+    const d = PERF_DATA[name];
+    const isCurrent = name === currentSetName;
+    const groupH = ops.length*rowH;
+    if (isCurrent) rect(svg, 2, y-3, chartX+chartW-2, groupH+4, '#58a6ff0d', 4, '#58a6ff', 1.2);
+    text(svg, chartX-10, y+groupH/2, name, isCurrent?'#f0f6fc':'#8b949e', 9, 'end', isCurrent?'700':'normal');
+    ops.forEach((op, i) => {
+      const val = d[op.key].mean;
+      const by = y + i*rowH;
+      const bw = Math.max(2, xPos(val) - chartX);
+      rect(svg, chartX, by, bw, rowH-barGap, op.color, 2);
+      text(svg, xPos(val) + 6, by + (rowH-barGap)/2, fmtMs(val), '#c9d1d9', 8, 'start');
+    });
+    y += groupH + groupGap;
+  }
+}
+
+function drawPerformance() {
+  document.getElementById('tab-performance').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">keygen / encaps / decaps across parameter sets</div>
+      <svg id="svg-perf" viewBox="0 0 860 240"></svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>keygen</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>encaps</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>decaps</div>
+      </div>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">Mean of 300 trials (3 repeats x 100) per parameter set. Linear x-axis — unlike SLH-DSA's hash-tree construction, ML-KEM's lattice/NTT operations scale smoothly with module rank k, so no log scale is needed here.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Cross-parameter-set summary</div>
+      <table class="params">
+        <thead><tr><th>Parameter set</th><th>k</th><th>η₁</th><th>η₂</th><th>d_u</th><th>d_v</th><th>|ek| (B)</th><th>|c| (B)</th><th>keygen</th><th>encaps</th><th>decaps</th></tr></thead>
+        <tbody>
+          ${PERF_ORDER.map(name => {
+            const base = PARAM_SETS[name];
+            const dp = deriveParams(base, name);
+            const d = PERF_DATA[name];
+            const hi = name === currentSetName;
+            return `<tr${hi ? ' style="background:#1f6feb22"' : ''}>
+              <td style="color:#d2a8ff;font-family:monospace">${name}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.k}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.eta1}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.eta2}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.du}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.dv}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.ekBytes.toLocaleString()}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.ctBytes.toLocaleString()}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.keygen.mean)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.encaps.mean)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.decaps.mean)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:12px">
+        <div class="ctitle">Cost scales smoothly with module rank k</div>
+        <div class="cbody">
+          Every operation grows roughly linearly with k (2 &rarr; 3 &rarr; 4): ML-KEM-1024's decaps (${fmtMs(PERF_DATA['ML-KEM-1024'].decaps.mean)}) is about ${(PERF_DATA['ML-KEM-1024'].decaps.mean/PERF_DATA['ML-KEM-512'].decaps.mean).toFixed(1)}&times; ML-KEM-512's (${fmtMs(PERF_DATA['ML-KEM-512'].decaps.mean)}) &mdash; close to the 2&times; growth in k itself, since matrix&ndash;vector products over Â (k&times;k) dominate cost. This is unlike SLH-DSA, where signing cost varies by 1&ndash;2 orders of magnitude across parameter sets because of exponential (2<sup>h&prime;</sup>, 2<sup>a</sup>) tree-rebuild terms with no equivalent here &mdash; ML-KEM has no trees, only NTT-domain polynomial arithmetic.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">ML-KEM-768 — does the implicit-rejection path cost extra time?</div>
+      <table class="params">
+        <thead><tr><th>Configuration</th><th>mean</th><th>median</th><th>stdev</th><th>n</th></tr></thead>
+        <tbody>
+          ${PERF_768_CONFIGS.map(c => `<tr>
+            <td style="color:#d2a8ff">${c.name}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.mean)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.median)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.stdev)}</td>
+            <td style="text-align:right;color:#8b949e">${c.n}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">FIPS 203 Algorithm 21's decaps returns the implicit-rejection key K&#772; = J(z &Vert; c) on a ciphertext mismatch instead of raising, specifically so a timing side channel can't distinguish "valid" from "rejected." Valid-ciphertext and corrupted-ciphertext decaps land within noise of each other here (${fmtMs(PERF_768_CONFIGS[2].mean)} vs ${fmtMs(PERF_768_CONFIGS[3].mean)}), consistent with that design goal — though this reference implementation makes no constant-time claim (see Methodology below), so this is a rough wall-clock check, not a rigorous side-channel analysis.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Methodology</div>
+      <p style="color:#8b949e;font-size:0.825rem;line-height:1.65">
+        Only <strong>ML-KEM-768</strong> is a real, NIST-ACVP-KAT-verified implementation in this repo. ML-KEM-512 and ML-KEM-1024 run the <em>same, unmodified</em> algorithm code under monkeypatched parameters (<code>mlkem/tests/perf/param_loader.py</code> reloads the module stack with a different k/η₁/η₂/d_u/d_v), verified only by an encaps/decaps round-trip self-test before timing — not by NIST vectors, since none exist for them in this repo. Absolute numbers reflect an unoptimized, spec-fidelity reference implementation (pure Python, no constant-time hardening, no vectorization) on whatever machine ran the benchmark — treat them as relative/structural, not as a production performance or side-channel claim. Full methodology and raw JSON: <code>mlkem/tests/perf/README.md</code>.
+      </p>
+    </div>
+  `;
+  drawPerfChart();
+}
+
 function drawParams() {
   const p = P;
   const nistLevel = p.level === 1 ? 'I' : p.level === 3 ? 'III' : 'V';

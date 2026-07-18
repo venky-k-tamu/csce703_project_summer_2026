@@ -1,0 +1,8547 @@
+{
+  "timestamp": "20260717T010317Z",
+  "params": {
+    "repeats": 3,
+    "trials": 100
+  },
+  "raw": [
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.007824800006346777,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.007887299987487495,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.007842699997127056,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.007859699995606206,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.007771399992634542,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 5,
+      "seconds": 0.007973399988259189,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 6,
+      "seconds": 0.007794299992383458,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 7,
+      "seconds": 0.007869400011259131,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 8,
+      "seconds": 0.007661700001335703,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 9,
+      "seconds": 0.007781799999065697,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 10,
+      "seconds": 0.0076905000023543835,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 11,
+      "seconds": 0.007897800009232014,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 12,
+      "seconds": 0.0075970000034430996,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 13,
+      "seconds": 0.008117300007143058,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 14,
+      "seconds": 0.007769100004225038,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 15,
+      "seconds": 0.007995699997991323,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 16,
+      "seconds": 0.007712799997534603,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 17,
+      "seconds": 0.00796950000221841,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 18,
+      "seconds": 0.007790800009388477,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 19,
+      "seconds": 0.008099400001810864,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 20,
+      "seconds": 0.007626000005984679,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 21,
+      "seconds": 0.008010600009583868,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 22,
+      "seconds": 0.007779899999150075,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 23,
+      "seconds": 0.009611300003598444,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 24,
+      "seconds": 0.008956700010458007,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 25,
+      "seconds": 0.007946099998662248,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 26,
+      "seconds": 0.007678099995246157,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 27,
+      "seconds": 0.010191699999268167,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 28,
+      "seconds": 0.008524000004399568,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 29,
+      "seconds": 0.00778580000041984,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 30,
+      "seconds": 0.007965800003148615,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 31,
+      "seconds": 0.007805300003383309,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 32,
+      "seconds": 0.009202000001096167,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 33,
+      "seconds": 0.008287699994980358,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 34,
+      "seconds": 0.00897780001105275,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 35,
+      "seconds": 0.008805899997241795,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 36,
+      "seconds": 0.008529500002623536,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 37,
+      "seconds": 0.008303399998112582,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 38,
+      "seconds": 0.008422500002779998,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 39,
+      "seconds": 0.007934000008390285,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 40,
+      "seconds": 0.00795769999967888,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 41,
+      "seconds": 0.007959099995787255,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 42,
+      "seconds": 0.007835700002033263,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 43,
+      "seconds": 0.007896499999333173,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 44,
+      "seconds": 0.007634699999471195,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 45,
+      "seconds": 0.007889199987403117,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 46,
+      "seconds": 0.007768299998133443,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 47,
+      "seconds": 0.00778060000448022,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 48,
+      "seconds": 0.0076296000042930245,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 49,
+      "seconds": 0.008145200001308694,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 50,
+      "seconds": 0.008538899986888282,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 51,
+      "seconds": 0.007920799995190464,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 52,
+      "seconds": 0.008025999995879829,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 53,
+      "seconds": 0.007944299999508075,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 54,
+      "seconds": 0.007762699999148026,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 55,
+      "seconds": 0.007957300011184998,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 56,
+      "seconds": 0.007672899999306537,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 57,
+      "seconds": 0.007887800005846657,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 58,
+      "seconds": 0.007762900000670925,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 59,
+      "seconds": 0.008121899998513982,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 60,
+      "seconds": 0.007905299993581139,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 61,
+      "seconds": 0.008042499990551732,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 62,
+      "seconds": 0.007799699989845976,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 63,
+      "seconds": 0.0078071000025374815,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 64,
+      "seconds": 0.007775199992465787,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 65,
+      "seconds": 0.008082000000285916,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 66,
+      "seconds": 0.007698300003539771,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 67,
+      "seconds": 0.008158900003763847,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 68,
+      "seconds": 0.007695099993725307,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 69,
+      "seconds": 0.007896800001617521,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 70,
+      "seconds": 0.007757700004731305,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 71,
+      "seconds": 0.007946900004753843,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 72,
+      "seconds": 0.007748799995169975,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 73,
+      "seconds": 0.00808369999867864,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 74,
+      "seconds": 0.007620300006237812,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 75,
+      "seconds": 0.00796519999857992,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 76,
+      "seconds": 0.007777799997711554,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 77,
+      "seconds": 0.007977900007972494,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 78,
+      "seconds": 0.007725200004642829,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 79,
+      "seconds": 0.007756599996355362,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 80,
+      "seconds": 0.007804500011843629,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 81,
+      "seconds": 0.007995399995706975,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 82,
+      "seconds": 0.007647899998119101,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 83,
+      "seconds": 0.007877399999415502,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 84,
+      "seconds": 0.0076542000024346635,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 85,
+      "seconds": 0.008171499997843057,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 86,
+      "seconds": 0.007678199996007606,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 87,
+      "seconds": 0.007979299989528954,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 88,
+      "seconds": 0.007938900002045557,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 89,
+      "seconds": 0.007701199996517971,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 90,
+      "seconds": 0.00777689999085851,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 91,
+      "seconds": 0.007982900002389215,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 92,
+      "seconds": 0.00790880000567995,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 93,
+      "seconds": 0.007876500007114373,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 94,
+      "seconds": 0.007735999999567866,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 95,
+      "seconds": 0.008070800002315082,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 96,
+      "seconds": 0.00782220000110101,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 97,
+      "seconds": 0.007823899999493733,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 98,
+      "seconds": 0.007821299994247966,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 99,
+      "seconds": 0.00815100000181701,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 0,
+      "seconds": 0.012519299998530187,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 1,
+      "seconds": 0.012275299988687038,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 2,
+      "seconds": 0.012562300005811267,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 3,
+      "seconds": 0.011845300003187731,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 4,
+      "seconds": 0.012055099999997765,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 5,
+      "seconds": 0.011912000001757406,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 6,
+      "seconds": 0.012174200004665181,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 7,
+      "seconds": 0.011782100002164952,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 8,
+      "seconds": 0.012108800001442432,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 9,
+      "seconds": 0.012251599997398444,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 10,
+      "seconds": 0.012297799999942072,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 11,
+      "seconds": 0.012211300010676496,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 12,
+      "seconds": 0.012013700004899874,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 13,
+      "seconds": 0.012383099994622171,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 14,
+      "seconds": 0.011981200004811399,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 15,
+      "seconds": 0.011965800003963523,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 16,
+      "seconds": 0.011890900001162663,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 17,
+      "seconds": 0.01191730001301039,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 18,
+      "seconds": 0.012049500001012348,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 19,
+      "seconds": 0.012002499992377125,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 20,
+      "seconds": 0.012003799987724051,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 21,
+      "seconds": 0.012155299991718493,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 22,
+      "seconds": 0.011937800009036437,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 23,
+      "seconds": 0.011950800006161444,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 24,
+      "seconds": 0.01187210000352934,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 25,
+      "seconds": 0.011822999993455596,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 26,
+      "seconds": 0.01203729999542702,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 27,
+      "seconds": 0.011895300005562603,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 28,
+      "seconds": 0.011967300000833347,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 29,
+      "seconds": 0.011808600000222214,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 30,
+      "seconds": 0.011730400001397356,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 31,
+      "seconds": 0.01328319999447558,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 32,
+      "seconds": 0.012665799993555993,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 33,
+      "seconds": 0.014009800011990592,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 34,
+      "seconds": 0.01231210000696592,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 35,
+      "seconds": 0.012129299997468479,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 36,
+      "seconds": 0.012725099993986078,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 37,
+      "seconds": 0.014169899994158186,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 38,
+      "seconds": 0.012762099999235943,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 39,
+      "seconds": 0.01275970001006499,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 40,
+      "seconds": 0.012178999997559004,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 41,
+      "seconds": 0.011906800005817786,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 42,
+      "seconds": 0.0121454000036465,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 43,
+      "seconds": 0.012437999990652315,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 44,
+      "seconds": 0.011846900000819005,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 45,
+      "seconds": 0.012024999989080243,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 46,
+      "seconds": 0.012050800010911189,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 47,
+      "seconds": 0.011992400002782233,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 48,
+      "seconds": 0.01224109999020584,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 49,
+      "seconds": 0.012371000004350208,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 50,
+      "seconds": 0.01214110000000801,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 51,
+      "seconds": 0.012347600000794046,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 52,
+      "seconds": 0.012679999999818392,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 53,
+      "seconds": 0.01202549999288749,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 54,
+      "seconds": 0.012599199995747767,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 55,
+      "seconds": 0.012323000002652407,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 56,
+      "seconds": 0.012415799996233545,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 57,
+      "seconds": 0.012250899992068298,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 58,
+      "seconds": 0.01208760000008624,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 59,
+      "seconds": 0.011885300002177246,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 60,
+      "seconds": 0.019057199999224395,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 61,
+      "seconds": 0.013152900006389245,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 62,
+      "seconds": 0.012443299987353384,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 63,
+      "seconds": 0.012681200008955784,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 64,
+      "seconds": 0.012081299995770678,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 65,
+      "seconds": 0.01177510000707116,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 66,
+      "seconds": 0.01209210000524763,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 67,
+      "seconds": 0.012082799992640503,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 68,
+      "seconds": 0.011960000003455207,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 69,
+      "seconds": 0.011882999999215826,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 70,
+      "seconds": 0.011943100005737506,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 71,
+      "seconds": 0.012030500001856126,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 72,
+      "seconds": 0.012024299998302013,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 73,
+      "seconds": 0.011961399999563582,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 74,
+      "seconds": 0.012183799990452826,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 75,
+      "seconds": 0.013405200006673113,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 76,
+      "seconds": 0.013668200001120567,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 77,
+      "seconds": 0.013544999994337559,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 78,
+      "seconds": 0.013286499990499578,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 79,
+      "seconds": 0.01348619999771472,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 80,
+      "seconds": 0.013663099991390482,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 81,
+      "seconds": 0.01302630000282079,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 82,
+      "seconds": 0.012587400007760152,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 83,
+      "seconds": 0.01268770000024233,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 84,
+      "seconds": 0.012202199999592267,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 85,
+      "seconds": 0.011939300005906262,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 86,
+      "seconds": 0.012244400000781752,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 87,
+      "seconds": 0.011869199995999224,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 88,
+      "seconds": 0.012085800000932068,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 89,
+      "seconds": 0.011777800013078377,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 90,
+      "seconds": 0.011951699998462573,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 91,
+      "seconds": 0.01185720000648871,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 92,
+      "seconds": 0.01193500000226777,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 93,
+      "seconds": 0.011881900005391799,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 94,
+      "seconds": 0.011830799994640984,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 95,
+      "seconds": 0.012003200012259185,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 96,
+      "seconds": 0.012153000003308989,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 97,
+      "seconds": 0.012112800002796575,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 98,
+      "seconds": 0.012009199999738485,
+      "repeat": 0
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 99,
+      "seconds": 0.011829600000055507,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.01280540000880137,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.013063400008832105,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.01293949999671895,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.012928800002555363,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.012843999997130595,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.01294709999638144,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.013046799998846836,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.012825899990275502,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.012872699997387826,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.012731800001347438,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.013978799994220026,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.013102400000207126,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.014365100010763854,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.014206599997123703,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.01450930000282824,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.016073200007667765,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.01517969999986235,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.014312999992398545,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.015323899991926737,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.013295900003868155,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012950000003911555,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.013340599994990043,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.012952599994605407,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.01294190000044182,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.012926099996548146,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.01263440000184346,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.012710199996945448,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.012772900008712895,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.012823800003388897,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.012831799991545267,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.012708900001598522,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.01262759999372065,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.012837900008889847,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.012862699994002469,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.01373139998759143,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.0127920999948401,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.012883500006864779,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.013097900009597652,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.01277289999416098,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.012967300004675053,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.012738300007185899,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.012761699996190146,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012697600002866238,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.01284559999476187,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.013086499995552003,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.012905900002806447,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.012753899995004758,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012797699993825518,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.012750100009725429,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.01281139999628067,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.01281290000770241,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.012685099994996563,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.012710099996183999,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.012732599992887117,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.013583400010247715,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.012843300006352365,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.013332300004549325,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.012909699988085777,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.012693700002273545,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.012838499998906627,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.013347300002351403,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.01305069999943953,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.013016800003242679,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.012740499994833954,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.012755999996443279,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.012930400000186637,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.01279370000702329,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.012952300006872974,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.013139599992427975,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.012750400012009777,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.012820200005080551,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.012782099991454743,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.012718699988909066,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.013084199992590584,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.012849000006099232,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.012846600002376363,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.013457599998218939,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.012972199998330325,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.013009900008910336,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.012921599991386756,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.012849700011429377,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.012654999998630956,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012903599999845028,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.012754399998812005,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.012998200007132255,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.013059699995210394,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.012727300010737963,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.012689999988651834,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.015727499994682148,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.012897199994768016,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.01355659999535419,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.015483499999390915,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.013625899999169633,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.013644499995280057,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.013276999990921468,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.01271650000126101,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.012871200000518002,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.013105099991662428,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.012882800001534633,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.012922699999762699,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.012965799993253313,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.012765799998305738,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.012819399998988956,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.012781500001437962,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.013006700013647787,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.013086299994029105,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.012727599998470396,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.012727599998470396,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.012886700002127327,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.012829100000089966,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.012915800005430356,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.012894100000266917,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.013025499996729195,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.012705400004051626,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.013149400008842349,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.012974099998245947,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.012963100001798011,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.012929499993333593,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.012793799993232824,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.013157000008504838,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012650499993469566,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.013298899997607805,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.013009599992074072,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.012702200008789077,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.01267070000176318,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.012702200008789077,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.013077199997496791,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.012803000005078502,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.013472799997543916,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.01333149999845773,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.012946800008649006,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.012795899994671345,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.013037900003837422,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.012843600008636713,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.013133799991919659,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.013454800006002188,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.013433100000838749,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.012903099996037781,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.013037500000791624,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.01306990000011865,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.012846499987062998,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.01281590000144206,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012996899997233413,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.01265649999550078,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.01297879999037832,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.012794199996278621,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.012740100006340072,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012793799993232824,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.012795700007700361,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.012902500006021,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.012798499999917112,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.01298260000476148,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.012762800004566088,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.012679999999818392,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.012670299998717383,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.013370600005146116,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.013048699998762459,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.014111000011325814,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.01313079999818001,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.01302699999359902,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.012750099995173514,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.013804200003505684,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.012853399995947257,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.01549989999330137,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.01281439999002032,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.013561500003561378,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.013533699995605275,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.01336319999245461,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.013002299994695932,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.012665999995078892,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.01285880000796169,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.012763699996867217,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.012601100010215305,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.012703699991106987,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.012859800001024269,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.012728000001516193,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.01594179999665357,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.015645999999833293,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.012850800005253404,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.012658099993132055,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.01289369999722112,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.013067199994111434,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012932100013131276,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.013091599990730174,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.012704599997960031,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.01270630001090467,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.013194800005294383,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.013785000002826564,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.012963699991814792,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.013159800000721589,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.012800500000594184,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.012765299994498491,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.012971099989954382,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.012847900012275204,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.012938499989104457,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.013448500001686625,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.013083300000289455,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.01312480001070071,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.012952899996889755,
+      "repeat": 0
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.012790799999493174,
+      "repeat": 0
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.008186499995645136,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.00798150000628084,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.007893700007116422,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.007922000004327856,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.007826300003216602,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 5,
+      "seconds": 0.007809900009306148,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 6,
+      "seconds": 0.007941200005006976,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 7,
+      "seconds": 0.008207999999285676,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 8,
+      "seconds": 0.007803200001944788,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 9,
+      "seconds": 0.008088700007647276,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 10,
+      "seconds": 0.00781769999593962,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 11,
+      "seconds": 0.007932499996968545,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 12,
+      "seconds": 0.008133600000292063,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 13,
+      "seconds": 0.008295099993119948,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 14,
+      "seconds": 0.007884299993747845,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 15,
+      "seconds": 0.007991200007381849,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 16,
+      "seconds": 0.008068499999353662,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 17,
+      "seconds": 0.00814959999115672,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 18,
+      "seconds": 0.008011900004930794,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 19,
+      "seconds": 0.008081500011030585,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 20,
+      "seconds": 0.008348399991518818,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 21,
+      "seconds": 0.008178100004442967,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 22,
+      "seconds": 0.007999800000106916,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 23,
+      "seconds": 0.008027399991988204,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 24,
+      "seconds": 0.00801990000763908,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 25,
+      "seconds": 0.007751099998131394,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 26,
+      "seconds": 0.007972199993673712,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 27,
+      "seconds": 0.00801560000400059,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 28,
+      "seconds": 0.007813899996108375,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 29,
+      "seconds": 0.007929400002467446,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 30,
+      "seconds": 0.007940399998915382,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 31,
+      "seconds": 0.007848499997635372,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 32,
+      "seconds": 0.008188899999368005,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 33,
+      "seconds": 0.007793100012349896,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 34,
+      "seconds": 0.008130000001983717,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 35,
+      "seconds": 0.007677500005229376,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 36,
+      "seconds": 0.008059600004344247,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 37,
+      "seconds": 0.007856700001866557,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 38,
+      "seconds": 0.007861599995521829,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 39,
+      "seconds": 0.007942399999592453,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 40,
+      "seconds": 0.008000500005437061,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 41,
+      "seconds": 0.007680199996684678,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 42,
+      "seconds": 0.007996099986485206,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 43,
+      "seconds": 0.007892699999501929,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 44,
+      "seconds": 0.008289999997941777,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 45,
+      "seconds": 0.007855300005758181,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 46,
+      "seconds": 0.008029800010262989,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 47,
+      "seconds": 0.007919399999082088,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 48,
+      "seconds": 0.007869900000514463,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 49,
+      "seconds": 0.007939600007375702,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 50,
+      "seconds": 0.008444100007181987,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 51,
+      "seconds": 0.00865840000915341,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 52,
+      "seconds": 0.008743900005356409,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 53,
+      "seconds": 0.007871100009651855,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 54,
+      "seconds": 0.007874799994169734,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 55,
+      "seconds": 0.00790440000128001,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 56,
+      "seconds": 0.009129099998972379,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 57,
+      "seconds": 0.007725699993898161,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 58,
+      "seconds": 0.008796099995379336,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 59,
+      "seconds": 0.007930599997052923,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 60,
+      "seconds": 0.008051299999351613,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 61,
+      "seconds": 0.007774400000926107,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 62,
+      "seconds": 0.009616399998776615,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 63,
+      "seconds": 0.00953260000096634,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 64,
+      "seconds": 0.007940199997392483,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 65,
+      "seconds": 0.008113000003504567,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 66,
+      "seconds": 0.007976499997312203,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 67,
+      "seconds": 0.008701200000359677,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 68,
+      "seconds": 0.008348499992280267,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 69,
+      "seconds": 0.008246700002928264,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 70,
+      "seconds": 0.008234200009610504,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 71,
+      "seconds": 0.008339099993463606,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 72,
+      "seconds": 0.007826900007785298,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 73,
+      "seconds": 0.007926000005681999,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 74,
+      "seconds": 0.007663600001251325,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 75,
+      "seconds": 0.007930599997052923,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 76,
+      "seconds": 0.007866899992222898,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 77,
+      "seconds": 0.008010799996554852,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 78,
+      "seconds": 0.007854900002712384,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 79,
+      "seconds": 0.007890099994256161,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 80,
+      "seconds": 0.007688600002438761,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 81,
+      "seconds": 0.008123800012981519,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 82,
+      "seconds": 0.007855199990444817,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 83,
+      "seconds": 0.008022399997571483,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 84,
+      "seconds": 0.007710399993811734,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 85,
+      "seconds": 0.008028600001125596,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 86,
+      "seconds": 0.008240399998612702,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 87,
+      "seconds": 0.00835709999955725,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 88,
+      "seconds": 0.008429199995589443,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 89,
+      "seconds": 0.008043599998927675,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 90,
+      "seconds": 0.009019399993121624,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 91,
+      "seconds": 0.0077529000118374825,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 92,
+      "seconds": 0.007963900003232993,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 93,
+      "seconds": 0.007902800003648736,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 94,
+      "seconds": 0.008040700005949475,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 95,
+      "seconds": 0.0078265000047395,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 96,
+      "seconds": 0.007990700003574602,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 97,
+      "seconds": 0.007831499999156222,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 98,
+      "seconds": 0.00825260000419803,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 99,
+      "seconds": 0.007675800006836653,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 0,
+      "seconds": 0.01178470000741072,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 1,
+      "seconds": 0.0117824000044493,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 2,
+      "seconds": 0.011830499992356636,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 3,
+      "seconds": 0.011832999996840954,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 4,
+      "seconds": 0.012032999991788529,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 5,
+      "seconds": 0.011672100008581765,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 6,
+      "seconds": 0.012039799999911338,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 7,
+      "seconds": 0.011790999997174367,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 8,
+      "seconds": 0.011926000006496906,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 9,
+      "seconds": 0.011640400000032969,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 10,
+      "seconds": 0.012036400003125891,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 11,
+      "seconds": 0.01194979999854695,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 12,
+      "seconds": 0.011870999995153397,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 13,
+      "seconds": 0.011753300001146272,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 14,
+      "seconds": 0.011946200000238605,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 15,
+      "seconds": 0.012389999988954514,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 16,
+      "seconds": 0.011994400003459305,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 17,
+      "seconds": 0.011930300010135397,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 18,
+      "seconds": 0.011792599994805641,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 19,
+      "seconds": 0.011929200001759455,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 20,
+      "seconds": 0.011922800011234358,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 21,
+      "seconds": 0.012041599999065511,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 22,
+      "seconds": 0.011829600000055507,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 23,
+      "seconds": 0.011977400004980154,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 24,
+      "seconds": 0.012362199995550327,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 25,
+      "seconds": 0.0121482999966247,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 26,
+      "seconds": 0.011735399995814078,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 27,
+      "seconds": 0.012344299990218133,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 28,
+      "seconds": 0.011863700012327172,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 29,
+      "seconds": 0.012078999992809258,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 30,
+      "seconds": 0.012023999996017665,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 31,
+      "seconds": 0.012253500011865981,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 32,
+      "seconds": 0.011817499995231628,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 33,
+      "seconds": 0.011786100003519095,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 34,
+      "seconds": 0.011874600008013658,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 35,
+      "seconds": 0.011638900003163144,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 36,
+      "seconds": 0.011898199998540804,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 37,
+      "seconds": 0.011764599999878556,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 38,
+      "seconds": 0.011846500012325123,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 39,
+      "seconds": 0.011689099992509,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 40,
+      "seconds": 0.012338899992755614,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 41,
+      "seconds": 0.01182679999328684,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 42,
+      "seconds": 0.011915299997781403,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 43,
+      "seconds": 0.01167790000909008,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 44,
+      "seconds": 0.011941599994315766,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 45,
+      "seconds": 0.012159999998402782,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 46,
+      "seconds": 0.011785000009695068,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 47,
+      "seconds": 0.012023799994494766,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 48,
+      "seconds": 0.011977000001934357,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 49,
+      "seconds": 0.011962200005655177,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 50,
+      "seconds": 0.011902300000656396,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 51,
+      "seconds": 0.011693000007653609,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 52,
+      "seconds": 0.012036400003125891,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 53,
+      "seconds": 0.01201740000396967,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 54,
+      "seconds": 0.012302599992835894,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 55,
+      "seconds": 0.012486599996918812,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 56,
+      "seconds": 0.011790399992605671,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 57,
+      "seconds": 0.012041499998304062,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 58,
+      "seconds": 0.014086700000916608,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 59,
+      "seconds": 0.014365999988513067,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 60,
+      "seconds": 0.012587100005475804,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 61,
+      "seconds": 0.015396700007840991,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 62,
+      "seconds": 0.013511699988157488,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 63,
+      "seconds": 0.012550500003271736,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 64,
+      "seconds": 0.012545199992018752,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 65,
+      "seconds": 0.011860099999466911,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 66,
+      "seconds": 0.011838200007332489,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 67,
+      "seconds": 0.011691499996231869,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 68,
+      "seconds": 0.01196400000480935,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 69,
+      "seconds": 0.011844900000141934,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 70,
+      "seconds": 0.011853300005896017,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 71,
+      "seconds": 0.011634399998001754,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 72,
+      "seconds": 0.01198689999000635,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 73,
+      "seconds": 0.011884899999131449,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 74,
+      "seconds": 0.012026700002024882,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 75,
+      "seconds": 0.011792599994805641,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 76,
+      "seconds": 0.012253200009581633,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 77,
+      "seconds": 0.012287099991226569,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 78,
+      "seconds": 0.012078500003553927,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 79,
+      "seconds": 0.01209519999974873,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 80,
+      "seconds": 0.011758700013160706,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 81,
+      "seconds": 0.01190909999422729,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 82,
+      "seconds": 0.01202849998662714,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 83,
+      "seconds": 0.011750499994377606,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 84,
+      "seconds": 0.011745000010705553,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 85,
+      "seconds": 0.01188700000056997,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 86,
+      "seconds": 0.011952299988479353,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 87,
+      "seconds": 0.011728299999958836,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 88,
+      "seconds": 0.012028299999656156,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 89,
+      "seconds": 0.0120689999894239,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 90,
+      "seconds": 0.01181870000436902,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 91,
+      "seconds": 0.011969300001510419,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 92,
+      "seconds": 0.01171129998692777,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 93,
+      "seconds": 0.012010199992801063,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 94,
+      "seconds": 0.0118817000038689,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 95,
+      "seconds": 0.01177589999861084,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 96,
+      "seconds": 0.011746399992262013,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 97,
+      "seconds": 0.0117883999919286,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 98,
+      "seconds": 0.01195890000963118,
+      "repeat": 1
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 99,
+      "seconds": 0.01183129999844823,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.014139600010821596,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.014059400011319667,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.015249799995217472,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.014492399990558624,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.013112399989040568,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.013352000009035692,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.01314710000588093,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.013840600004186854,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.013549300012527965,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.013242899993201718,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.012674700003117323,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.012829600003897212,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.01289369999722112,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.012970499999937601,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.012708000009297393,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.012795799993909895,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.012958400009665638,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.013266699999803677,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.012989099996048026,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.012773700000252575,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012862300005508587,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.01268770000024233,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.012631900011911057,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.012728200003039092,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.012791100001777522,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.012703600004897453,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.012808200001018122,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.012778000003891066,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.01286930000060238,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.01265800000692252,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.013071099994704127,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.012830299994675443,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.013112000000546686,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.014116599995759316,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.012958399995113723,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.015431899999384768,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.013020099999266677,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.01496999998926185,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.014227799998479895,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.013811500000883825,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.014269799998146482,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.013099199990392663,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012811400010832585,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.012683499997365288,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.012833500004489906,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.012754600000334904,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.012776200004736893,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012782199992216192,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.012773800001014024,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.013250499992864206,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.012795899994671345,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.012914399994770065,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.013735800006543286,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.013135499990312383,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.013061400008155033,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.012677899998379871,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.013591700000688434,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.013127500002156012,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.01327589999709744,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.012828899998567067,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.013432099993224256,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.01294929999858141,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.012902499991469085,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.013874600001145154,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.012802400000509806,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.012774599992553703,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.0128034000081243,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.012902000002213754,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.013035700001637451,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.013028699991991743,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.012894200001028366,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.013023499996052124,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.012892500002635643,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.012740799997118302,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.013171200000215322,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.013627299995278008,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.012851299994508736,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.013031299997237511,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.012664599998970516,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.014538000003085472,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.012884700001450256,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.012936800005263649,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012763500009896234,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.013340599994990043,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.012738399993395433,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.012749800007441081,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.012834100009058602,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.013719199996558018,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.01290319999679923,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.013213500002166256,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.013010599999688566,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.013025899999774992,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.012905199997476302,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.013031599999521859,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.01299220000510104,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.01289290000568144,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.01283589999366086,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.012831899992306717,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.013070900007733144,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.013018199999351054,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.01298260000476148,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.012998999998671934,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.012673799996264279,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.01296699998783879,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.01289649998943787,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.01299799999105744,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.01271439999982249,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.013166599994292483,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.01318790001096204,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.013283100008266047,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.015698300005169585,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.013063099991995841,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.013939399999799207,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.01513169999816455,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.013831399992341176,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.01310909999301657,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.01278910000110045,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.012710000009974465,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.012855699998908676,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.012849000006099232,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012888700002804399,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.012958099992829375,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.012556999994558282,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.012752399998134933,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.012938400002894923,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.012937199993757531,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.012644300004467368,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.012715599994407967,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.012688200004049577,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.020862200006376952,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.01277000000118278,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.012824300007196143,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.012795899994671345,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.012743800005409867,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.012769099994329736,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.012727499997708946,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.012861199997132644,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.012748000008286908,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.013071699999272823,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.012871900005848147,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.01281879999442026,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.01256620000640396,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012980700004845858,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.012929400007124059,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.012666900001931936,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.012886399999842979,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.0128231999988202,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012725399996270426,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.01284039999882225,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.012772000001859851,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.01277670000854414,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.01273060000676196,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.01263519999338314,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.012819700001273304,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.013377800001762807,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.012850900006014854,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.01284849998774007,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.01265600000624545,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.013062199999694712,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.012909699988085777,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.013089399988530204,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.013005400003748946,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.013437700006761588,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.012599099994986318,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.013194400002248585,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.013136699999449775,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.013391300002695061,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.01306549999571871,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.0129224999982398,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.01272179999796208,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.012793100002454594,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.013018799989367835,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.012791899993317202,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.012889899997389875,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.0126305999874603,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.012900100002298132,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.012835699992137961,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.01267960001132451,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.01282099999662023,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.012788599997293204,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.0125936999975238,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.01281369999924209,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012877799992565997,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.012692599993897602,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.01299740000104066,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.012653900004806928,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.012764600003720261,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.01605340000241995,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.013018699988606386,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.013629599998239428,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.013524099995265715,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.013610800000606105,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.01287659999798052,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.012805299993488006,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.01276759999745991,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.01272249998874031,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.012792399997124448,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.012602999995579012,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.012703200001851656,
+      "repeat": 1
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.012859199996455573,
+      "repeat": 1
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 0,
+      "seconds": 0.007914500005426817,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 1,
+      "seconds": 0.008000500005437061,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 2,
+      "seconds": 0.007999100009328686,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 3,
+      "seconds": 0.00804960000095889,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 4,
+      "seconds": 0.007751600001938641,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 5,
+      "seconds": 0.00841410001157783,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 6,
+      "seconds": 0.0077194999903440475,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 7,
+      "seconds": 0.007788200004142709,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 8,
+      "seconds": 0.007747800002107397,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 9,
+      "seconds": 0.008113300005788915,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 10,
+      "seconds": 0.007775099991704337,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 11,
+      "seconds": 0.00802149999071844,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 12,
+      "seconds": 0.007895899994764477,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 13,
+      "seconds": 0.007820800004992634,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 14,
+      "seconds": 0.007609200009028427,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 15,
+      "seconds": 0.008246900004451163,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 16,
+      "seconds": 0.0076145000057294965,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 17,
+      "seconds": 0.007934399996884167,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 18,
+      "seconds": 0.0076509999926202,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 19,
+      "seconds": 0.007846500011510216,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 20,
+      "seconds": 0.007868999993661419,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 21,
+      "seconds": 0.007988299999851733,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 22,
+      "seconds": 0.007759600004646927,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 23,
+      "seconds": 0.00820650000241585,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 24,
+      "seconds": 0.007828200003132224,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 25,
+      "seconds": 0.008244600001489744,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 26,
+      "seconds": 0.007946800003992394,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 27,
+      "seconds": 0.008009600001969375,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 28,
+      "seconds": 0.007849200002965517,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 29,
+      "seconds": 0.007782000000588596,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 30,
+      "seconds": 0.007919499999843538,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 31,
+      "seconds": 0.008069600007729605,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 32,
+      "seconds": 0.007635100002516992,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 33,
+      "seconds": 0.008021900008316152,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 34,
+      "seconds": 0.007638700000825338,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 35,
+      "seconds": 0.007870900008128956,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 36,
+      "seconds": 0.008030700002564117,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 37,
+      "seconds": 0.007976500011864118,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 38,
+      "seconds": 0.007855499992729165,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 39,
+      "seconds": 0.007924899997306056,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 40,
+      "seconds": 0.007695000007515773,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 41,
+      "seconds": 0.00788499999907799,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 42,
+      "seconds": 0.00770800000464078,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 43,
+      "seconds": 0.008019700006116182,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 44,
+      "seconds": 0.007784800007357262,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 45,
+      "seconds": 0.007869799999753013,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 46,
+      "seconds": 0.00766430000658147,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 47,
+      "seconds": 0.007832500006770715,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 48,
+      "seconds": 0.007741099994746037,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 49,
+      "seconds": 0.007840299993404187,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 50,
+      "seconds": 0.007697799999732524,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 51,
+      "seconds": 0.008323799993377179,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 52,
+      "seconds": 0.00790219999908004,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 53,
+      "seconds": 0.008018799999263138,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 54,
+      "seconds": 0.007783000008203089,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 55,
+      "seconds": 0.007895899994764477,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 56,
+      "seconds": 0.00768949999473989,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 57,
+      "seconds": 0.008520500006852672,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 58,
+      "seconds": 0.00801330000103917,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 59,
+      "seconds": 0.00804450000578072,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 60,
+      "seconds": 0.007583400001749396,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 61,
+      "seconds": 0.008260100003099069,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 62,
+      "seconds": 0.0077311000059125945,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 63,
+      "seconds": 0.007908100000349805,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 64,
+      "seconds": 0.007675600005313754,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 65,
+      "seconds": 0.00812430000223685,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 66,
+      "seconds": 0.007798899998306297,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 67,
+      "seconds": 0.008056199993006885,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 68,
+      "seconds": 0.007898299998487346,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 69,
+      "seconds": 0.008766099999775179,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 70,
+      "seconds": 0.007871499998145737,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 71,
+      "seconds": 0.008049399999435991,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 72,
+      "seconds": 0.007790400006342679,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 73,
+      "seconds": 0.007969400001456961,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 74,
+      "seconds": 0.007782700005918741,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 75,
+      "seconds": 0.00792060000821948,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 76,
+      "seconds": 0.0077923999924678355,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 77,
+      "seconds": 0.0077634000044781715,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 78,
+      "seconds": 0.00778879999415949,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 79,
+      "seconds": 0.0077200000087032095,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 80,
+      "seconds": 0.007731999998213723,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 81,
+      "seconds": 0.007943300006445497,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 82,
+      "seconds": 0.007758300009300001,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 83,
+      "seconds": 0.007937500005937181,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 84,
+      "seconds": 0.008137400000123307,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 85,
+      "seconds": 0.007710700010647997,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 86,
+      "seconds": 0.007833700001356192,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 87,
+      "seconds": 0.00784370000474155,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 88,
+      "seconds": 0.007777800012263469,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 89,
+      "seconds": 0.008157400006894022,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 90,
+      "seconds": 0.007747399999061599,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 91,
+      "seconds": 0.007975500004249625,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 92,
+      "seconds": 0.0077019000018481165,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 93,
+      "seconds": 0.007822900006431155,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 94,
+      "seconds": 0.007815799996023998,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 95,
+      "seconds": 0.00841480000235606,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 96,
+      "seconds": 0.00792510001338087,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 97,
+      "seconds": 0.007966299992403947,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 98,
+      "seconds": 0.007911600012448616,
+      "repeat": 2
+    },
+    {
+      "config": "keygen",
+      "op": "keygen",
+      "trial": 99,
+      "seconds": 0.009287699998822063,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 0,
+      "seconds": 0.011945199992624111,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 1,
+      "seconds": 0.01350270000693854,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 2,
+      "seconds": 0.012368100011372007,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 3,
+      "seconds": 0.012150100010330789,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 4,
+      "seconds": 0.011907400010386482,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 5,
+      "seconds": 0.012663100002100691,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 6,
+      "seconds": 0.012538299997686408,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 7,
+      "seconds": 0.011771899997256696,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 8,
+      "seconds": 0.011787099996581674,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 9,
+      "seconds": 0.011811000003945082,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 10,
+      "seconds": 0.012020800000755116,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 11,
+      "seconds": 0.011995599998044781,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 12,
+      "seconds": 0.011854899988975376,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 13,
+      "seconds": 0.011807899994892068,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 14,
+      "seconds": 0.011910500004887581,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 15,
+      "seconds": 0.011966699996264651,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 16,
+      "seconds": 0.011948400002438575,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 17,
+      "seconds": 0.011734899992006831,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 18,
+      "seconds": 0.011943599994992837,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 19,
+      "seconds": 0.011882599996170029,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 20,
+      "seconds": 0.011894800001755357,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 21,
+      "seconds": 0.011806099995737895,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 22,
+      "seconds": 0.01259359999676235,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 23,
+      "seconds": 0.012068899988662452,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 24,
+      "seconds": 0.012484599996241741,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 25,
+      "seconds": 0.01215579999552574,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 26,
+      "seconds": 0.012961600004928187,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 27,
+      "seconds": 0.011885600004461594,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 28,
+      "seconds": 0.011995399996521883,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 29,
+      "seconds": 0.011915099996258505,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 30,
+      "seconds": 0.011937500006752089,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 31,
+      "seconds": 0.011933000001590699,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 32,
+      "seconds": 0.01179059999412857,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 33,
+      "seconds": 0.012131199997384101,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 34,
+      "seconds": 0.011777799998526461,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 35,
+      "seconds": 0.011825099994894117,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 36,
+      "seconds": 0.011966599995503202,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 37,
+      "seconds": 0.011852299998281524,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 38,
+      "seconds": 0.01184839999768883,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 39,
+      "seconds": 0.011977599991951138,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 40,
+      "seconds": 0.011938700001337565,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 41,
+      "seconds": 0.011866300003021024,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 42,
+      "seconds": 0.011767899995902553,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 43,
+      "seconds": 0.0120831999956863,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 44,
+      "seconds": 0.012087399998563342,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 45,
+      "seconds": 0.012188300010166131,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 46,
+      "seconds": 0.011929500004043803,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 47,
+      "seconds": 0.011806099995737895,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 48,
+      "seconds": 0.011947499995585531,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 49,
+      "seconds": 0.012234699999680743,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 50,
+      "seconds": 0.012361500004772097,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 51,
+      "seconds": 0.011793199999374337,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 52,
+      "seconds": 0.01180009999370668,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 53,
+      "seconds": 0.012562200005049817,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 54,
+      "seconds": 0.011767399992095307,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 55,
+      "seconds": 0.011787199997343123,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 56,
+      "seconds": 0.012127699999837205,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 57,
+      "seconds": 0.011791500000981614,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 58,
+      "seconds": 0.01205150000168942,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 59,
+      "seconds": 0.011759000000893138,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 60,
+      "seconds": 0.012254800007212907,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 61,
+      "seconds": 0.01221889999578707,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 62,
+      "seconds": 0.011948200000915676,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 63,
+      "seconds": 0.011931700006243773,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 64,
+      "seconds": 0.011799100000644103,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 65,
+      "seconds": 0.01172249999945052,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 66,
+      "seconds": 0.012364500013063662,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 67,
+      "seconds": 0.012017800007015467,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 68,
+      "seconds": 0.011945699996431358,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 69,
+      "seconds": 0.011923400001251139,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 70,
+      "seconds": 0.011846399997011758,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 71,
+      "seconds": 0.011970999999903142,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 72,
+      "seconds": 0.01177589999861084,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 73,
+      "seconds": 0.011903499995241873,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 74,
+      "seconds": 0.012061500005074777,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 75,
+      "seconds": 0.01182610000250861,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 76,
+      "seconds": 0.011704799995641224,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 77,
+      "seconds": 0.011982099997112527,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 78,
+      "seconds": 0.011927699990337715,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 79,
+      "seconds": 0.01182400000107009,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 80,
+      "seconds": 0.011764099996071309,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 81,
+      "seconds": 0.012520500007667579,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 82,
+      "seconds": 0.012161199992988259,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 83,
+      "seconds": 0.012082200002623722,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 84,
+      "seconds": 0.013243499997770414,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 85,
+      "seconds": 0.012100700012524612,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 86,
+      "seconds": 0.011972499996772967,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 87,
+      "seconds": 0.012718599988147616,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 88,
+      "seconds": 0.012378500003251247,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 89,
+      "seconds": 0.012410099996486679,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 90,
+      "seconds": 0.012318599998252466,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 91,
+      "seconds": 0.011840100007248111,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 92,
+      "seconds": 0.011836299992864951,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 93,
+      "seconds": 0.011695299996063113,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 94,
+      "seconds": 0.011723300005542114,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 95,
+      "seconds": 0.011769200005801395,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 96,
+      "seconds": 0.011834099990664981,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 97,
+      "seconds": 0.01170609999098815,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 98,
+      "seconds": 0.011843400003272109,
+      "repeat": 2
+    },
+    {
+      "config": "encaps",
+      "op": "encaps",
+      "trial": 99,
+      "seconds": 0.011909599998034537,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.012784299993654713,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.012892600003397092,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.012748099994496442,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.012953999990713783,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.012855699998908676,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.012799100004485808,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.012920000008307397,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.012717699995846488,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.013341700003365986,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.013178199995309114,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.01271650000126101,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.0128402999980608,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.012984000000869855,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.012860200004070066,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.012993000011192635,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.01277950000076089,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.012998100006370805,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.012899199995445088,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.01285440000356175,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.012978400001884438,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012813299996196292,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.012704600012511946,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.012826599995605648,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.013040100006037392,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.014372999998158775,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.013574700002209283,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.01365369999257382,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.014534799993271008,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.01449539999885019,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.013316899989149533,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.013505199996870942,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.01292999999714084,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.013314000010723248,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.012828300008550286,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.013185899995733052,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.012640300003113225,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.012748699999065138,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.013387800005148165,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.013165900003514253,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.013169399986509234,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.014062900008866563,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.012788699998054653,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012635999999474734,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.0126929999969434,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.012704099994152784,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.01267809999990277,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.012770300003467128,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012902000002213754,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.012592500002938323,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.01366789999883622,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.01281800000288058,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.012761500009219162,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.012797999996109866,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.01279439999780152,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.01269369998772163,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.01275879998866003,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.012759599994751625,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.01282109999738168,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.013149800011888146,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.013217499988968484,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.013623000006191432,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.01553309999871999,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.01407900000049267,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.013634700007969514,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.014094099999056198,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.013892100003431551,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.014075200000661425,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.012895399995613843,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.012762400001520291,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.012795400005416013,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.014186000000336207,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.014135799996438436,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.01388339999539312,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.01510279999638442,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.014076800012844615,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.013704800003324635,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.01346860000921879,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.012855700013460591,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.012882900002296083,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.01275149999128189,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.01326699998753611,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.013007300003664568,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012621999994735233,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.012758500000927597,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.012845999997807667,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.01310189999639988,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.01291279999713879,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.013127900005201809,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.01278400000592228,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.013147399993613362,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.01282780000474304,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.013074999995296821,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.013545100009650923,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.013181599992094561,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.012780899996869266,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.013236499988124706,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.013552500007790513,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.012828199993236922,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.012836099995183758,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/valid",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.012725599997793324,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 0,
+      "seconds": 0.012754399998812005,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 1,
+      "seconds": 0.01258110000344459,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 2,
+      "seconds": 0.012983099994016811,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 3,
+      "seconds": 0.013223999994806945,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 4,
+      "seconds": 0.01286909999907948,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 5,
+      "seconds": 0.013337299998966046,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 6,
+      "seconds": 0.014165799992042594,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 7,
+      "seconds": 0.012822899996535853,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 8,
+      "seconds": 0.012988700007554144,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 9,
+      "seconds": 0.013085999991744757,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 10,
+      "seconds": 0.012946900009410456,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 11,
+      "seconds": 0.012796299997717142,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 12,
+      "seconds": 0.013229700009105727,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 13,
+      "seconds": 0.012975599995115772,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 14,
+      "seconds": 0.012679699997534044,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 15,
+      "seconds": 0.012776900010067038,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 16,
+      "seconds": 0.013097400005790405,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 17,
+      "seconds": 0.012781099998392165,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 18,
+      "seconds": 0.012822300006519072,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 19,
+      "seconds": 0.012911700003314763,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 20,
+      "seconds": 0.012820200005080551,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 21,
+      "seconds": 0.012828299993998371,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 22,
+      "seconds": 0.012827499987906776,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 23,
+      "seconds": 0.012981499996385537,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 24,
+      "seconds": 0.01288120000390336,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 25,
+      "seconds": 0.013087400002405047,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 26,
+      "seconds": 0.012889000005088747,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 27,
+      "seconds": 0.012645199996768497,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 28,
+      "seconds": 0.013356399998883717,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 29,
+      "seconds": 0.013046600011875853,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 30,
+      "seconds": 0.012843399992561899,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 31,
+      "seconds": 0.012819900002796203,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 32,
+      "seconds": 0.012789500004146248,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 33,
+      "seconds": 0.014382699999259785,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 34,
+      "seconds": 0.012891400008811615,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 35,
+      "seconds": 0.01582590000180062,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 36,
+      "seconds": 0.013617600008728914,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 37,
+      "seconds": 0.013079900003504008,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 38,
+      "seconds": 0.013236500002676621,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 39,
+      "seconds": 0.013440599999739788,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 40,
+      "seconds": 0.016955699989921413,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 41,
+      "seconds": 0.01286180000170134,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 42,
+      "seconds": 0.012806599988834932,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 43,
+      "seconds": 0.012710800001514144,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 44,
+      "seconds": 0.012887500008218922,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 45,
+      "seconds": 0.012643999987631105,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 46,
+      "seconds": 0.01291059999493882,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 47,
+      "seconds": 0.012619800007087179,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 48,
+      "seconds": 0.012778000003891066,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 49,
+      "seconds": 0.012853399995947257,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 50,
+      "seconds": 0.012993899988941848,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 51,
+      "seconds": 0.012892000013380311,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 52,
+      "seconds": 0.012665999995078892,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 53,
+      "seconds": 0.012836599998991005,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 54,
+      "seconds": 0.012719899998046458,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 55,
+      "seconds": 0.01298839999071788,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 56,
+      "seconds": 0.012767099993652664,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 57,
+      "seconds": 0.012606799995410256,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 58,
+      "seconds": 0.01286259999324102,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 59,
+      "seconds": 0.012761400008457713,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 60,
+      "seconds": 0.012970900002983399,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 61,
+      "seconds": 0.012800399999832734,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 62,
+      "seconds": 0.01260250000632368,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 63,
+      "seconds": 0.013006000008317642,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 64,
+      "seconds": 0.012881399990874343,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 65,
+      "seconds": 0.012825700003304519,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 66,
+      "seconds": 0.01298700000916142,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 67,
+      "seconds": 0.01326340000377968,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 68,
+      "seconds": 0.01302909999503754,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 69,
+      "seconds": 0.012886699987575412,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 70,
+      "seconds": 0.013086000006296672,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 71,
+      "seconds": 0.012807499995687976,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 72,
+      "seconds": 0.012994599994271994,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 73,
+      "seconds": 0.012753300004987977,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 74,
+      "seconds": 0.01274330000160262,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 75,
+      "seconds": 0.012688900009379722,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 76,
+      "seconds": 0.012717199992039241,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 77,
+      "seconds": 0.012969899995368905,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 78,
+      "seconds": 0.01401610000175424,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 79,
+      "seconds": 0.012674800003878772,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 80,
+      "seconds": 0.013252200005808845,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 81,
+      "seconds": 0.012710599999991246,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 82,
+      "seconds": 0.012701100000413135,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 83,
+      "seconds": 0.01353749999543652,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 84,
+      "seconds": 0.012777199997799471,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 85,
+      "seconds": 0.012768600005074404,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 86,
+      "seconds": 0.012664800000493415,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 87,
+      "seconds": 0.01284190001024399,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 88,
+      "seconds": 0.012719799997285008,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 89,
+      "seconds": 0.013274100012495182,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 90,
+      "seconds": 0.012648799995076843,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 91,
+      "seconds": 0.01353670000389684,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 92,
+      "seconds": 0.013025399995967746,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 93,
+      "seconds": 0.012683000008109957,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 94,
+      "seconds": 0.013162100003683008,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 95,
+      "seconds": 0.01317449999623932,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 96,
+      "seconds": 0.012748699999065138,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 97,
+      "seconds": 0.013015100004849955,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 98,
+      "seconds": 0.012740799997118302,
+      "repeat": 2
+    },
+    {
+      "config": "decaps/invalid_ct",
+      "op": "decaps",
+      "trial": 99,
+      "seconds": 0.012973400007467717,
+      "repeat": 2
+    }
+  ],
+  "overall_summary": {
+    "keygen": {
+      "n": 300,
+      "mean": 0.00798812633443352,
+      "median": 0.007913050008937716,
+      "stdev": 0.00034257203125879365,
+      "min": 0.007583400001749396,
+      "max": 0.010191699999268167
+    },
+    "encaps": {
+      "n": 300,
+      "mean": 0.012138226666478052,
+      "median": 0.011966999998549,
+      "stdev": 0.0006237907431852326,
+      "min": 0.011634399998001754,
+      "max": 0.019057199999224395
+    },
+    "decaps/valid": {
+      "n": 300,
+      "mean": 0.013149996666519049,
+      "median": 0.012913599995954428,
+      "stdev": 0.0006021564258675104,
+      "min": 0.012592500002938323,
+      "max": 0.016073200007667765
+    },
+    "decaps/invalid_ct": {
+      "n": 300,
+      "mean": 0.013045636666405092,
+      "median": 0.012877199995273259,
+      "stdev": 0.0007138035516006933,
+      "min": 0.012556999994558282,
+      "max": 0.020862200006376952
+    }
+  },
+  "per_repeat_summary": [
+    {
+      "keygen": {
+        "n": 100,
+        "mean": 0.00797982400021283,
+        "median": 0.007887549996667076,
+        "stdev": 0.0004028235112766899,
+        "min": 0.0075970000034430996,
+        "max": 0.010191699999268167
+      },
+      "encaps": {
+        "n": 100,
+        "mean": 0.012345409000408836,
+        "median": 0.012089850002666935,
+        "stdev": 0.0008512501875758248,
+        "min": 0.011730400001397356,
+        "max": 0.019057199999224395
+      },
+      "decaps/valid": {
+        "n": 100,
+        "mean": 0.013130982999573462,
+        "median": 0.012900399997306522,
+        "stdev": 0.0006766027185390079,
+        "min": 0.01262759999372065,
+        "max": 0.016073200007667765
+      },
+      "decaps/invalid_ct": {
+        "n": 100,
+        "mean": 0.013050652999809245,
+        "median": 0.012922649999381974,
+        "stdev": 0.0005419617793333131,
+        "min": 0.012601100010215305,
+        "max": 0.01594179999665357
+      }
+    },
+    {
+      "keygen": {
+        "n": 100,
+        "mean": 0.008065331000834704,
+        "median": 0.007979000001796521,
+        "stdev": 0.00034780635470199085,
+        "min": 0.007663600001251325,
+        "max": 0.009616399998776615
+      },
+      "encaps": {
+        "n": 100,
+        "mean": 0.012041862999612931,
+        "median": 0.011924400008865632,
+        "stdev": 0.0005329155811043973,
+        "min": 0.011634399998001754,
+        "max": 0.015396700007840991
+      },
+      "decaps/valid": {
+        "n": 100,
+        "mean": 0.013149324000114575,
+        "median": 0.012953849996847566,
+        "stdev": 0.0005632170407813492,
+        "min": 0.012631900011911057,
+        "max": 0.015431899999384768
+      },
+      "decaps/invalid_ct": {
+        "n": 100,
+        "mean": 0.013067210998997325,
+        "median": 0.012849950006057043,
+        "stdev": 0.0009529016660940089,
+        "min": 0.012556999994558282,
+        "max": 0.020862200006376952
+      }
+    },
+    {
+      "keygen": {
+        "n": 100,
+        "mean": 0.007919224002253032,
+        "median": 0.007871200003137346,
+        "stdev": 0.0002455925261186667,
+        "min": 0.007583400001749396,
+        "max": 0.009287699998822063
+      },
+      "encaps": {
+        "n": 100,
+        "mean": 0.01202740799941239,
+        "median": 0.011935250004171394,
+        "stdev": 0.00031849176247313683,
+        "min": 0.011695299996063113,
+        "max": 0.01350270000693854
+      },
+      "decaps/valid": {
+        "n": 100,
+        "mean": 0.01316968299986911,
+        "median": 0.012916400002723094,
+        "stdev": 0.0005651021265290892,
+        "min": 0.012592500002938323,
+        "max": 0.01553309999871999
+      },
+      "decaps/invalid_ct": {
+        "n": 100,
+        "mean": 0.013019046000408707,
+        "median": 0.01287515000149142,
+        "stdev": 0.0005795565902044548,
+        "min": 0.01258110000344459,
+        "max": 0.016955699989921413
+      }
+    }
+  ]
+}

@@ -123,6 +123,7 @@ table.params td:last-child { color: #8b949e; }
   <button class="tab-btn" onclick="showTab('rounding',this)">Rounding &amp; Hints</button>
   <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
   <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
   <div class="nav-end">
     <label class="nav-label">Algorithm:</label>
     <select id="algo-set" onchange="onAlgoChange()">
@@ -305,6 +306,11 @@ table.params td:last-child { color: #8b949e; }
   <!-- generated dynamically by drawParams() -->
 </div>
 
+<!-- ══════════ PERFORMANCE ══════════ -->
+<div id="tab-performance" class="tab-panel">
+  <!-- generated dynamically by drawPerformance() -->
+</div>
+
 </main>
 
 <script>
@@ -387,7 +393,8 @@ const RENDERERS = {
   overview: drawOverview, matrix: drawMatrix,
   mask: () => { drawMask(); drawChallenge(); },
   rounding: () => { drawDecompose(); drawHint(); },
-  signflow: () => { sfStep(0, true); }, params: drawParams
+  signflow: () => { sfStep(0, true); }, params: drawParams,
+  performance: drawPerformance
 };
 function showTab(name, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -759,6 +766,161 @@ function updateDynamicTexts() {
   hintZ.min = -P.gamma2; hintZ.max = P.gamma2;
   if (+hintZ.value > P.gamma2) hintZ.value = P.gamma2;
   if (+hintZ.value < -P.gamma2) hintZ.value = -P.gamma2;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PERFORMANCE
+// ─────────────────────────────────────────────────────────────────────────────
+// Captured from mldsa/tests/perf/bench_param_sets.py and bench_mldsa.py
+// (3 repeats, 50 trials/config each; see mldsa/tests/perf/results/).
+// Only ML-DSA-65 is NIST-ACVP-KAT-verified; ML-DSA-44/87 were run via
+// monkeypatch + reload of the same algorithm code (mldsa/tests/perf/param_loader.py)
+// and checked only by a sign/verify self-test, not by NIST vectors.
+//
+// Sign has a rejection-sampling loop (FIPS 204 Algorithm 2's kappa loop):
+// its iteration count is unbounded and heavy-tailed, so the *mean* signing
+// time is dominated by rare slow outliers while the *median* reflects the
+// typical case — the chart below plots median for that reason; both are
+// in the tables.
+const PERF_DATA = {
+  'ML-DSA-44': {keygen:{mean:12.9294,median:12.8159,stdev:0.4014,n:150}, sign:{mean:72.5558,median:37.6731,stdev:57.3314,n:150}, verify:{mean:13.5214,median:13.2051,stdev:0.8400,n:150}},
+  'ML-DSA-65': {keygen:{mean:20.6253,median:20.3420,stdev:0.7756,n:150}, sign:{mean:70.9257,median:54.3450,stdev:34.6874,n:150}, verify:{mean:19.6360,median:19.3332,stdev:1.1547,n:150}},
+  'ML-DSA-87': {keygen:{mean:29.4394,median:29.0768,stdev:1.0910,n:150}, sign:{mean:70.0046,median:76.1485,stdev:10.8312,n:150}, verify:{mean:29.3777,median:28.9370,stdev:1.2907,n:150}},
+};
+const PERF_ORDER = ['ML-DSA-44', 'ML-DSA-65', 'ML-DSA-87'];
+
+// ML-DSA-65 only: does det-vs-hedged / message size / pre-hash algorithm
+// move the needle on signing cost? (bench_mldsa.py, 13 configs)
+const PERF_65_CONFIGS = [
+  {name:'keygen',                   mean:20.8382,  median:20.5122, stdev:0.8617,   n:150},
+  {name:'sign — det, small msg',    mean:175.9460, median:228.7480,stdev:86.1919,  n:150},
+  {name:'sign — det, large msg',    mean:139.1139, median:116.0572,stdev:92.4289,  n:150},
+  {name:'sign — hedged, small msg', mean:110.8938, median:85.2726, stdev:90.5670,  n:150},
+  {name:'sign — hedged, large msg', mean:116.7913, median:86.7919, stdev:79.7163,  n:150},
+  {name:'verify — small msg',       mean:19.6651,  median:19.4149, stdev:0.7112,   n:150},
+  {name:'verify — large msg',       mean:19.6819,  median:19.4717, stdev:0.7614,   n:150},
+  {name:'hash_sign (SHA2-256)',     mean:86.6754,  median:55.3361, stdev:45.0761,  n:150},
+  {name:'hash_sign (SHA2-512)',     mean:122.9076, median:54.0010, stdev:108.2759, n:150},
+  {name:'hash_sign (SHAKE-256)',    mean:133.9481, median:54.4858, stdev:123.5552, n:150},
+  {name:'hash_verify (SHA2-256)',   mean:19.5835,  median:19.3720, stdev:0.6453,   n:150},
+  {name:'hash_verify (SHA2-512)',   mean:20.1656,  median:19.4736, stdev:1.6423,   n:150},
+  {name:'hash_verify (SHAKE-256)',  mean:19.6648,  median:19.3693, stdev:0.9399,   n:150},
+];
+
+function fmtMs(v) {
+  return `${v.toFixed(2)} ms`;
+}
+
+function drawPerfChart() {
+  const svg = clear('svg-perf');
+  const ops = [
+    {key:'keygen', color:'#0891b2', label:'keygen'},
+    {key:'sign',   color:'#7c3aed', label:'sign (median)'},
+    {key:'verify', color:'#059669', label:'verify'},
+  ];
+  const domainMax = Math.max(...PERF_ORDER.flatMap(name => ops.map(op => PERF_DATA[name][op.key].median))) * 1.15;
+  const chartX = 148, chartW = 590, rowH = 20, groupGap = 18, barGap = 3;
+  const topMargin = 26;
+  const totalH = topMargin + PERF_ORDER.length * (ops.length*rowH + groupGap);
+  svg.setAttribute('viewBox', `0 0 860 ${totalH + 10}`);
+
+  function xPos(v) { return chartX + (v / domainMax) * chartW; }
+
+  const step = domainMax > 60 ? 20 : domainMax > 30 ? 10 : 5;
+  for (let g = 0; g <= domainMax; g += step) {
+    const x = xPos(g);
+    line(svg, x, topMargin-6, x, totalH, '#21262d', 1);
+    text(svg, x, topMargin-14, `${g}ms`, '#6e7681', 8, 'middle');
+  }
+
+  let y = topMargin;
+  for (const name of PERF_ORDER) {
+    const d = PERF_DATA[name];
+    const isCurrent = name === currentSetName;
+    const groupH = ops.length*rowH;
+    if (isCurrent) rect(svg, 2, y-3, chartX+chartW-2, groupH+4, '#58a6ff0d', 4, '#58a6ff', 1.2);
+    text(svg, chartX-10, y+groupH/2, name, isCurrent?'#f0f6fc':'#8b949e', 9, 'end', isCurrent?'700':'normal');
+    ops.forEach((op, i) => {
+      const val = d[op.key].median;
+      const by = y + i*rowH;
+      const bw = Math.max(2, xPos(val) - chartX);
+      rect(svg, chartX, by, bw, rowH-barGap, op.color, 2);
+      text(svg, xPos(val) + 6, by + (rowH-barGap)/2, fmtMs(val), '#c9d1d9', 8, 'start');
+    });
+    y += groupH + groupGap;
+  }
+}
+
+function drawPerformance() {
+  document.getElementById('tab-performance').innerHTML = `
+    <div class="panel">
+      <div class="panel-title">keygen / sign / verify across parameter sets (median)</div>
+      <svg id="svg-perf" viewBox="0 0 860 240"></svg>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>keygen</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>sign (median)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#059669"></div>verify</div>
+      </div>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">Bars show <strong>median</strong> of 150 trials (3 repeats x 50) per parameter set. Sign's <em>mean</em> is not shown here — its rejection-sampling loop makes the mean dominated by rare slow outliers (see callout and table below); median better reflects the typical case.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Cross-parameter-set summary</div>
+      <table class="params">
+        <thead><tr><th>Parameter set</th><th>k</th><th>l</th><th>η</th><th>τ</th><th>|σ| (B)</th><th>keygen</th><th>sign (mean / median)</th><th>verify</th></tr></thead>
+        <tbody>
+          ${PERF_ORDER.map(name => {
+            const base = PARAM_SETS[name];
+            const dp = deriveParams(base, name);
+            const d = PERF_DATA[name];
+            const hi = name === currentSetName;
+            return `<tr${hi ? ' style="background:#1f6feb22"' : ''}>
+              <td style="color:#d2a8ff;font-family:monospace">${name}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.k}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.l}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.eta}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.tau}</td>
+              <td style="text-align:right;font-family:monospace;color:#79c0ff">${dp.sigBytes.toLocaleString()}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.keygen.mean)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.sign.mean)} / ${fmtMs(d.sign.median)}</td>
+              <td style="text-align:right;font-family:monospace">${fmtMs(d.verify.mean)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:12px">
+        <div class="ctitle">Why doesn't sign scale monotonically with category?</div>
+        <div class="cbody">
+          keygen and verify scale cleanly with category (12.9 &rarr; 20.6 &rarr; 29.4 ms and 13.5 &rarr; 19.6 &rarr; 29.4 ms) since both are fixed-cost matrix&ndash;vector operations sized by k and l. <strong>sign does not</strong> — its cost is dominated by Algorithm 2's rejection-sampling loop, whose expected iteration count depends on τ, η, γ₁, and γ₂ together, not on k/l alone. The mean (${fmtMs(PERF_DATA['ML-DSA-44'].sign.mean)}, ${fmtMs(PERF_DATA['ML-DSA-65'].sign.mean)}, ${fmtMs(PERF_DATA['ML-DSA-87'].sign.mean)} across 44/65/87) is nearly flat and easily swamped by rare high-iteration-count outliers (one run's mean was pulled up by an outlier past 780&nbsp;ms — see the operational-config table below); the median (${fmtMs(PERF_DATA['ML-DSA-44'].sign.median)}, ${fmtMs(PERF_DATA['ML-DSA-65'].sign.median)}, ${fmtMs(PERF_DATA['ML-DSA-87'].sign.median)}) tracks category more sensibly, but even it is a noisier statistic here than keygen/verify's tight, low-stdev costs.
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">ML-DSA-65 — does operational configuration matter?</div>
+      <table class="params">
+        <thead><tr><th>Configuration</th><th>mean</th><th>median</th><th>stdev</th><th>n</th></tr></thead>
+        <tbody>
+          ${PERF_65_CONFIGS.map(c => `<tr>
+            <td style="color:#d2a8ff">${c.name}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.mean)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.median)}</td>
+            <td style="text-align:right;font-family:monospace;color:#79c0ff">${fmtMs(c.stdev)}</td>
+            <td style="text-align:right;color:#8b949e">${c.n}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+      <p style="font-size:0.75rem;color:#6e7681;margin-top:10px">verify and hash_verify are tight (stdev &lt; 2 ms) regardless of message size or pre-hash algorithm — as expected, since verify has no rejection loop. Every sign/hash_sign row has stdev comparable to or larger than its own mean: that's the rejection-sampling tail, not measurement noise — rerunning this suite will reorder which configuration looks "slowest" by mean, even though the underlying per-iteration cost is stable.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Methodology</div>
+      <p style="color:#8b949e;font-size:0.825rem;line-height:1.65">
+        Only <strong>ML-DSA-65</strong> is a real, NIST-ACVP-KAT-verified implementation in this repo. ML-DSA-44 and ML-DSA-87 run the <em>same, unmodified</em> algorithm code under monkeypatched parameters (<code>mldsa/tests/perf/param_loader.py</code> reloads the module stack with a different k/l/η/τ/λ/γ₁/γ₂/ω), verified only by a sign/verify round-trip self-test before timing — not by NIST vectors, since none exist for them in this repo. Absolute numbers reflect an unoptimized, spec-fidelity reference implementation (pure Python, no constant-time hardening, no rejection-loop bound tuned for average-case speed) on whatever machine ran the benchmark — treat them as relative/structural, not as a production performance claim. Full methodology and raw JSON: <code>mldsa/tests/perf/README.md</code>.
+      </p>
+    </div>
+  `;
+  drawPerfChart();
 }
 
 function drawParams() {
