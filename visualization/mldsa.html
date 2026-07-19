@@ -29,7 +29,10 @@ nav.tabs {
   background: #161b22;
   border-bottom: 1px solid #30363d;
   padding: 0 40px;
-  display: flex; gap: 0; overflow-x: auto;
+  display: flex; gap: 0; align-items: center;
+}
+.tabs-scroll {
+  display: flex; overflow-x: auto; flex: 1 1 auto; min-width: 0;
 }
 .tab-btn {
   background: none; border: none; border-bottom: 2px solid transparent;
@@ -62,6 +65,16 @@ main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
 .info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
 .info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
 .info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+
+.panel-sub { font-size: 0.8rem; color: #8b949e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+
+.chart-tooltip {
+  position: fixed; pointer-events: none; z-index: 50; display: none;
+  background: #21262d; border: 1px solid #30363d; border-radius: 6px;
+  padding: 6px 10px; font-size: 0.78rem; box-shadow: 0 4px 12px rgba(0,0,0,0.4); max-width: 260px;
+}
+.chart-tooltip .tt-value { color: #f0f6fc; font-weight: 700; font-size: 0.85rem; }
+.chart-tooltip .tt-label { color: #8b949e; margin-top: 1px; line-height: 1.4; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
@@ -112,18 +125,19 @@ table.params td:last-child { color: #8b949e; }
   </div>
   <div>
     <h1 id="header-title">ML-DSA-65 &mdash; Interactive Visualization</h1>
-    <p>FIPS 204 lattice-based signature scheme &mdash; explore Matrix A, ExpandMask/SampleInBall, and rounding &amp; hints interactively</p>
+    <p>FIPS 204 lattice-based signature scheme &mdash; step through the Sign algorithm below, then dig into Matrix A, ExpandMask/SampleInBall, and rounding &amp; hints</p>
   </div>
 </header>
 
 <nav class="tabs">
+  <div class="tabs-scroll">
   <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
+  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
   <button class="tab-btn" onclick="showTab('matrix',this)">Matrix A</button>
   <button class="tab-btn" onclick="showTab('mask',this)">Mask &amp; Challenge</button>
   <button class="tab-btn" onclick="showTab('rounding',this)">Rounding &amp; Hints</button>
-  <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
-  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
-  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
+  </div>
   <div class="nav-end">
     <label class="nav-label">Algorithm:</label>
     <select id="algo-set" onchange="onAlgoChange()">
@@ -149,8 +163,22 @@ table.params td:last-child { color: #8b949e; }
 <!-- ══════════ OVERVIEW ══════════ -->
 <div id="tab-overview" class="tab-panel active">
   <div class="panel">
-    <div class="panel-title">ML-DSA Sign — Component Overview (FIPS 204 Algorithm 7)</div>
-    <svg id="svg-overview" viewBox="0 0 950 430"></svg>
+    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 204 Algorithm 7)</div>
+    <div class="panel-sub">FIPS 204 — NIST's lattice-based digital signature standard (Module-SIS hardness), finalized August 2024 as a replacement for RSA/ECDSA-style signing.</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
+      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 8</span>
+      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
+      <label style="display:flex;align-items:center;gap:6px;color:#8b949e;font-size:0.8rem;margin-left:auto;cursor:pointer">
+        <input type="checkbox" id="sf-full" onchange="sfStep(0,false)">
+        Full description
+      </label>
+    </div>
+    <svg id="svg-signflow" viewBox="0 0 950 430"></svg>
+    <div class="callout" style="margin-top:14px">
+      <div class="ctitle" id="sf-title"></div>
+      <div class="cbody"  id="sf-body"></div>
+    </div>
   </div>
   <div class="panel">
     <div class="panel-title" id="siglayout-title">Signature Layout &mdash; ML-DSA-65: 3,309 bytes total</div>
@@ -282,25 +310,6 @@ table.params td:last-child { color: #8b949e; }
   </div>
 </div>
 
-<!-- ══════════ SIGN FLOW ══════════ -->
-<div id="tab-signflow" class="tab-panel">
-  <div class="panel">
-    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 204 Algorithm 7)</div>
-    <svg id="svg-signflow" viewBox="0 0 950 430"></svg>
-  </div>
-  <div class="panel">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
-      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 8</span>
-      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
-    </div>
-    <div class="callout">
-      <div class="ctitle" id="sf-title"></div>
-      <div class="cbody"  id="sf-body"></div>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════ PARAMETERS ══════════ -->
 <div id="tab-params" class="tab-panel">
   <!-- generated dynamically by drawParams() -->
@@ -312,6 +321,8 @@ table.params td:last-child { color: #8b949e; }
 </div>
 
 </main>
+
+<div id="chart-tooltip" class="chart-tooltip"></div>
 
 <script>
 'use strict';
@@ -356,6 +367,31 @@ function clear(id) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Tooltip
+// ─────────────────────────────────────────────────────────────────────────────
+function showTooltip(evt, valueStr, labelStr) {
+  const t = document.getElementById('chart-tooltip');
+  t.innerHTML = '';
+  const v = document.createElement('div'); v.className = 'tt-value'; v.textContent = valueStr;
+  const l = document.createElement('div'); l.className = 'tt-label'; l.textContent = labelStr;
+  t.appendChild(v); t.appendChild(l);
+  t.style.display = 'block';
+  moveTooltip(evt);
+}
+function moveTooltip(evt) {
+  const t = document.getElementById('chart-tooltip');
+  t.style.left = (evt.clientX + 14) + 'px';
+  t.style.top = (evt.clientY + 14) + 'px';
+}
+function hideTooltip() { document.getElementById('chart-tooltip').style.display = 'none'; }
+function wireHover(node, valueStr, labelStr) {
+  node.style.cursor = 'pointer';
+  node.addEventListener('mouseenter', e => { node.setAttribute('stroke', '#fff'); node.setAttribute('stroke-width','1.5'); showTooltip(e, valueStr, labelStr); });
+  node.addEventListener('mousemove', e => moveTooltip(e));
+  node.addEventListener('mouseleave', () => { node.removeAttribute('stroke'); node.removeAttribute('stroke-width'); hideTooltip(); });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Parameter sets (FIPS 204 Table 1 / Table 2)
 // ─────────────────────────────────────────────────────────────────────────────
 const PARAM_SETS = {
@@ -393,7 +429,7 @@ const RENDERERS = {
   overview: drawOverview, matrix: drawMatrix,
   mask: () => { drawMask(); drawChallenge(); },
   rounding: () => { drawDecompose(); drawHint(); },
-  signflow: () => { sfStep(0, true); }, params: drawParams,
+  params: drawParams,
   performance: drawPerformance
 };
 function showTab(name, btn) {
@@ -469,21 +505,25 @@ function drawSpecialPaths(svg) {
 }
 
 function drawOverview() {
-  const svg = clear('svg-overview');
-  drawBoxesAndArrows(svg, OVERVIEW_BOXES, OVERVIEW_ARROWS, []);
-  drawSpecialPaths(svg);
-
+  sfStep(0, true);
+  drawSigLayout();
+}
+function drawSigLayout() {
   const sl = clear('svg-siglayout');
   const total = P.sigBytes, sw = 840, sx0 = 20;
   const parts = [
-    {b: P.cTildeBytes, fill: '#78350f', lbl: `c̃ (${P.cTildeBytes} B)`},
-    {b: P.zBytes,      fill: '#4c1d95', lbl: `z (${P.zBytes.toLocaleString()} B)`},
-    {b: P.hintBytes,   fill: '#1d4ed8', lbl: `hint (${P.hintBytes} B)`},
+    {b: P.cTildeBytes, fill: '#78350f', lbl: `c̃ (${P.cTildeBytes} B)`,
+     desc: "The Fiat–Shamir challenge seed — c̃ = H(μ‖w1Encode(w1)). SampleInBall expands it into the sparse ±1 challenge polynomial c; Verify recomputes it from scratch and checks it matches."},
+    {b: P.zBytes,      fill: '#4c1d95', lbl: `z (${P.zBytes.toLocaleString()} B)`,
+     desc: "The masked response z = y + c·s1 — the actual proof the signer knows s1. Safe to reveal only because rejection sampling (Sign's abort loop) keeps its distribution independent of s1."},
+    {b: P.hintBytes,   fill: '#1d4ed8', lbl: `hint (${P.hintBytes} B)`,
+     desc: "1-bit-per-coefficient hints h = MakeHint(−c·t0, ...). Let Verify recover the exact high bits of w from t1, z, and c alone, without ever needing t0 itself."},
   ];
   let px = sx0;
-  for (const {b, fill, lbl} of parts) {
+  for (const {b, fill, lbl, desc} of parts) {
     const w = Math.max(4, Math.round(b / total * sw));
-    rect(sl, px, 8, w, 44, fill, 3, '#ffffff18', 1);
+    const r = rect(sl, px, 8, w, 44, fill, 3, '#ffffff18', 1);
+    wireHover(r, lbl, desc);
     if (w > 60) text(sl, px + w/2, 30, lbl, '#f0f6fc', w > 150 ? 10 : 8);
     px += w;
   }
@@ -706,27 +746,35 @@ function buildSteps() {
   return [
     { title: 'Step 1 — Decode sk & precompute',
       body: "Decode sk → ρ, K (seed), tr, s1, s2, t0. Precompute NTT(s1), NTT(s2), NTT(t0), and Â = ExpandA(ρ) — the same K×L matrix used at KeyGen.",
+      full: "sk unpacks to (ρ, K, tr, s1, s2, t0) via SkDecode. s1 ∈ R_q^L and s2 ∈ R_q^K are the short secret vectors from KeyGen (coefficients in [−η, η]); t0 is the low-order correction term split off by Power2Round back at KeyGen — it's kept secret so only its high bits (t1) need to be public. All three are lifted into NTT form here because every one of the (possibly many) κ retries below needs them again, and Â = ExpandA(ρ) is recomputed from the 32-byte seed rather than stored, trading a cheap re-expansion for a much smaller signing key.",
       hi: ['sk','Ahat'] },
     { title: "Step 2 — μ = H(tr ‖ M′)",
       body: "Build M′ = 0x00‖|ctx|‖ctx‖M (or the HashML-DSA prehash variant), then μ = H(tr‖M′), a 64-byte digest binding the message to the public key via tr = H(pk).",
+      full: "M′ is built per FIPS 204 §5.4: a domain-separator byte (0 for plain ML-DSA, 1 for HashML-DSA), the context-string length and bytes, then either the raw message M or — for HashML-DSA — a pre-hash digest of M prefixed by an OID identifying which hash was used. μ = H(tr‖M′) folds in tr = H(pk), computed once at KeyGen, so μ (and the whole signature) is cryptographically bound to this specific public key: the same message signed under a different key produces an unrelated μ, and a signature can't be replayed as if it came from another key.",
       hi: ['M','mu'] },
     { title: "Step 3 — ρ′ = H(K ‖ rnd ‖ μ)",
       body: "rnd is all-zero for deterministic signing or a fresh 32-byte random value for hedged (the default). ρ′ seeds ExpandMask for this attempt.",
+      full: "rnd is the only source of randomness that can differ between two signing calls over the same message with the same key: all-zero for deterministic signing (used for KAT replay, where the output must match a fixed reference vector), or a fresh 32-byte random value for hedged signing — the public API's default. Folding rnd together with the secret K and the message digest μ means ρ′, and therefore every y sampled from it below, differs each hedged signing attempt — this helps defend against both weak RNGs and fault-injection attacks that try to force the same y twice. ρ′ itself is derived once per Sign call, not once per κ attempt; only κ changes across retries.",
       hi: ['rhoprime'] },
     { title: "Step 4 — y = ExpandMask(ρ′, κ)",
       body: `κ starts at 0. y ∈ R_q^L has coefficients in (−γ1, γ1] = (−${P.gamma1.toLocaleString()}, ${P.gamma1.toLocaleString()}], derived independently per component.`,
+      full: `y ∈ R_q^L is the masking vector — coefficients spread uniformly across the full (−γ1, γ1] = (−${P.gamma1.toLocaleString()}, ${P.gamma1.toLocaleString()}] range, sampled by ExpandMask(ρ′, κ). γ1 is deliberately huge relative to η (the secret's coefficient bound): this is what lets z = y + c·s1 in Step 7 statistically hide any trace of s1. κ starts at 0 and, on every rejection in Step 7, increases by L before control returns here — L is the vector length, so each retry samples all L components of y fresh and independently rather than reusing any part of a failed attempt.`,
       hi: ['y'] },
     { title: "Step 5 — w = NTT⁻¹(Â∘NTT(y)); w1 = HighBits(w)",
       body: "Commit to only the high-order bits of w. This is what makes signatures compressible; the low bits never leave the signer except as 1-bit hints.",
+      full: "Â∘NTT(y) is a K×L matrix–vector product carried out entirely in the NTT domain — for ML-DSA the NTT is fully diagonal (ζ=1753 is a primitive 512th root of unity, so X²⁵⁶+1 splits into 256 linear factors), so this multiply is a plain coefficient-wise product, unlike ML-KEM's quadratic base-case multiply. NTT⁻¹ brings the result w back to normal form, then Decompose splits each coefficient into HighBits (w1) and LowBits (discarded here, only recovered implicitly via hints in Step 8). Committing to only w1 is what keeps the eventual signature compact — the fine-grained low bits of w never have to leave the signer's machine.",
       hi: ['w','w1'] },
     { title: "Step 6 — c̃ = H(μ‖w1Encode(w1)); c = SampleInBall(c̃)",
       body: `The Fiat–Shamir challenge: a hash of the commitment w1 (and message digest μ) expands into a sparse polynomial c with exactly τ=${P.tau} nonzero ±1 coefficients.`,
+      full: `This is the Fiat–Shamir transform in action: a genuine interactive zero-knowledge proof would have a verifier send a random challenge after seeing the commitment w1; hashing (μ, w1Encode(w1)) into c̃ simulates that verifier non-interactively — anyone can recompute c̃ the same way, which is exactly what Verify does when it mirrors this step. SampleInBall then expands the λ/4-byte digest c̃ into a degree-256 polynomial c with exactly τ=${P.tau} nonzero coefficients, each ±1, all others zero. Sparsity matters: it caps c·s1's and c·s2's coefficient magnitude at β=τ·η in the worst case, which is what makes the bounds checked in Step 7 satisfiable often enough for signing to terminate in only a handful of attempts.`,
       hi: ['ctilde','c'] },
     { title: "Step 7 — z = y + c·s1; check & reject",
       body: `Compute z and r0=LowBits(w−c·s2). Reject and retry (κ+=L, back to Step 4) if ‖z‖∞≥γ1−β, ‖r0‖∞≥γ2−β, ‖c·t0‖∞≥γ2, or hint weight exceeds ω=${P.omega}. These bounds keep z independent of s1/s2 and the signature compact.`,
+      full: `Four independent bound checks gate acceptance, and failing any one sends control back to Step 4 with κ+=L: (1) ‖z‖∞≥γ1−β — z=y+c·s1 strayed too close to the edge of y's range, which would leak information about s1; (2) ‖r0‖∞≥γ2−β, where r0=LowBits(w−c·s2) — the same idea applied to the low-order commitment noise; (3) ‖c·t0‖∞≥γ2 — the correction term the verifier will need via hints got too large; (4) the Hamming weight of the hint vector h exceeds ω=${P.omega} — an oversized hint would itself leak information and blow past the signature's fixed byte budget for hints. None of these checks reflects anything being wrong with the key — y and c are freshly (and validly) sampled every attempt, so this is a per-attempt statistical filter, not an error condition. It's exactly what keeps the distribution of published z's independent of s1, regardless of which secret key produced them.`,
       hi: ['z','reject'] },
     { title: "Step 8 — Assemble the signature",
       body: `h = MakeHint(−c·t0, w−c·s2+c·t0). σ = c̃‖z‖h (${P.cTildeBytes}+${P.zBytes.toLocaleString()}+${P.hintBytes} = ${P.sigBytes.toLocaleString()} bytes). Verify recomputes w1 from z, c, t1, and h, then checks H(μ‖w1Encode) == c̃.`,
+      full: `h = MakeHint(−c·t0, w−c·s2+c·t0) packs one bit per coefficient recording whether adding the correction term changes HighBits — that's all the verifier needs, together with t1 (not t0 itself), to recover the exact w1 the signer saw. The final signature σ = c̃‖z‖h packs to a fixed total size (${P.cTildeBytes}+${P.zBytes.toLocaleString()}+${P.hintBytes} = ${P.sigBytes.toLocaleString()} bytes for this parameter set). Verify redoes most of this flow in reverse: recompute c from c̃, reconstruct an approximate w from A·z − c·(t1·2^D), apply the hints to recover the exact w1, and accept only if hashing (μ, w1) reproduces the same c̃ embedded in σ — the same check, mirrored, that this signer just performed to produce it.`,
       hi: ['sigma'] },
   ];
 }
@@ -735,16 +783,16 @@ function sfStep(delta, reset) {
   if (reset) sf_cur = 0;
   else sf_cur = Math.max(0, Math.min(steps.length - 1, sf_cur + delta));
   const s = steps[sf_cur];
+  const full = document.getElementById('sf-full').checked;
   document.getElementById('sf-counter').textContent = `Step ${sf_cur+1} / ${steps.length}`;
   document.getElementById('sf-title').textContent = s.title;
-  document.getElementById('sf-body').textContent = s.body;
-  drawSignFlow(s.hi, s.title);
+  document.getElementById('sf-body').textContent = full ? s.full : s.body;
+  drawSignFlow(s.hi);
 }
-function drawSignFlow(hi=[], stepTitle='') {
+function drawSignFlow(hi=[]) {
   const svg = clear('svg-signflow');
   drawBoxesAndArrows(svg, OVERVIEW_BOXES, OVERVIEW_ARROWS, hi);
   drawSpecialPaths(svg);
-  text(svg, 475, 412, `Step ${sf_cur+1}: ${stepTitle}`, '#58a6ff', 10.5, 'middle', '600');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -988,7 +1036,7 @@ function onParamSetChange() {
   const active = document.querySelector('.tab-panel.active');
   if (active) {
     const id = active.id.replace('tab-', '');
-    if (id === 'signflow') sfStep(0, false);
+    if (id === 'overview') { sfStep(0, false); drawSigLayout(); }
     else if (RENDERERS[id]) RENDERERS[id]();
   }
 }
@@ -1003,7 +1051,6 @@ drawMask();
 drawChallenge();
 drawDecompose();
 drawHint();
-sfStep(0, true);
 </script>
 </body>
 </html>
