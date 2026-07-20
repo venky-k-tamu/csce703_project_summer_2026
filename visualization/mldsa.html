@@ -64,7 +64,7 @@ main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
 .info h2 { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: 10px; }
 .info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
 .info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
-.info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+.info .note, .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
 
 .panel-sub { font-size: 0.8rem; color: #8b949e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
 
@@ -75,6 +75,14 @@ main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
 }
 .chart-tooltip .tt-value { color: #f0f6fc; font-weight: 700; font-size: 0.85rem; }
 .chart-tooltip .tt-label { color: #8b949e; margin-top: 1px; line-height: 1.4; }
+
+.summary p { color: #c9d1d9; font-size: 0.875rem; line-height: 1.7; margin-bottom: 12px; }
+.summary p:last-of-type { margin-bottom: 0; }
+.summary strong { color: #f0f6fc; }
+.summary ul { margin: 4px 0 12px 20px; }
+.summary ul:last-child { margin-bottom: 0; }
+.summary li { color: #c9d1d9; font-size: 0.875rem; line-height: 1.65; margin-bottom: 8px; }
+.summary li strong { color: #f0f6fc; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
@@ -183,6 +191,41 @@ table.params td:last-child { color: #8b949e; }
   <div class="panel">
     <div class="panel-title" id="siglayout-title">Signature Layout &mdash; ML-DSA-65: 3,309 bytes total</div>
     <svg id="svg-siglayout" viewBox="0 0 880 72"></svg>
+  </div>
+
+  <div class="panel summary">
+    <div class="panel-title">What ML-DSA Replaces &mdash; and Why</div>
+    <div class="panel-sub">Motivation for a lattice-based signature standard</div>
+    <p>Today's digital signatures &mdash; RSA and ECDSA (elliptic-curve cryptography) &mdash; underpin TLS certificates, code signing, and document signing across the internet. Their security rests on math problems (factoring large integers, computing discrete logarithms) that are practically impossible for classical computers to solve without the private key.</p>
+    <p><strong>Shor's algorithm</strong> solves both problems efficiently on a sufficiently capable quantum computer, which would let an attacker forge signatures under any broken RSA/ECDSA key. Unlike encryption, where "harvest now, decrypt later" is the headline threat, the risk for signatures is <strong>forward trust</strong>: code-signing keys, firmware update chains, and root certificate authorities are often trusted for a decade or more after a signature is issued &mdash; long enough for a quantum break to arrive mid-lifetime and retroactively undermine every signature that key ever produced.</p>
+    <p>In August 2024, NIST finalized <strong>ML-DSA (FIPS 204)</strong> as the primary general-purpose replacement for RSA/ECDSA signing. Its security reduces to <strong>Module-SIS</strong>, a lattice problem with no known efficient quantum algorithm &mdash; the same hardness family used by ML-KEM for key exchange. (NIST also standardized SLH-DSA, implemented alongside ML-DSA in this repo, as a conservative hash-based fallback that doesn't depend on lattice assumptions at all.)</p>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">How ML-DSA Works &mdash; The Big Picture</div>
+      <div class="panel-sub">A simplified view of the signing flow between a signer and a verifier &mdash; no math, just who sends what to whom.</div>
+      <svg id="svg-seqdiagram" viewBox="0 0 700 568"></svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#8b949e;border-radius:0;height:2px;width:16px"></span> request / call</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#8b949e;border-radius:0;height:2px;width:16px;background-image:linear-gradient(90deg,#8b949e 60%,transparent 40%);background-size:6px 2px"></span> response / return</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3b2c0f;border:1px solid #d29922"></span> step grouping</div>
+      </div>
+      <div class="note" style="margin-top:10px">Unlike a key-exchange scheme, ML-DSA never gives Bob a secret to share &mdash; it gives him a yes/no answer about whether the message really came from Alice's private key. Key Generation is Algorithm 1, Signing is Algorithm 2, and Verification is Algorithm 3 in FIPS 204 &sect;5.</div>
+    </div>
+
+    <div class="panel summary">
+      <div class="panel-title">Where ML-DSA Fits</div>
+      <div class="panel-sub">Same role as RSA/ECDSA signatures today, hardened against a future quantum adversary</div>
+      <ul>
+        <li><strong>TLS / PKI certificates</strong> &mdash; signing the certificate chains browsers and servers use to authenticate each other.</li>
+        <li><strong>Code &amp; firmware signing</strong> &mdash; proving software and firmware updates genuinely came from the vendor, especially for embedded/IoT devices that stay in the field for years.</li>
+        <li><strong>Software supply-chain attestation</strong> &mdash; signing build artifacts and SBOMs to prove provenance.</li>
+        <li><strong>Document &amp; identity signing</strong> &mdash; legally binding e-signatures and government-issued digital credentials.</li>
+        <li><strong>Blockchain / distributed-ledger transactions</strong> &mdash; where a forged signature translates directly into stolen funds.</li>
+        <li><strong>Long-lived trust anchors</strong> &mdash; root CAs and other keys that must stay trustworthy for decades, where migrating "later" isn't an option once a quantum attack actually arrives.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -507,6 +550,7 @@ function drawSpecialPaths(svg) {
 function drawOverview() {
   sfStep(0, true);
   drawSigLayout();
+  drawSeqDiagram();
 }
 function drawSigLayout() {
   const sl = clear('svg-siglayout');
@@ -533,6 +577,52 @@ function drawSigLayout() {
     text(sl, px + w/2, 62, b.toLocaleString() + ' B', '#6e7681', 8);
     px += w;
   }
+}
+
+function drawSeqDiagram() {
+  const svg = clear('svg-seqdiagram');
+  const laneX = {alice: 100, mldsa: 350, bob: 600};
+  const boxW = 150, boxH = 38;
+  const topY = 8, bottomY = 522;
+  const lifeTop = topY + boxH, lifeBottom = bottomY;
+
+  function actorBox(x, y) {
+    const lbl = x === laneX.alice ? 'Alice' : x === laneX.mldsa ? 'ML-DSA' : 'Bob';
+    rect(svg, x - boxW/2, y, boxW, boxH, '#132d22', 6, '#199e70', 1.3);
+    text(svg, x, y + boxH/2, lbl, '#f0f6fc', 11.5, 'middle', '700');
+  }
+  for (const x of Object.values(laneX)) { actorBox(x, topY); actorBox(x, bottomY); }
+  for (const x of Object.values(laneX)) line(svg, x, lifeTop, x, lifeBottom, '#30363d', 1.2, '3,3');
+
+  function stepBand(y, label) {
+    rect(svg, 10, y, 680, 22, '#3b2c0f', 4, '#d29922', 1);
+    text(svg, 350, y + 12, label, '#f0f6fc', 10.5, 'middle', '600');
+  }
+  function seqArrow(x1, x2, y, dashed, label) {
+    const color = '#8b949e';
+    const dir = x2 > x1 ? 1 : -1;
+    const ax = x2 - dir * 9;
+    line(svg, x1, y, ax, y, color, 1.3, dashed ? '4,3' : '');
+    el('polygon', {points: `${x2},${y} ${ax},${y-4.5} ${ax},${y+4.5}`, fill: color}, svg);
+    if (label) text(svg, (x1 + x2) / 2, y - 9, label, '#c9d1d9', 9);
+  }
+
+  let y = lifeTop + 14;
+  stepBand(y, 'Step 1 — Key Generation'); y += 40;
+  seqArrow(laneX.alice, laneX.mldsa, y, false, 'Generate key pair'); y += 32;
+  seqArrow(laneX.mldsa, laneX.alice, y, true, 'Public key + Private key'); y += 40;
+
+  stepBand(y, 'Step 2 — Share Public Key'); y += 40;
+  seqArrow(laneX.alice, laneX.bob, y, false, 'Send public key (safe to share!)'); y += 40;
+
+  stepBand(y, 'Step 3 — Signing'); y += 40;
+  seqArrow(laneX.alice, laneX.mldsa, y, false, 'Sign message with private key'); y += 32;
+  seqArrow(laneX.mldsa, laneX.alice, y, true, 'Signature'); y += 32;
+  seqArrow(laneX.alice, laneX.bob, y, false, 'Send message + signature'); y += 40;
+
+  stepBand(y, 'Step 4 — Verification'); y += 40;
+  seqArrow(laneX.bob, laneX.mldsa, y, false, "Verify (message + Alice's public key)"); y += 32;
+  seqArrow(laneX.mldsa, laneX.bob, y, true, 'Valid ✓ / Invalid ✗');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
