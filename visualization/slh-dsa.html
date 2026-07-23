@@ -125,13 +125,12 @@ table.params td:last-child { color: #8b949e; }
 
 <nav class="tabs">
   <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
+  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
   <button class="tab-btn" onclick="showTab('wots',this)">WOTS+</button>
   <button class="tab-btn" onclick="showTab('xmss',this)">XMSS</button>
   <button class="tab-btn" onclick="showTab('fors',this)">FORS</button>
   <button class="tab-btn" onclick="showTab('ht',this)">Hypertree</button>
-  <button class="tab-btn" onclick="showTab('signflow',this)">Sign Flow</button>
-  <button class="tab-btn" onclick="showTab('params',this)">Parameters</button>
-  <button class="tab-btn" onclick="showTab('performance',this)">Performance</button>
   <div class="nav-end">
     <label class="nav-label">Algorithm:</label>
     <select id="algo-set" onchange="onAlgoChange()">
@@ -169,6 +168,19 @@ table.params td:last-child { color: #8b949e; }
 
 <!-- ══════════ OVERVIEW ══════════ -->
 <div id="tab-overview" class="tab-panel active">
+  <div class="panel">
+    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 205 Algorithm 21)</div>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
+      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 7</span>
+      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
+    </div>
+    <svg id="svg-signflow" viewBox="0 0 880 420"></svg>
+    <div class="callout" style="margin-top:14px">
+      <div class="ctitle" id="sf-title"></div>
+      <div class="cbody"  id="sf-body"></div>
+    </div>
+  </div>
   <div class="panel">
     <div class="panel-title">SLH-DSA Architecture — Component Overview</div>
     <svg id="svg-overview" viewBox="0 0 880 420"></svg>
@@ -337,25 +349,6 @@ table.params td:last-child { color: #8b949e; }
   </div>
 </div>
 
-<!-- ══════════ SIGN FLOW ══════════ -->
-<div id="tab-signflow" class="tab-panel">
-  <div class="panel">
-    <div class="panel-title">Signing Algorithm — Step by Step (FIPS 205 Algorithm 21)</div>
-    <svg id="svg-signflow" viewBox="0 0 880 420"></svg>
-  </div>
-  <div class="panel">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
-      <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
-      <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 7</span>
-      <button class="btn primary" onclick="sfStep(1)">Next &#8594;</button>
-    </div>
-    <div class="callout">
-      <div class="ctitle" id="sf-title"></div>
-      <div class="cbody"  id="sf-body"></div>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════ PARAMETERS ══════════ -->
 <div id="tab-params" class="tab-panel">
   <!-- generated dynamically by drawParams() -->
@@ -500,7 +493,7 @@ function buildSteps() {
 // ─────────────────────────────────────────────────────────────────────────────
 const RENDERERS = {
   overview: drawOverview, wots: drawWOTS, xmss: drawXMSS,
-  fors: drawFORS, ht: drawHT, signflow: () => { sfStep(0, true); }, params: drawParams,
+  fors: drawFORS, ht: drawHT, params: drawParams,
   performance: drawPerformance
 };
 function showTab(name, btn) {
@@ -515,6 +508,11 @@ function showTab(name, btn) {
 // OVERVIEW
 // ─────────────────────────────────────────────────────────────────────────────
 function drawOverview() {
+  sfStep(0, true);
+  drawArchOverview();
+}
+
+function drawArchOverview() {
   const svg = clear('svg-overview');
 
   // Boxes: [x, y, w, h, fill, label, sublabel, id]
@@ -1370,7 +1368,7 @@ function onParamSetChange() {
   const active = document.querySelector('.tab-panel.active');
   if (active) {
     const id = active.id.replace('tab-', '');
-    if (id === 'signflow') sfStep(0, false);
+    if (id === 'overview') { sfStep(0, false); drawArchOverview(); }
     else if (RENDERERS[id]) RENDERERS[id]();
   }
 }
@@ -1384,7 +1382,6 @@ drawWOTS();
 drawXMSS();
 drawFORS();
 drawHT();
-sfStep(0, true);
 </script>
 </body>
 </html>
