@@ -61,7 +61,17 @@ main { padding: 28px 40px; max-width: 1200px; margin: 0 auto; }
 .info h2 { font-size: 1rem; font-weight: 600; color: #f0f6fc; margin-bottom: 10px; }
 .info h3 { font-size: 0.85rem; font-weight: 600; color: #58a6ff; margin: 14px 0 5px; }
 .info p  { font-size: 0.825rem; color: #8b949e; line-height: 1.65; margin-bottom: 8px; }
-.info .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+.info .note, .note { font-size: 0.75rem; color: #6e7681; margin-top: 10px; }
+
+.panel-sub { font-size: 0.8rem; color: #8b949e; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+
+.summary p { color: #c9d1d9; font-size: 0.875rem; line-height: 1.7; margin-bottom: 12px; }
+.summary p:last-of-type { margin-bottom: 0; }
+.summary strong { color: #f0f6fc; }
+.summary ul { margin: 4px 0 12px 20px; }
+.summary ul:last-child { margin-bottom: 0; }
+.summary li { color: #c9d1d9; font-size: 0.875rem; line-height: 1.65; margin-bottom: 8px; }
+.summary li strong { color: #f0f6fc; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.775rem; color: #8b949e; }
@@ -170,6 +180,7 @@ table.params td:last-child { color: #8b949e; }
 <div id="tab-overview" class="tab-panel active">
   <div class="panel">
     <div class="panel-title">Signing Algorithm — Step by Step (FIPS 205 Algorithm 21)</div>
+    <div class="panel-sub">FIPS 205 — NIST's hash-based digital signature standard, finalized August 2024 as a conservative, minimal-assumption alternative to ML-DSA.</div>
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
       <button class="btn" onclick="sfStep(-1)">&#8592; Prev</button>
       <span id="sf-counter" style="color:#8b949e;font-size:0.85rem;min-width:80px;text-align:center">Step 1 / 7</span>
@@ -182,12 +193,42 @@ table.params td:last-child { color: #8b949e; }
     </div>
   </div>
   <div class="panel">
-    <div class="panel-title">SLH-DSA Architecture — Component Overview</div>
-    <svg id="svg-overview" viewBox="0 0 880 420"></svg>
-  </div>
-  <div class="panel">
     <div class="panel-title" id="siglayout-title">Signature Layout &mdash; SLH-DSA-SHAKE-128s: 7,856 bytes total</div>
     <svg id="svg-siglayout" viewBox="0 0 880 72"></svg>
+  </div>
+
+  <div class="panel summary">
+    <div class="panel-title">What SLH-DSA Replaces &mdash; and Why</div>
+    <div class="panel-sub">Motivation for a conservative, hash-based signature standard</div>
+    <p>ML-DSA (FIPS 204) is NIST's primary post-quantum signature standard, but its security reduces to <strong>Module-SIS</strong>, a lattice problem that — like all lattice cryptography — is younger and less battle-tested than the number-theoretic problems it replaces. Lattice cryptanalysis is an active research area, and no one can rule out a future structural attack the way decades of scrutiny have (mostly) ruled one out for well-studied hash functions.</p>
+    <p><strong>SLH-DSA (FIPS 205)</strong>, standardized alongside ML-DSA and derived from SPHINCS+, is NIST's insurance policy against that risk. Its security rests <em>only</em> on the collision- and preimage-resistance of SHAKE256 — no algebraic structure, no lattice assumption, nothing beyond "this hash function is hard to invert." That minimalism is deliberate: if Module-SIS were ever broken, SLH-DSA's security would be untouched.</p>
+    <p>The tradeoff is size and speed: hash-based signing means walking large Merkle trees and re-hashing repeatedly, so SLH-DSA-SHAKE-128s signatures run <strong>7,856 bytes</strong> (vs. ML-DSA-65's 3,309) and signing is orders of magnitude slower than verification. NIST's guidance is to reach for SLH-DSA where that conservatism is worth the cost — not to replace ML-DSA everywhere.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">How SLH-DSA Works &mdash; The Big Picture</div>
+      <div class="panel-sub">A simplified view of the signing flow between a signer and a verifier &mdash; no math, just who sends what to whom.</div>
+      <svg id="svg-seqdiagram" viewBox="0 0 700 568"></svg>
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#8b949e;border-radius:0;height:2px;width:16px"></span> request / call</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#8b949e;border-radius:0;height:2px;width:16px;background-image:linear-gradient(90deg,#8b949e 60%,transparent 40%);background-size:6px 2px"></span> response / return</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#3b2c0f;border:1px solid #d29922"></span> step grouping</div>
+      </div>
+      <div class="note" style="margin-top:10px">Like ML-DSA, SLH-DSA never gives Bob a secret to share — only a yes/no answer about whether the message came from Alice's private key. KeyGen, Sign, and Verify are FIPS 205 Algorithms 21–23 (external interface, §10.3).</div>
+    </div>
+
+    <div class="panel summary">
+      <div class="panel-title">Where SLH-DSA Fits</div>
+      <div class="panel-sub">A conservative fallback where verification speed and minimal assumptions matter more than signature size</div>
+      <ul>
+        <li><strong>Firmware &amp; code-signing roots of trust</strong> &mdash; devices in the field for a decade-plus, where a hash-only security argument ages better than a newer lattice assumption.</li>
+        <li><strong>Sign-once, verify-often workloads</strong> &mdash; SLH-DSA's slow signing is a one-time cost at build time; verification is fast, so it fits update-distribution pipelines well.</li>
+        <li><strong>Diversity hedge alongside ML-DSA</strong> &mdash; standards bodies and long-lived PKI roots that want two independent security foundations, not just two key sizes of the same assumption.</li>
+        <li><strong>Long-lived trust anchors</strong> &mdash; root CAs and archival signatures where "the assumption held for 20 years" matters more than shaving bytes off the signature.</li>
+        <li><strong>Constrained verifiers</strong> &mdash; embedded devices that only ever verify (never sign) can absorb the larger signature and still benefit from cheap, hash-only verification.</li>
+      </ul>
+    </div>
   </div>
 </div>
 
@@ -509,76 +550,11 @@ function showTab(name, btn) {
 // ─────────────────────────────────────────────────────────────────────────────
 function drawOverview() {
   sfStep(0, true);
-  drawArchOverview();
+  drawSigLayout();
+  drawSeqDiagram();
 }
 
-function drawArchOverview() {
-  const svg = clear('svg-overview');
-
-  // Boxes: [x, y, w, h, fill, label, sublabel, id]
-  const boxes = [
-    [20,  185, 100, 46, '#0f3460', 'Message M', '', 'M'],
-    [155, 100, 115, 42, '#4a1942', 'SK.prf + opt_rand', '', 'rand'],
-    [155, 185, 115, 42, '#1d4ed8', 'PRF_msg', 'randomizer', 'prf'],
-    [155, 275, 115, 42, '#1d4ed8', 'H_msg', 'digest fn', 'hmsg'],
-    [155, 360, 80,  36, '#0f3460', 'R', 'n bytes', 'R'],
-    [320, 90,  120, 36, '#065f46', 'FORS md', 'K×A bits → K indices', 'md'],
-    [320, 175, 120, 36, '#065f46', 'idx_tree', '(h−h′) bits', 'itree'],
-    [320, 260, 120, 36, '#065f46', 'idx_leaf', 'h′ bits', 'ileaf'],
-    [500, 90,  120, 36, '#78350f', 'FORS sign', 'K trees, A auth nodes', 'fsign'],
-    [500, 175, 120, 36, '#78350f', 'FORS PK', 'T_K(K roots)', 'fpk'],
-    [500, 260, 120, 36, '#78350f', 'HT sign', 'D layers XMSS', 'htsign'],
-    [680, 150, 130, 100, '#3b0764', 'Signature σ', 'R ‖ sig_fors ‖ sig_ht', 'sig'],
-  ];
-
-  // Draw boxes
-  for (const [x,y,w,h,fill,lbl,sub,id] of boxes) {
-    rect(svg, x,y,w,h, fill, 5, '#ffffff18', 1);
-    text(svg, x+w/2, sub ? y+h/2-7 : y+h/2, lbl, '#f0f6fc', 10.5, 'middle', '600');
-    if (sub) text(svg, x+w/2, y+h/2+8, sub, '#94a3b8', 8.5);
-  }
-
-  // Arrows
-  const arrs = [
-    [120,208, 155,208],               // M → PRF_msg
-    [120,208, 155,294],               // M → H_msg
-    [270,121, 320,108],               // PRF_msg → FORS md
-    [270,206, 320,193],               // PRF_msg/Hmsg → idx_tree
-    [270,294, 320,278],               // H_msg → idx_leaf
-    [195,378, 195,316, 195,294],      // R → H_msg (go via bend)
-    [440,108, 500,108],               // md → FORS sign
-    [440,193, 500,193],               // idx_tree → FORS sign (skip) / also HT
-    [440,278, 500,278],               // idx_leaf → HT sign
-    [620,108, 620,180, 680,180],      // FORS sign → sig (via FORS PK)
-    [560,126, 560,175],               // FORS sign → FORS PK
-    [560,211, 560,260, 500,278],      // FORS PK → HT sign (as input m)
-    [620,278, 640,278, 640,220, 680,220], // HT sign → sig
-    [195,227, 195,258, 195,275],      // PRF_msg → H_msg directly
-  ];
-  // Overview arrows
-  arrow(svg, 120,208, 155,208, '#555');  // M → PRF_msg
-  arrow(svg, 120,215, 155,290, '#555');  // M → H_msg
-  arrow(svg, 195,142, 195,185, '#555');  // SK.prf → PRF_msg
-  arrow(svg, 270,296, 320,108, '#555');  // H_msg → FORS md
-  arrow(svg, 270,296, 320,193, '#555');  // H_msg → idx_tree
-  arrow(svg, 270,296, 320,278, '#555');  // H_msg → idx_leaf
-  arrow(svg, 440,108, 500,108, '#555');  // FORS md → FORS sign
-  arrow(svg, 440,193, 500,278, '#555');  // idx_tree → HT sign (tree address)
-  arrow(svg, 440,278, 500,278, '#555');  // idx_leaf → HT sign (leaf address)
-  arrow(svg, 560,126, 560,175, '#555');  // FORS sign → FORS PK
-  arrow(svg, 620,193, 680,193, '#555');  // FORS PK → sig
-  arrow(svg, 560,211, 560,260, '#555');  // FORS PK → HT sign (message to sign)
-  arrow(svg, 620,278, 680,230, '#555');  // HT sign → sig
-
-  arrow(svg, 195,356, 195,319, '#555'); // R → H_msg
-  text(svg, 745,226, `${P.sigBytes.toLocaleString()} B`, '#8b949e', 9);
-
-  // Layer labels on right
-  text(svg, 860, 90,  'FORS', '#6e7681', 9);
-  text(svg, 860, 185, 'Key', '#6e7681', 9);
-  text(svg, 860, 275, 'HT', '#6e7681', 9);
-
-  // Sig layout bar
+function drawSigLayout() {
   const sl = clear('svg-siglayout');
   const total = P.sigBytes, sw = 840, sx0 = 20;
   const parts = [
@@ -599,6 +575,52 @@ function drawArchOverview() {
     text(sl, px + w/2, 62, b.toLocaleString() + ' B', '#6e7681', 8);
     px += w;
   }
+}
+
+function drawSeqDiagram() {
+  const svg = clear('svg-seqdiagram');
+  const laneX = {alice: 100, slhdsa: 350, bob: 600};
+  const boxW = 150, boxH = 38;
+  const topY = 8, bottomY = 522;
+  const lifeTop = topY + boxH, lifeBottom = bottomY;
+
+  function actorBox(x, y) {
+    const lbl = x === laneX.alice ? 'Alice' : x === laneX.slhdsa ? 'SLH-DSA' : 'Bob';
+    rect(svg, x - boxW/2, y, boxW, boxH, '#132d22', 6, '#199e70', 1.3);
+    text(svg, x, y + boxH/2, lbl, '#f0f6fc', 11.5, 'middle', '700');
+  }
+  for (const x of Object.values(laneX)) { actorBox(x, topY); actorBox(x, bottomY); }
+  for (const x of Object.values(laneX)) line(svg, x, lifeTop, x, lifeBottom, '#30363d', 1.2, '3,3');
+
+  function stepBand(y, label) {
+    rect(svg, 10, y, 680, 22, '#3b2c0f', 4, '#d29922', 1);
+    text(svg, 350, y + 12, label, '#f0f6fc', 10.5, 'middle', '600');
+  }
+  function seqArrow(x1, x2, y, dashed, label) {
+    const color = '#8b949e';
+    const dir = x2 > x1 ? 1 : -1;
+    const ax = x2 - dir * 9;
+    line(svg, x1, y, ax, y, color, 1.3, dashed ? '4,3' : '');
+    el('polygon', {points: `${x2},${y} ${ax},${y-4.5} ${ax},${y+4.5}`, fill: color}, svg);
+    if (label) text(svg, (x1 + x2) / 2, y - 9, label, '#c9d1d9', 9);
+  }
+
+  let y = lifeTop + 14;
+  stepBand(y, 'Step 1 — Key Generation'); y += 40;
+  seqArrow(laneX.alice, laneX.slhdsa, y, false, 'Generate key pair'); y += 32;
+  seqArrow(laneX.slhdsa, laneX.alice, y, true, 'Public key + Private key'); y += 40;
+
+  stepBand(y, 'Step 2 — Share Public Key'); y += 40;
+  seqArrow(laneX.alice, laneX.bob, y, false, 'Send public key (safe to share!)'); y += 40;
+
+  stepBand(y, 'Step 3 — Signing'); y += 40;
+  seqArrow(laneX.alice, laneX.slhdsa, y, false, 'Sign message with private key'); y += 32;
+  seqArrow(laneX.slhdsa, laneX.alice, y, true, 'Signature (7,856 B)'); y += 32;
+  seqArrow(laneX.alice, laneX.bob, y, false, 'Send message + signature'); y += 40;
+
+  stepBand(y, 'Step 4 — Verification'); y += 40;
+  seqArrow(laneX.bob, laneX.slhdsa, y, false, "Verify (message + Alice's public key)"); y += 32;
+  seqArrow(laneX.slhdsa, laneX.bob, y, true, 'Valid ✓ / Invalid ✗');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1368,7 +1390,7 @@ function onParamSetChange() {
   const active = document.querySelector('.tab-panel.active');
   if (active) {
     const id = active.id.replace('tab-', '');
-    if (id === 'overview') { sfStep(0, false); drawArchOverview(); }
+    if (id === 'overview') { sfStep(0, false); drawSigLayout(); }
     else if (RENDERERS[id]) RENDERERS[id]();
   }
 }
