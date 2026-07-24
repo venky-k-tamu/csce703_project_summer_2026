@@ -149,8 +149,9 @@ mlkem/         # FIPS 203 ML-KEM-768   — lattice/NTT-based KEM
 mldsa/         # FIPS 204 ML-DSA-65    — lattice/NTT-based signatures
 slhdsa/        # FIPS 205 SLH-DSA-SHAKE-128s — hash-based signatures (Merkle/XMSS/FORS)
 hardware/      # SystemVerilog Keccak-f[1600] / SHAKE accelerator (shared PQC core)
-visualization/ # interactive webpages: SLH-DSA, ML-DSA, ML-KEM (slh-dsa/mldsa/mlkem.html)
-docs/          # PLAN.md (authoritative plan) + PROMPTS.md (design-decision log)
+docs/          # PLAN.md, PROMPTS.md, final report, and the GitHub Pages site
+               # (interactive webpages: slh-dsa/mldsa/mlkem.html — served at
+               # https://venky-k-tamu.github.io/csce703_project_summer_2026/)
 ```
 
 Each algorithm package's modules form a bottom-up dependency stack where every
@@ -168,15 +169,17 @@ Two directories accompany the Python reference implementations:
   (`keccak_round`, `keccak_f1600`, `keccak_sponge`, `shake_xof`) is functional
   and passes a self-checking Icarus smoke test against Python `hashlib` golden
   vectors (`make smoke`). See [`hardware/README.md`](hardware/README.md).
-- **`visualization/`** — self-contained interactive webpages (no build step,
-  no dependencies; open directly in a browser). `slh-dsa.html` walks through the
-  SLH-DSA-SHAKE-128s building blocks (WOTS+, XMSS, FORS, hypertree);
-  `mldsa.html` walks through ML-DSA (Matrix A / ExpandA, ExpandMask &
-  SampleInBall, rounding & hints, and the Sign rejection loop); `mlkem.html`
-  walks through ML-KEM (the module-LWE key equation, NTT, sampling,
-  compression, and the encaps/decaps flow). All three support their full
-  range of parameter sets via a selector, and cross-link to each other via an
-  Algorithm dropdown in the nav bar.
+- **`docs/`** — besides the project plan and prompt log, this is also the
+  GitHub Pages source: self-contained interactive webpages (no build step,
+  no dependencies; open directly in a browser, or visit
+  [the published site](https://venky-k-tamu.github.io/csce703_project_summer_2026/)).
+  `slh-dsa.html` walks through the SLH-DSA-SHAKE-128s building blocks (WOTS+,
+  XMSS, FORS, hypertree); `mldsa.html` walks through ML-DSA (Matrix A /
+  ExpandA, ExpandMask & SampleInBall, rounding & hints, and the Sign
+  rejection loop); `mlkem.html` walks through ML-KEM (the module-LWE key
+  equation, NTT, sampling, compression, and the encaps/decaps flow). All
+  three support their full range of parameter sets via a selector, and
+  cross-link to each other via an Algorithm dropdown in the nav bar.
 
 ## Scope & non-goals
 

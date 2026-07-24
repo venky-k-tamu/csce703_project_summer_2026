@@ -61,6 +61,31 @@ package or file, or raise the timeout, when iterating.
 There is no build, lint, or formatter configured. Python 3.10+ required
 (uses PEP 604 typing and `pow(x, -1, m)` modular inverse).
 
+**Performance benchmarks are separate from the test suite.** Each
+package has a `tests/perf/` directory with scripts *not* named
+`test_*.py`, so plain `pytest` never collects them — run explicitly:
+
+```
+python3 -m mlkem.tests.perf.bench_mlkem [options]        # ML-KEM-768 op timings
+python3 -m mlkem.tests.perf.bench_param_sets [options]    # ML-KEM-512/768/1024 comparison
+python3 -m mldsa.tests.perf.bench_mldsa [options]         # ML-DSA-65 op timings
+python3 -m mldsa.tests.perf.bench_param_sets [options]    # ML-DSA-44/65/87 comparison
+python3 -m slhdsa.tests.perf.bench_slhdsa [options]       # SLH-DSA-SHAKE-128s op timings
+python3 -m slhdsa.tests.perf.bench_param_sets [options]   # other FIPS 205 SHAKE sets comparison
+```
+
+Results are written as timestamped JSON under each `tests/perf/results/`.
+See `<pkg>/tests/perf/README.md` for the configuration matrix per suite.
+
+From `hardware/sim/` (SystemVerilog Keccak core — see Architecture below):
+
+```
+make smoke              # Icarus self-checking smoke test — no commercial sim needed
+make vectors             # regenerate golden vectors from Python hashlib (needs python3)
+make sim SIM=questa      # full UVM run (SIM=questa|vcs|xcelium) — needs a commercial sim
+make clean
+```
+
 ## Architecture
 
 The repo has four top-level Python packages: `common/` (truly shared
@@ -69,6 +94,12 @@ ML-DSA-65), and `slhdsa/` (FIPS 205 SLH-DSA-SHAKE-128s). Each algorithm
 package's modules form a clean dependency stack — every layer only uses
 things below it. ML-KEM and ML-DSA are lattice/NTT-based; SLH-DSA is
 hash-based (Merkle trees, no ring/NTT arithmetic at all).
+
+Two companion, non-Python artifacts live alongside the reference
+implementations: `hardware/` (a SystemVerilog Keccak/SHAKE accelerator)
+and the interactive HTML pages under `docs/` (self-contained,
+no-build-step, and also the GitHub Pages source). See their own
+sections below.
 
 ### ML-KEM dependency stack (FIPS 203)
 
@@ -191,6 +222,76 @@ streaming XOF for the rejection samplers. `hashlib`'s SHAKE has no
 incremental squeeze API, so the streaming XOFs re-digest a growing
 prefix on demand. This is correct but quadratic in worst-case reads —
 don't "optimize" it unless you have a measured reason.
+
+### Performance benchmark suites (`<pkg>/tests/perf/`)
+
+Each package's `bench_param_sets.py` times the *other* FIPS parameter
+sets (ML-KEM-512/1024, ML-DSA-44/87, other FIPS 205 SHAKE sets) even
+though **only the one NIST-ACVP-KAT-verified set per scheme is a real,
+correctness-checked implementation** (ML-KEM-768, ML-DSA-65,
+SLH-DSA-SHAKE-128s — see Status above). `param_loader.py` does this by
+monkeypatching `<pkg>.params`' constants to the other set's values and
+`importlib.reload`-ing the dependency stack in order, so the *same*
+unmodified algorithm code runs under the patched parameters; each
+subprocess self-checks a round trip before timing (no ACVP vectors
+exist for the non-shipped sets). Because `reload()` mutates
+process-global module state, `load()` must run at most once per
+process — `bench_param_sets.py` runs each parameter set in its own
+subprocess via `_param_worker.py` for exactly this reason. Don't call
+`param_loader.load()` twice in one process or add a benchmark that
+imports two parameter sets side by side.
+
+## `hardware/` — SystemVerilog Keccak/SHAKE core
+
+Hardware acceleration for the primitive every scheme bottoms out in:
+Keccak-f[1600] (FIPS 202). One permutation core + a parameterizable
+sponge (rate + domain byte + fixed/XOF output) covers SHA3-256/512 and
+SHAKE128/256, which together cover every hash call across all three
+Python packages (see `hardware/README.md` for the exact mode table).
+
+```
+hardware/docs/PLAN.md    hardware's own phased plan + decisions (separate from top-level docs/PLAN.md)
+hardware/rtl/keccak/     keccak_pkg, keccak_round, keccak_f1600, keccak_sponge, shake_xof
+hardware/tb/keccak/      UVM env: seq_item, driver, monitor, agent, scoreboard, sequences
+hardware/tb/top/         tb_keccak.sv — DUT + interface + run_test()
+hardware/tb/vectors/     gen_vectors.py — golden (message, digest) pairs exported from Python hashlib
+hardware/tb/smoke/       gen_smoke.py + tb_smoke.sv — Icarus self-checking smoke test (no UVM needed)
+hardware/sim/            Makefile + filelists (rtl.f, tb.f)
+```
+
+**Status: Keccak core functional (Phases 1–2 of `hardware/docs/PLAN.md`
+done); the UVM environment (Phase 3) is still skeleton.** `make smoke`
+is the quick regression — it builds `keccak_round` → `keccak_f1600` →
+`keccak_sponge` → `shake_xof` under Icarus and checks all four modes
+against `hashlib` golden vectors. `make sim` requires a UVM-capable
+commercial simulator (Questa/VCS/Xcelium), not just Icarus.
+
+**Golden model is the Python reference**, not a live Python↔SystemVerilog
+bridge: `gen_vectors.py`/`gen_smoke.py` export vectors from `hashlib`
+(cross-checked against the `mlkem`/`mldsa`/`slhdsa` hash wrappers and
+NIST KATs) as files, which the testbench then compares the DUT's
+squeeze output against. Every RTL module maps to a FIPS 202 section and
+cites algorithm/table numbers in its docstring, same convention as the
+Python side.
+
+## `docs/` — interactive walkthroughs + GitHub Pages
+
+`docs/` holds both the project-planning documents (`PLAN.md`,
+`PROMPTS.md`, `final_report_draft.tex`) and the interactive HTML pages
+(`index.html`, `mlkem.html`, `mldsa.html`, `slh-dsa.html` + `assets/`).
+The HTML pages are self-contained — no build step, no dependencies,
+open directly in a browser — and this same folder is also the GitHub
+Pages source (repo Settings → Pages → Deploy from branch → `main` /
+`docs`), published at
+https://venky-k-tamu.github.io/csce703_project_summer_2026/. Each page
+walks through one scheme's building blocks (NTT, sampling,
+rounding/hints, WOTS+/XMSS/FORS, etc.) and supports its full range of
+FIPS parameter sets via a selector; all three cross-link via an
+Algorithm dropdown in the nav bar. Treat these as reference material to
+keep in sync with the Python implementations, not as a place to
+introduce new algorithmic logic. Because Pages serves this folder
+directly, keep the non-webpage docs (`PLAN.md`, `PROMPTS.md`, the
+`.tex` draft) from colliding with the HTML pages' filenames.
 
 ## Conventions
 
